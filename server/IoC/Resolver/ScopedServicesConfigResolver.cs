@@ -1,5 +1,7 @@
-﻿using Domain.Interfaces.Services.Auth;
+﻿using Domain.Interfaces;
+using Domain.Interfaces.Services.Auth;
 using Domain.Interfaces.Settings;
+using Domain.Repositories;
 using Domain.Services.AuthServices;
 using Domain.Services.Settings;
 using Domain.Settings;
@@ -14,6 +16,7 @@ namespace IoC.Resolver
             services.AddScoped<IAppSettings, AppSettings>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAppSettingsServices, AppSettingsServices>();
+            services.AddScoped<IRepositorioDeLivros, RepositorioDeLivros>();
         }
     }
 }

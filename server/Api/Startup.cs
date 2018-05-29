@@ -23,7 +23,8 @@ namespace Api
             app.ConfigureCors(env);
             app.UseAuthentication();
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseDeveloperExceptionPage();
+            app.UseMvcWithDefaultRoute();
             app.ConfigureSwagger();
         }
 
