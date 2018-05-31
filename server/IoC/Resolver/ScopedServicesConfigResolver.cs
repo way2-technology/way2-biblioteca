@@ -5,18 +5,19 @@ using Domain.Repositories;
 using Domain.Services.AuthServices;
 using Domain.Services.Settings;
 using Domain.Settings;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IoC.Resolver
 {
     public static class ScopedServicesConfigResolvers
     {
-        public static void ConfigureScopedServices(this IServiceCollection services)
+        public static void ConfigureScopedServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IAppSettings, AppSettings>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAppSettingsServices, AppSettingsServices>();
-            services.AddScoped<IRepositorioDeLivros, RepositorioDeLivros>();
+            services.AddScoped<IRepositorioDeLivros, RepositorioDeLivros>((_) => new RepositorioDeLivros(configuration.GetSection("AppSettings")["JsonBookFilePath"]));
         }
     }
 }

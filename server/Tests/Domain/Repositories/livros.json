@@ -1,0 +1,40 @@
+﻿[
+  {
+    "Title": "Livro A",
+    "AuthorName": "Uncle Bob",
+    "AuthorPhotoUrl": null,
+    "AuthorSmallPhotoUrl": null,
+    "ISBN": "8521312369",
+    "ISBN13": "9788521312369",
+    "GoodreadsId": "17695175",
+    "ImageUrl": "https://images.gr-assets.com/books/1364317608m/17695175m.jpg",
+    "SmallImageUrl": "https://images.gr-assets.com/books/1364317608s/17695175s.jpg",
+    "PublicationDate": "2003-01-01T00:00:00",
+    "Publisher": null,
+    "Language": "por",
+    "Description": "Descricao do livro A",
+    "AverageRating": 4.02,
+    "RatingCount": 38,
+    "NumberOfPages": 360,
+    "GoodreadsUrl": "https://www.goodreads.com/book/show/17695175-a-meta---um-processo-de-melhoria-cont-nua"
+  },
+  {
+    "Title": "Livro Z",
+    "AuthorName": "John, Marry",
+    "AuthorPhotoUrl": null,
+    "AuthorSmallPhotoUrl": null,
+    "ISBN": "8577804445",
+    "ISBN13": "9788577804443",
+    "GoodreadsId": "35632537",
+    "ImageUrl": "https://images.gr-assets.com/books/1499652771l/35632537.jpg",
+    "SmallImageUrl": "https://images.gr-assets.com/books/1499652771l/35632537.jpg",
+    "PublicationDate": "2009-01-01T00:00:00",
+    "Publisher": "Bookman",
+    "Language": "pt-BR",
+    "Description": "descricao do primeiro livro",
+    "AverageRating": 0.00,
+    "RatingCount": 0,
+    "NumberOfPages": 576,
+    "GoodreadsUrl": "https://www.goodreads.com/book/show/35632537-a-cultura-toyota"
+  }
+]
