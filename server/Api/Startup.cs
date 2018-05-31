@@ -36,7 +36,6 @@ namespace Api
             services.AddMvc();
             AddservicesAuthentication(services);
             services.ConfigureScopedServices(Configuration);
-            //services.Configure<AppSettings>
         }
     }
 }
