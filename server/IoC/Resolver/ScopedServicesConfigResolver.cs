@@ -17,7 +17,7 @@ namespace IoC.Resolver
             services.AddScoped<IAppSettings, AppSettings>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAppSettingsServices, AppSettingsServices>();
-            services.AddScoped<IRepositorioDeLivros, RepositorioDeLivros>((_) => new RepositorioDeLivros(configuration.GetSection("AppSettings")["JsonBookFilePath"]));
+            services.AddScoped<IBookRepository, BookRepository>((_) => new BookRepository(configuration.GetSection("AppSettings")["JsonBookFilePath"]));
         }
     }
 }

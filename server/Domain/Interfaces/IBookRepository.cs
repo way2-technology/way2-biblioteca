@@ -2,8 +2,8 @@
 using Domain.Responses;
 
 namespace Domain.Interfaces {
-    public interface IRepositorioDeLivros
+    public interface IBookRepository
     {
-        IEnumerable<Livro> ListeTodos();
+        IEnumerable<Book> ListAll();
     }
 }

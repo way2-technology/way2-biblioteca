@@ -1,5 +1,5 @@
 ﻿@using Domain.Responses;
-@model IEnumerable<Livro>
+@model IEnumerable<Book>
 @{
     Layout = null;
 }
@@ -20,15 +20,12 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col">
-                            <p><strong>@item.Titulo</strong> (@item.AnoDePublicacao)</p>
-                            @if (item.Autores != null) {
-                                <p><i>@String.Join(", ", item.Autores)</i></p>
-                                
-                            }
-                            <p>@item.Descricao</p>
+                            <p><strong>@item.Title</strong> (@item.PublicationDate.Year)</p>
+                            <p><i>@item.Authors</i></p>
+                            <p>@item.Description</p>
                         </div>
                         <div class="col-4">
-                            <img src="@item.UrlImagemMedia" style="max-width:150px" />
+                            <img src="@item.ImageUrl" style="max-width:150px" />
                         </div>
                     </div>
                 </li>
