@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Domain.Responses {
+namespace Domain.Entities {
     public class Book {
         [JsonProperty("Title")]
         public string Title { get; set; }

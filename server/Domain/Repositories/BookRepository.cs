@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 using Domain.Interfaces;
-using Domain.Responses;
+using Domain.Services.Settings;
 using Newtonsoft.Json;
 
 namespace Domain.Repositories {
     public class BookRepository : IBookRepository {
-        private readonly string _filePath;
+        private readonly IAppSettingsServices _appSettings;
 
-        public BookRepository(string filePath) {
-            _filePath = filePath;
+        public BookRepository(IAppSettingsServices appSettings) {
+            _appSettings = appSettings;
         }
 
         public IEnumerable<Book> ListAll() {
@@ -20,6 +21,6 @@ namespace Domain.Repositories {
         private IEnumerable<Book> ParseJson(string jsonContent) =>
             (IEnumerable<Book>)JsonConvert.DeserializeObject(jsonContent, typeof(List<Book>));
 
-        private string GetContentFromFile() => System.IO.File.ReadAllText(_filePath, Encoding.UTF8);
+        private string GetContentFromFile() => System.IO.File.ReadAllText(_appSettings.JsonBookFilePath, Encoding.UTF8);
     }
 }

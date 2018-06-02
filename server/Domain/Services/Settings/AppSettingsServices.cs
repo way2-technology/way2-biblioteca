@@ -14,5 +14,6 @@ namespace Domain.Services.Settings
         }
 
         public string Secret { get => _appSettings.Secret; set => Secret = value; }
+        public string JsonBookFilePath => _appSettings.JsonBookFilePath;
     }
 }
