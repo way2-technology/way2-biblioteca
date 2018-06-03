@@ -1,15 +1,16 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Interfaces.Services.Search;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers {
     public class HomeController : Controller {
-        private readonly IBookRepository _repositorioDeLivros;
-        public HomeController(IBookRepository repositorioDelivros) {
-            _repositorioDeLivros = repositorioDelivros;
+        private readonly IBookSearchService _bookSearchService;
+
+        public HomeController(IBookSearchService bookSearchService) {
+            _bookSearchService = bookSearchService;
         }
 
         public IActionResult Index() {
-            var bookList = _repositorioDeLivros.ListAll();
+            var bookList = _bookSearchService.ListAll(0, int.MaxValue);
             return View(bookList);
         }
     }

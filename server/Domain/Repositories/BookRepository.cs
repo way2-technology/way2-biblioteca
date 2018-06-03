@@ -13,9 +13,9 @@ namespace Domain.Repositories {
             _filePath = filePath;
         }
 
-        public IEnumerable<Book> ListAll() {
+        public IEnumerable<Book> ListAll(int skip, int take) {
             var content = GetContentFromFile();
-            return ParseJson(content);
+            return ParseJson(content).Skip(skip).Take(take);
         }
 
         private IEnumerable<Book> ParseJson(string jsonContent) =>
@@ -23,13 +23,13 @@ namespace Domain.Repositories {
 
         private string GetContentFromFile() => System.IO.File.ReadAllText(_filePath, Encoding.UTF8);
 
-        public IEnumerable<Book> Search(int skip, int take, string keyword) {
+        public IEnumerable<Book> Search(string keyword, int skip, int take) {
             var content = GetContentFromFile();
             return ParseJson(content)
                 .Where(book =>
-                    book.Title.ToUpper().Contains(keyword.ToUpper())
-                    //book.Description.ToUpper().Contains(keyword.ToUpper())
-                    //(book.Authors != null && book.Authors.ToUpper().Contains(keyword.ToUpper()))
+                    book.Title.ToUpper().Contains(keyword.ToUpper()) ||
+                    (book.Description != null && book.Description.ToUpper().Contains(keyword.ToUpper())) ||
+                    (book.Authors != null && book.Authors.ToUpper().Contains(keyword.ToUpper()))
                     )
                 .Skip(skip).Take(take).ToList();
         }

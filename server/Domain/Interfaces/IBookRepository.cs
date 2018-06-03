@@ -3,7 +3,7 @@ using Domain.Responses;
 
 namespace Domain.Interfaces {
     public interface IBookRepository {
-        IEnumerable<Book> ListAll();
-        IEnumerable<Book> Search(int skip, int take, string keyword);
+        IEnumerable<Book> ListAll(int skip, int take);
+        IEnumerable<Book> Search(string keyword, int skip, int take);
     }
 }
