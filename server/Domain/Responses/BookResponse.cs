@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.Entities;
 
 namespace Domain.Responses {
     public class BookResponse {

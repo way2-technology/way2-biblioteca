@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Services.Search;
-using Domain.Responses;
 
 namespace Domain.Services.Search {
     public class BookSearchService : IBookSearchService {

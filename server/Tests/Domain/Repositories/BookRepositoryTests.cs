@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Linq;
+using Domain.Entities;
 using Domain.Repositories;
-using Domain.Responses;
+using Domain.Services.Settings;
+using Moq;
 using Newtonsoft.Json;
 using Xunit;
 
 namespace Tests.Domain.Repositories {
     public class BookRepositoryTests {
         private readonly BookRepository _repo;
+        private Mock<IAppSettingsServices> _appSettingsMock;
 
         public BookRepositoryTests() {
-            _repo = new BookRepository("./Domain/Repositories/livros.json");
+            _appSettingsMock = new Mock<IAppSettingsServices>();
+            _appSettingsMock.SetupGet(mock => mock.JsonBookFilePath).Returns("./Domain/Repositories/livros.json");
+
+            _repo = new BookRepository(_appSettingsMock.Object);
         }
 
         [Fact]

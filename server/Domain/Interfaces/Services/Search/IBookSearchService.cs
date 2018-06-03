@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Domain.Responses;
+using Domain.Entities;
 
 namespace Domain.Interfaces.Services.Search {
     public interface IBookSearchService {

@@ -1,4 +1,4 @@
-﻿@using Domain.Responses;
+﻿@using Domain.Entities;
 @model IEnumerable<Book>
 @{
     Layout = null;
@@ -10,17 +10,23 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <title>Index</title>
+    <title>Way2Lib (Beta)</title>
 </head>
 <body>
     <div class="container">
-        <h1>Way2 Biblioteca</h1>
+        <h1>Way2 Biblioteca (Beta)</h1>
         <ul class="list-group">
             @foreach (var item in Model) {
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col">
-                            <p><strong>@item.Title</strong> (@item.PublicationDate.Year)</p>
+                            <p>
+                                <strong>@item.Title</strong>
+                                @if (item.PublicationDate.Year > 1) {
+                                    <span>(@item.PublicationDate.Year)</span>
+
+                                }
+                            </p>
                             <p><i>@item.Authors</i></p>
                             <p>@item.Description</p>
                         </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Api.Controllers;
+using Domain.Entities;
 using Domain.Interfaces.Services.Search;
 using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
