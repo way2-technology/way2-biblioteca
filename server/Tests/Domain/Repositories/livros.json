@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Title": "Livro A",
+    "Title": "Book A",
     "AuthorName": "Uncle Bob",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
@@ -19,7 +19,7 @@
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17695175-a-meta---um-processo-de-melhoria-cont-nua"
   },
   {
-    "Title": "Livro Z",
+    "Title": "Book Z",
     "AuthorName": "John, Marry",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
@@ -32,6 +32,25 @@
     "Publisher": "Bookman",
     "Language": "pt-BR",
     "Description": "descricao do primeiro livro",
+    "AverageRating": 0.00,
+    "RatingCount": 0,
+    "NumberOfPages": 576,
+    "GoodreadsUrl": "https://www.goodreads.com/book/show/35632537-a-cultura-toyota"
+  },
+  {
+    "Title": "Yet another long booooook",
+    "AuthorName": "Bubba bob Gump",
+    "AuthorPhotoUrl": null,
+    "AuthorSmallPhotoUrl": null,
+    "ISBN": "8577809999",
+    "ISBN13": "9788577804443",
+    "GoodreadsId": "35632537",
+    "ImageUrl": "https://images.gr-assets.com/books/1499652771l/35632537.jpg",
+    "SmallImageUrl": "https://images.gr-assets.com/books/1499652771l/35632537.jpg",
+    "PublicationDate": "2009-01-01T00:00:00",
+    "Publisher": "Bookman",
+    "Language": "pt-BR",
+    "Description": "ask forest to run",
     "AverageRating": 0.00,
     "RatingCount": 0,
     "NumberOfPages": 576,
