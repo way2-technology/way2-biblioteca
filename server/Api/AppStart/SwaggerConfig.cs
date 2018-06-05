@@ -23,7 +23,7 @@ namespace Api.AppStart
             });
             app.Run(async context =>
             {
-                context.Response.Redirect("swagger/");
+                //context.Response.Redirect("swagger/");
             });
         }
     }
