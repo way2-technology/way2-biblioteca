@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "Title": "A Cultura Toyota: A Alma do Modelo Toyota",
     "AuthorName": "Jeffrey K. Liker,  Michael Hoseus",
     "AuthorPhotoUrl": null,
@@ -19,15 +20,16 @@
     "GoodreadsUrl": "https://www.goodreads.com/book/show/35632537-a-cultura-toyota"
   },
   {
+    "id": 2,
     "Title": "A Meta - Um Processo de Melhoria Contínua",
-    "AuthorName": "Eliyahu M. Goldratt",
+    "AuthorName": "Eliyahu M. Goldratt, Jeff Cox",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
     "ISBN": "8521312369",
     "ISBN13": "9788521312369",
     "GoodreadsId": "17695175",
-    "ImageUrl": "https://images.gr-assets.com/books/1364317608m/17695175.jpg",
-    "SmallImageUrl": "https://images.gr-assets.com/books/1364317608s/17695175.jpg",
+    "ImageUrl": "https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=123105&qld=90&l=430&a=-1",
+    "SmallImageUrl": "https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=123105&qld=90&l=430&a=-1",
     "PublicationDate": "2003-01-01T00:00:00",
     "Publisher": null,
     "Language": "por",
@@ -38,6 +40,7 @@
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17695175-a-meta---um-processo-de-melhoria-cont-nua"
   },
   {
+    "id": 3,
     "Title": "A Profecia Celestina",
     "AuthorName": "James Redfield",
     "AuthorPhotoUrl": null,
@@ -45,8 +48,8 @@
     "ISBN": "9724608158",
     "ISBN13": "9789724608150",
     "GoodreadsId": "6535844",
-    "ImageUrl": "https://images.gr-assets.com/books/1351367968m/6535844.jpg",
-    "SmallImageUrl": "https://images.gr-assets.com/books/1351367968s/6535844.jpg",
+    "ImageUrl": "https://img.wook.pt/images/a-profecia-celestina-james-redfield/MXwxNzM4NzJ8MjIxNzY3fDEzODM1MjMyMDAwMDA=/500x",
+    "SmallImageUrl": "https://img.wook.pt/images/a-profecia-celestina-james-redfield/MXwxNzM4NzJ8MjIxNzY3fDEzODM1MjMyMDAwMDA=/500x",
     "PublicationDate": "1997-01-01T00:00:00",
     "Publisher": null,
     "Language": "por",
@@ -96,7 +99,7 @@
   },
   {
     "Title": "Agile Project Management with Scrum",
-    "AuthorName": null,
+    "AuthorName": "Ken Schwaber",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
     "ISBN": "073561993X",
@@ -115,7 +118,7 @@
   },
   {
     "Title": "Agile Retrospectives: Making Good Teams Great",
-    "AuthorName": null,
+    "AuthorName": "Esther Derby, Diana Larsen",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
     "ISBN": "0977616649",
@@ -134,7 +137,7 @@
   },
   {
     "Title": "Ajax Patterns and Best Practices",
-    "AuthorName": null,
+    "AuthorName": "Christian Gross",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
     "ISBN": "1590596161",
@@ -152,15 +155,15 @@
     "GoodreadsUrl": "https://www.goodreads.com/book/show/58104.Ajax_Patterns_and_Best_Practices"
   },
   {
-    "Title": "SPIN Selling: Situation Problem Implication Need-payoff",
-    "AuthorName": null,
+    "Title": "Alcançando excelência em vendas - Spin Selling",
+    "AuthorName": "Neil Rackham",
     "AuthorPhotoUrl": null,
     "AuthorSmallPhotoUrl": null,
     "ISBN": "0070511136",
     "ISBN13": "9780070511132",
     "GoodreadsId": "833015",
-    "ImageUrl": "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png",
-    "SmallImageUrl": "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png",
+    "ImageUrl": "https://images.gr-assets.com/books/1365467258l/17786041.jpg",
+    "SmallImageUrl": "https://images.gr-assets.com/books/1365467258l/17786041.jpg",
     "PublicationDate": "0001-01-01T00:00:00",
     "Publisher": null,
     "Language": "",
