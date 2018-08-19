@@ -27,6 +27,7 @@
                             @if (item.PublicationDate.Year > 1) {
                                 <span>(@item.PublicationDate.Year)</span>
                             }
+                            <a href="@Url.Action("Edit", "Book", new { Id = item.Id })">Edit</a>
                             <p><i>@item.Authors</i></p>
                             <p>@item.Description</p>
                         </div>
