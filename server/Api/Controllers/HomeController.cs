@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces.Services.Search;
+﻿using System;
+using Domain.Interfaces.Services.Search;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers {
@@ -12,6 +13,13 @@ namespace Api.Controllers {
         public IActionResult Index() {
             var bookList = _bookSearchService.ListAll(0, int.MaxValue);
             return View(bookList);
+        }
+
+        public IActionResult Search(string q) {
+            var bookList = String.IsNullOrWhiteSpace(q) ? 
+                _bookSearchService.ListAll(0, int.MaxValue) : 
+                _bookSearchService.Search(q, 0, int.MaxValue);
+            return View("Index", bookList);
         }
     }
 }

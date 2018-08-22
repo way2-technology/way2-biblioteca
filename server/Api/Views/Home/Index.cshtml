@@ -1,8 +1,6 @@
 ﻿@using Domain.Entities;
 @model IEnumerable<Book>
-@{
-    Layout = null;
-}
+@{ Layout = null; }
 
 <!DOCTYPE html>
 
@@ -14,7 +12,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Way2 Biblioteca (Beta)</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Way2 Library_ (Beta)</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" })) {
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+                }
+            </div>
+        </nav>
         <ul class="list-group">
             @foreach (var item in Model) {
                 <li class="list-group-item">
@@ -23,13 +32,13 @@
                             <img src="@item.ImageUrl" style="max-width:160px; max-height: 245px" />
                         </div>
                         <div class="col">
-                            <strong>@item.Title</strong>
+                            <a href="@Url.Action("Details", "Book", new { Id = item.Id })"><strong>@item.Title</strong></a>
                             @if (item.PublicationDate.Year > 1) {
                                 <span>(@item.PublicationDate.Year)</span>
                             }
                             <a href="@Url.Action("Edit", "Book", new { Id = item.Id })">Edit</a>
                             <p><i>@item.Authors</i></p>
-                            <p>@item.Description</p>
+                            <p style="text-align: justify">@item.Description</p>
                         </div>
                     </div>
                 </li>
