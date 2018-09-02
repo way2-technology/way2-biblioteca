@@ -2142,19 +2142,19 @@
     "Quantity": 1
   },
   {
-    "$id": "103",
+    "$id": "104",
     "Id": 108,
     "Title": "Contabilidade para Advogados - Noções Básicas de Contabilidade,Análise das Demonstrações Contábeis,Cálculo de Impostos e Contribuições",
     "AuthorName": "Láudio Camargo Fabretti",
-    "ISBN": "9788522438280",
+    "ISBN": null,
     "ISBN13": null,
     "GoodreadsId": null,
-    "ImageUrl": "https://img.wook.pt/images/contabilidade-para-advogados-laudio-camargo-fabretti/MXwxMTk3MjZ8MTQ5NzkzfDEzODM1MjMyMDAwMDA=/502x",
-    "SmallImageUrl": "https://img.wook.pt/images/contabilidade-para-advogados-laudio-camargo-fabretti/MXwxMTk3MjZ8MTQ5NzkzfDEzODM1MjMyMDAwMDA=/502x",
-    "PublicationDate": "2004-04-01T00:00:00",
+    "ImageUrl": null,
+    "SmallImageUrl": null,
+    "PublicationDate": "0001-01-01T00:00:00",
     "Publisher": null,
     "Language": null,
-    "Description": "Este livro transmite ao advogado os conhecimentos de contabilidade e tributação, para torná-lo apto a participar do planejamento e da gestão de tributos das empresas e das operações de reestruturação societária. O livro foi dividido em duas partes. Na parte geral são expostas as noções básicas de contabilidade, seus princípios fundamentais, as normas de escrituração contábil de acordo com o Novo Código Civil, e a Lei das Sociedades por Ações, as demonstrações contábeis e sua análise e interpretação. Na parte tributária, são expostos os princípios e normas jurídicas que norteiam o Direito Tributário, a técnica de repercussão dos impostos indiretos para o preço, a apuração do Imposto de Renda das empresas pelo lucro real, presumido ou arbitrado, as normas para distribuição isenta do lucro, os incentivos fiscais e os polêmicos PIS e Cofins.",
+    "Description": null,
     "AverageRating": 0.0,
     "RatingCount": 0,
     "NumberOfPages": 0,
@@ -2163,7 +2163,7 @@
     "Quantity": 1
   },
   {
-    "$id": "104",
+    "$id": "105",
     "Id": 109,
     "Title": "Contabilidade Societária - Atualizado pela Lei nº 10.303/01",
     "AuthorName": "José Luiz dos Santos,Paulo Schmidt",
@@ -2184,7 +2184,7 @@
     "Quantity": 1
   },
   {
-    "$id": "105",
+    "$id": "106",
     "Id": 110,
     "Title": "Core Foundations of Microsoft .NET 2.0 Development",
     "AuthorName": "Microsoft Official Course",
@@ -2205,7 +2205,7 @@
     "Quantity": 1
   },
   {
-    "$id": "106",
+    "$id": "107",
     "Id": 111,
     "Title": "Dane-se a organização",
     "AuthorName": "Robert Townsend",
@@ -2226,7 +2226,7 @@
     "Quantity": 1
   },
   {
-    "$id": "107",
+    "$id": "108",
     "Id": 112,
     "Title": "Datas Históricas de Antônio Carlos 1830 - 1992",
     "AuthorName": "Rogério Kremer",
@@ -2247,7 +2247,7 @@
     "Quantity": 1
   },
   {
-    "$id": "108",
+    "$id": "109",
     "Id": 113,
     "Title": "Desenvolvendo Aplicações ASP.NET com Web Matrix",
     "AuthorName": "Daniel Wander",
@@ -2268,7 +2268,7 @@
     "Quantity": 1
   },
   {
-    "$id": "109",
+    "$id": "110",
     "Id": 114,
     "Title": "Dicionário de Termos de Negócios - Espanhol",
     "AuthorName": "PubliFolha",
@@ -2289,7 +2289,7 @@
     "Quantity": 1
   },
   {
-    "$id": "110",
+    "$id": "111",
     "Id": 115,
     "Title": "Domain-Driven Design Distelled",
     "AuthorName": "Vaughn Vernon",
@@ -2310,7 +2310,7 @@
     "Quantity": 1
   },
   {
-    "$id": "111",
+    "$id": "112",
     "Id": 116,
     "Title": "Excel 5 For Windows - Técnicas Avançadas",
     "AuthorName": "Bruce Hallberg",
@@ -2331,7 +2331,7 @@
     "Quantity": 1
   },
   {
-    "$id": "112",
+    "$id": "113",
     "Id": 117,
     "Title": "Explorando Visual C++",
     "AuthorName": "David J. Kruglinski",
@@ -2352,7 +2352,7 @@
     "Quantity": 1
   },
   {
-    "$id": "113",
+    "$id": "114",
     "Id": 118,
     "Title": "Ferramentas da Administração",
     "AuthorName": "Editora UDESC",
@@ -2373,7 +2373,7 @@
     "Quantity": 1
   },
   {
-    "$id": "114",
+    "$id": "115",
     "Id": 119,
     "Title": "Gestão da Qualidade",
     "AuthorName": "Irnard Marshall Junior,Agliberto Alves Cierco,Alexandre Varanda Rocha,Edmarson Bacelar Mota,Sérgio Leusin",
@@ -2394,7 +2394,7 @@
     "Quantity": 1
   },
   {
-    "$id": "115",
+    "$id": "116",
     "Id": 120,
     "Title": "Gestão de help desk e service desk",
     "AuthorName": "Roberto Cohen",
@@ -2415,7 +2415,7 @@
     "Quantity": 1
   },
   {
-    "$id": "116",
+    "$id": "117",
     "Id": 121,
     "Title": "Gestão de Negócios Internacionais",
     "AuthorName": "Marco Antonio S. Vasconcellos,Miguel Lima,Simão Silber",
@@ -2436,7 +2436,7 @@
     "Quantity": 1
   },
   {
-    "$id": "117",
+    "$id": "118",
     "Id": 122,
     "Title": "Google Marketing - O guia definitivo de marketing digital",
     "AuthorName": "Conrado Adolpho Vaz",
@@ -2457,7 +2457,7 @@
     "Quantity": 1
   },
   {
-    "$id": "118",
+    "$id": "119",
     "Id": 123,
     "Title": "Guia Abrasel - Santa Catarina",
     "AuthorName": "Abrasel",
@@ -2478,7 +2478,7 @@
     "Quantity": 1
   },
   {
-    "$id": "119",
+    "$id": "120",
     "Id": 124,
     "Title": "Guia de Certificação MCP, MCSA, MCSE",
     "AuthorName": "Josenildo Feijó",
@@ -2499,7 +2499,7 @@
     "Quantity": 1
   },
   {
-    "$id": "120",
+    "$id": "121",
     "Id": 125,
     "Title": "Guia de Certificação MCSE - Para Windoes XP Professional Exame 70-270",
     "AuthorName": "Luciano de Lima",
@@ -2520,7 +2520,7 @@
     "Quantity": 1
   },
   {
-    "$id": "121",
+    "$id": "122",
     "Id": 126,
     "Title": "Guia do Conjunto de Conhecimentos em Gerenciamento de Projetos",
     "AuthorName": "Guia PMBOK",
@@ -2541,7 +2541,7 @@
     "Quantity": 1
   },
   {
-    "$id": "122",
+    "$id": "123",
     "Id": 127,
     "Title": "Manual de Frascati - Metodologia proposta para levantamentos sobre pesquisa e desenvolvimento experimental",
     "AuthorName": "Frascati?",
@@ -2562,7 +2562,7 @@
     "Quantity": 1
   },
   {
-    "$id": "123",
+    "$id": "124",
     "Id": 128,
     "Title": "Matemática financeira",
     "AuthorName": "Luís Geraldo Mendonça,George Joseph Boggiss,Luiz Alfredo Rodrigues Gaspar,Marcos Guilherme Heringer",
@@ -2583,7 +2583,7 @@
     "Quantity": 1
   },
   {
-    "$id": "124",
+    "$id": "125",
     "Id": 129,
     "Title": "Métrica para help desk e sefvice desk",
     "AuthorName": "Roberto Cohen",
@@ -2604,7 +2604,7 @@
     "Quantity": 1
   },
   {
-    "$id": "125",
+    "$id": "126",
     "Id": 130,
     "Title": "O Gerente Minuto - Como tomar decisões rápidas",
     "AuthorName": "Kenneth Blanchard e Spender Johson",
@@ -2625,7 +2625,7 @@
     "Quantity": 1
   },
   {
-    "$id": "126",
+    "$id": "127",
     "Id": 131,
     "Title": "O Poder do Marketing de Exposições - Guia Completo para ser Bem-Sucedido em Exposições, Feiras de Negócios e Convenções",
     "AuthorName": "Barry Siskind",
@@ -2646,7 +2646,7 @@
     "Quantity": 1
   },
   {
-    "$id": "127",
+    "$id": "128",
     "Id": 132,
     "Title": "Oracle 8i & PL/SQL",
     "AuthorName": "Wilson José de Oliveira",
@@ -2667,7 +2667,7 @@
     "Quantity": 1
   },
   {
-    "$id": "128",
+    "$id": "129",
     "Id": 133,
     "Title": "Palavras de Sabedoria",
     "AuthorName": "Sua Santidade, o Dalai-Lama",
@@ -2688,7 +2688,7 @@
     "Quantity": 1
   },
   {
-    "$id": "129",
+    "$id": "130",
     "Id": 134,
     "Title": "Planejamento de volta às origens",
     "AuthorName": "Mary Jean Parson e Matthew J. Culligan",
@@ -2709,7 +2709,7 @@
     "Quantity": 1
   },
   {
-    "$id": "130",
+    "$id": "131",
     "Id": 135,
     "Title": "Planejamento Estratégico - Teoria, Modelos e Processos",
     "AuthorName": "Maurício Fernandes Pereira",
@@ -2730,7 +2730,7 @@
     "Quantity": 1
   },
   {
-    "$id": "131",
+    "$id": "132",
     "Id": 136,
     "Title": "Programa Brasileiro da Qualidade e Produtividade em Software",
     "AuthorName": "PBQP Software",
@@ -2751,7 +2751,7 @@
     "Quantity": 1
   },
   {
-    "$id": "132",
+    "$id": "133",
     "Id": 137,
     "Title": "Trabalhista! O que mudou?",
     "AuthorName": "Marlos Augusto Melek",
@@ -2772,7 +2772,7 @@
     "Quantity": 1
   },
   {
-    "$id": "133",
+    "$id": "134",
     "Id": 138,
     "Title": "Resumo de Direito Tributário",
     "AuthorName": "Maximilianus Cláudio Américo Führer,Maximiliano Roberto Ernesto Führer",
@@ -2793,7 +2793,7 @@
     "Quantity": 1
   },
   {
-    "$id": "134",
+    "$id": "135",
     "Id": 139,
     "Title": "Resumo de Obrigações e Contratos - (Civis, Comerciais, Consumidor)",
     "AuthorName": "Maximilianus Cláudio Américo Führer",
@@ -2814,7 +2814,7 @@
     "Quantity": 1
   },
   {
-    "$id": "135",
+    "$id": "136",
     "Id": 140,
     "Title": "Sarbanes-Oxley - Conformidade TI usando COBIT e Ferramentas open source",
     "AuthorName": "Christian B. Lahti,Roderick Peterson",
@@ -2835,7 +2835,7 @@
     "Quantity": 1
   },
   {
-    "$id": "136",
+    "$id": "137",
     "Id": 141,
     "Title": "Tecnologia da Informação - Qualidade de Produto de Software",
     "AuthorName": "Ana Cervigni Guerra,Regina Maria Thienne Colombo",
@@ -2856,7 +2856,7 @@
     "Quantity": 1
   },
   {
-    "$id": "137",
+    "$id": "138",
     "Id": 142,
     "Title": "Tudo que seus gurus não lhe contaram sobre comunicação empresarial",
     "AuthorName": "Roger Cahen",
@@ -2877,7 +2877,7 @@
     "Quantity": 1
   },
   {
-    "$id": "138",
+    "$id": "139",
     "Id": 143,
     "Title": "Visual C++ - Development System for Windows and Windows NT",
     "AuthorName": "Microsoft Official Course",
