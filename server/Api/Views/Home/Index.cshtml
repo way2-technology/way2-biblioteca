@@ -12,38 +12,61 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Way2 Library_ (Beta)</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Way2_Library (Beta)</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Featured</a>
+                    </li>
+                </ul>
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" })) {
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
                 }
             </div>
         </nav>
-        <ul class="list-group">
+        <div class="row" style="margin-top: 20px">
+            @{var count = 1; }
             @foreach (var item in Model) {
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xl-2 col-md-4">
-                            <img src="@item.ImageUrl" style="max-width:160px; max-height: 245px" />
-                        </div>
-                        <div class="col">
-                            <a href="@Url.Action("Details", "Book", new { Id = item.Id })"><strong>@item.Title</strong></a>
-                            @if (item.PublicationDate.Year > 1) {
-                                <span>(@item.PublicationDate.Year)</span>
-                            }
-                            <a href="@Url.Action("Edit", "Book", new { Id = item.Id })">Edit</a>
-                            <p><i>@item.Authors</i></p>
-                            <p style="text-align: justify">@item.Description</p>
-                        </div>
+                <div class="col" style="margin-bottom: 30px">
+                    <div class="d-flex justify-content-center">
+                        <a href="@Url.Action("Details", "Book", new { Id = item.Id })">
+                            <img src="@item.ImageUrl" style="width:160px; height: 245px; display: inline;" />
+                        </a>
                     </div>
-                </li>
+                    <div class="d-flex justify-content-center">
+                        <span class="text-center">@item.Title</span>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        @{ 
+                            var autores = item.Authors;
+                            var primeiroAutor = string.IsNullOrEmpty(autores) ? string.Empty : autores.Split(',').FirstOrDefault();
+                        }
+                        <small>@primeiroAutor</small>
+                    </div>
+                    <div class="progress">
+                        @{
+                            var rating = (item.AverageRating * 100 / 5).ToString().Replace(",", ".");
+                            if (string.IsNullOrWhiteSpace(rating)) {
+                                rating = "0";
+                            }
+                        }
+                        <div class="progress-bar" role="progressbar" style="width: @rating%;" aria-valuenow="@rating" aria-valuemin="0" aria-valuemax="100">@rating%</div>
+                    </div>
+                </div>
+                {
+                    if (count % 3 == 0) {
+                        <div class="w-100"></div>
+                    }
+                    count++;
+                }
             }
-        </ul>
+        </div>
     </div>
 </body>
 </html>

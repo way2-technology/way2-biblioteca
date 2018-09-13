@@ -11,34 +11,65 @@
 </body>
 </html>
 <div class="container">
-    <a href="/">Home</a>
-    <div class="col-md-12">
-        <h2>@Model.Title</h2>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Way2_Library (Beta)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Featured</a>
+                </li>
+            </ul>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" })) {
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+            }
+        </div>
+    </nav>
+    <div class="col">
+        <h2>@Model.Title <small>(@Model.Language)</small></h2>
         <h3><small class="text-muted">@Model.Authors</small></h3>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-3">
+            <div class=" d-flex justify-content-center" style="margin-bottom: 20px">
+                <img src="@Model.ImageUrl" style="height: 300px" />
+            </div>
+            <div class="progress">
+                @{
+                    var rating = (Model.AverageRating * 100 / 5).ToString().Replace(",", ".");
+                    if (string.IsNullOrWhiteSpace(rating)) {
+                        rating = "0";
+                    }
+                }
+                <div class="progress-bar" role="progressbar" style="width: @rating%;" aria-valuenow="@rating" aria-valuemin="0" aria-valuemax="100">@rating%</div>
+            </div>
+            <div class=" d-flex justify-content-center">
+                <small>@Model.RatingCount reviews</small>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <p style="text-align: justify">@Model.Description</p>
+            
+            <h4>Detalhes:</h4>
             <dl class="row">
-                <dt class="col-sm-3">Publicação</dt>
-                <dd class="col-sm-9">@Model.PublicationDate.ToString("dd/MM/yyyy")</dd>
+                <dt class="col-sm-2">Publicação</dt>
+                <dd class="col-sm-10">@Model.PublicationDate.ToString("dd/MM/yyyy")</dd>
 
-                <dt class="col-sm-3">ISBN</dt>
-                <dd class="col-sm-9">@Model.ISBN</dd>
+                <dt class="col-sm-2">ISBN</dt>
+                <dd class="col-sm-10">@Model.ISBN</dd>
 
-                <dt class="col-sm-3">Editora</dt>
-                <dd class="col-sm-9">@Model.Publisher</dd>
+                <dt class="col-sm-2">Editora</dt>
+                <dd class="col-sm-10">@Model.Publisher</dd>
 
-                <dt class="col-sm-3">Páginas</dt>
-                <dd class="col-sm-9">@Model.NumberOfPages</dd>
-
-                <dt class="col-sm-3">Nota GoodReads</dt>
-                <dd class="col-sm-9">@Model.AverageRating / 5 (@Model.RatingCount avaliações)</dd>
+                <dt class="col-sm-2">Páginas</dt>
+                <dd class="col-sm-10">@Model.NumberOfPages</dd>
             </dl>
 
-            <p style="text-align: justify">@Model.Description</p>
         </div>
-        <div class="col-md-4">
-            <img src="@Model.ImageUrl" style="max-height: 400px" />
-        </div>
+
     </div>
 </div>
