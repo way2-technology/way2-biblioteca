@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers {
@@ -29,7 +30,8 @@ namespace Api.Controllers {
 
         public IActionResult Details(int id) {
             var book = _bookRepository.Load(id);
-            return View(book);
+            var viewModel = new BookResponse(book);
+            return View(viewModel);
         }
     }
 }

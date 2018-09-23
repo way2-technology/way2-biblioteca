@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Domain.Interfaces.Services.Search;
+using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers {
@@ -12,14 +14,16 @@ namespace Api.Controllers {
 
         public IActionResult Index() {
             var bookList = _bookSearchService.ListAll(0, int.MaxValue);
-            return View(bookList);
+            var viewModelList = bookList.Select(book => new BookResponse(book));
+            return View(viewModelList);
         }
 
         public IActionResult Search(string q) {
             var bookList = String.IsNullOrWhiteSpace(q) ? 
                 _bookSearchService.ListAll(0, int.MaxValue) : 
                 _bookSearchService.Search(q, 0, int.MaxValue);
-            return View("Index", bookList);
+            var viewModelList = bookList.Select(book => new BookResponse(book));
+            return View("Index", viewModelList);
         }
     }
 }
