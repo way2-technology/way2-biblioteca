@@ -16,6 +16,7 @@ namespace Domain.Responses {
         public string Rating { get; set; }
         public int RatingCount { get; set; }
         public string ISBN { get; set; }
+        public Category[] Categories { get; set; }
 
         public BookLoan[] BookLoans => new[] {
             new BookLoan()
@@ -36,6 +37,7 @@ namespace Domain.Responses {
             Rating = GetRatingScaleFive(book.AverageRating);
             RatingCount = book.RatingCount ?? 0;
             ISBN = book.ISBN ?? book.ISBN13 ?? string.Empty;
+            Categories = book?.Categories;
         }
 
         private string GetRatingScaleFive(decimal? averageRating) => !averageRating.HasValue ? "0" : (averageRating.Value * 100 / 5).ToString().Replace(",", ".");

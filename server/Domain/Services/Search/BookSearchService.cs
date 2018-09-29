@@ -16,6 +16,8 @@ namespace Domain.Services.Search {
 
         public IEnumerable<Book> ListAll(int skip, int take) => _bookRepository.ListAll(skip, take);
 
+        public IEnumerable<Category> ListCategories() => _bookRepository.GetActiveCategories();
+
         public IEnumerable<Book> Search(string keyword, int skip, int take) => _bookRepository.Search(keyword, skip, take);
     }
 }

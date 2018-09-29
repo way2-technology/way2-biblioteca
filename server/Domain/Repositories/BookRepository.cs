@@ -58,6 +58,7 @@ namespace Domain.Repositories {
             destination.ISBN = origin.ISBN;
             destination.Description = origin.Description;
             destination.PublicationDate = origin.PublicationDate;
+            destination.Categories = origin.Categories;
         }
 
         // TODO: método para popular a base json do MiniBiggy, vai ser deprecado assim que todos os dados dos livros forem verificados
@@ -73,5 +74,8 @@ namespace Domain.Repositories {
         public Book Load(int id) {
             return _books.SingleOrDefault(book => book.Id == id);
         }
+
+        public IEnumerable<Category> GetActiveCategories() => 
+            ListAll(0, int.MaxValue).SelectMany(book => book.Categories).Distinct();
     }
 }

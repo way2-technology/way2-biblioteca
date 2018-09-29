@@ -36,5 +36,6 @@ namespace Domain.Entities {
         public string GoodreadsUrl { get; set; }
         public BookLoan[] Loans => new BookLoan[0];
         public int Quantity => 1;
+        public Category[] Categories { get; set; }
     }
 }

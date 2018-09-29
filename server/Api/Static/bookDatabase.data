@@ -18,7 +18,12 @@
     "NumberOfPages": 576,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/35632537-a-cultura-toyota",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      5,
+      12
+    ]
   },
   {
     "$id": "2",
@@ -39,7 +44,11 @@
     "NumberOfPages": 360,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17695175-a-meta---um-processo-de-melhoria-cont-nua",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1,
+      3
+    ]
   },
   {
     "$id": "3",
@@ -60,7 +69,10 @@
     "NumberOfPages": 301,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6535844-a-profecia-celestina",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
     "$id": "4",
@@ -75,13 +87,17 @@
     "PublicationDate": "0001-01-01T00:00:00",
     "Publisher": null,
     "Language": "en-GB",
-    "Description": " Learn JavaScript with half the effort, aided by technology.   Master each chapter with free interactive exercises online. \n   Live simulation lets you see your practice code run in your browser. \n   2,000 lines of color-keyed sample code break it all down into easy-to-learn chunks. \n   Extra help through the rough spots so you're less likely to get stuck. \n   Tested on non-coders—including the author's technophobe wife. \n  Become fluent in all the JavaScript fundamentals, in half the time.   Display alert messages to the user \n   Gather information through prompts \n   Manipulate variables \n   Build statements \n   Do math \n   Use operators \n   Concatenate text \n   Run routines based on conditions \n   Compare values \n   Work with arrays \n   Run automated routines \n   Display custom elements on the webpage \n   Generate random numbers \n   Manipulate decimals \n   Round numbers \n   Create loops \n   Use functions \n   Find the current date and time \n   Measure time intervals \n   Create a timer \n   Respond to the user's actions \n   Swap images \n   Control colors on the webpage \n   Change any element on the webpage \n   Improvise new HTML markup on the fly \n   Use the webpage DOM structure \n   Insert comments \n   Situate scripts effectively \n   Create and change objects \n   Automate object creation \n   Control the browser's actions \n   Fill the browser window with custom content \n   Check forms for invalid entries \n   Deal with errors \n   Make a more compelling website \n   Increase user-friendliness \n   Keep your user engaged <br /> \n ",
+    "Description": " Learn JavaScript with half the effort, aided by technology.   Master each chapter with free interactive exercises online. \r\n   Live simulation lets you see your practice code run in your browser. \r\n   2,000 lines of color-keyed sample code break it all down into easy-to-learn chunks. \r\n   Extra help through the rough spots so you're less likely to get stuck. \r\n   Tested on non-coders—including the author's technophobe wife. \r\n  Become fluent in all the JavaScript fundamentals, in half the time.   Display alert messages to the user \r\n   Gather information through prompts \r\n   Manipulate variables \r\n   Build statements \r\n   Do math \r\n   Use operators \r\n   Concatenate text \r\n   Run routines based on conditions \r\n   Compare values \r\n   Work with arrays \r\n   Run automated routines \r\n   Display custom elements on the webpage \r\n   Generate random numbers \r\n   Manipulate decimals \r\n   Round numbers \r\n   Create loops \r\n   Use functions \r\n   Find the current date and time \r\n   Measure time intervals \r\n   Create a timer \r\n   Respond to the user's actions \r\n   Swap images \r\n   Control colors on the webpage \r\n   Change any element on the webpage \r\n   Improvise new HTML markup on the fly \r\n   Use the webpage DOM structure \r\n   Insert comments \r\n   Situate scripts effectively \r\n   Create and change objects \r\n   Automate object creation \r\n   Control the browser's actions \r\n   Fill the browser window with custom content \r\n   Check forms for invalid entries \r\n   Deal with errors \r\n   Make a more compelling website \r\n   Increase user-friendliness \r\n   Keep your user engaged <br /> \r\n ",
     "AverageRating": 4.03,
     "RatingCount": 321,
     "NumberOfPages": 204,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/19319366-a-smarter-way-to-learn-javascript",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "5",
@@ -102,7 +118,12 @@
     "NumberOfPages": 330,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/9267.Agile_Estimating_and_Planning",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      5,
+      12
+    ]
   },
   {
     "$id": "6",
@@ -123,7 +144,11 @@
     "NumberOfPages": 188,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/113086.Agile_Project_Management_with_Scrum",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      5,
+      12
+    ]
   },
   {
     "$id": "7",
@@ -144,7 +169,11 @@
     "NumberOfPages": 170,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/721338.Agile_Retrospectives",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      5,
+      12
+    ]
   },
   {
     "$id": "8",
@@ -165,7 +194,11 @@
     "NumberOfPages": 386,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/58104.Ajax_Patterns_and_Best_Practices",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "9",
@@ -186,7 +219,10 @@
     "NumberOfPages": 197,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/833015.SPIN_Selling",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      6
+    ]
   },
   {
     "$id": "10",
@@ -207,7 +243,11 @@
     "NumberOfPages": 528,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/85050.Applying_Domain_Driven_Design_and_Patterns_",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "11",
@@ -228,7 +268,11 @@
     "NumberOfPages": 292,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12
+    ]
   },
   {
     "$id": "12",
@@ -249,7 +293,11 @@
     "NumberOfPages": 250,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17676158-b2b-a-to-z",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      7
+    ]
   },
   {
     "$id": "13",
@@ -270,7 +318,11 @@
     "NumberOfPages": 344,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
     "$id": "14",
@@ -291,7 +343,12 @@
     "NumberOfPages": 206,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/18553105-b2b-technology-marketing",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      7,
+      12
+    ]
   },
   {
     "$id": "15",
@@ -312,7 +369,10 @@
     "NumberOfPages": 368,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
     "$id": "16",
@@ -333,7 +393,11 @@
     "NumberOfPages": 284,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6443938-bridging-the-communication-gap",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      13
+    ]
   },
   {
     "$id": "17",
@@ -354,7 +418,10 @@
     "NumberOfPages": 320,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
     "$id": "18",
@@ -375,7 +442,11 @@
     "NumberOfPages": 460,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/30643853-building-intelligent-systems",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "19",
@@ -396,7 +467,11 @@
     "NumberOfPages": 280,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/22512931-building-microservices",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "20",
@@ -417,7 +492,10 @@
     "NumberOfPages": 376,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4
+    ]
   },
   {
     "$id": "21",
@@ -438,7 +516,11 @@
     "NumberOfPages": null,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      10
+    ]
   },
   {
     "$id": "22",
@@ -459,7 +541,11 @@
     "NumberOfPages": 434,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/3735293-clean-code",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "23",
@@ -480,7 +566,11 @@
     "NumberOfPages": 720,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      10
+    ]
   },
   {
     "$id": "24",
@@ -501,7 +591,12 @@
     "NumberOfPages": 512,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/8686650-continuous-delivery",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3,
+      5
+    ]
   },
   {
     "$id": "25",
@@ -522,7 +617,11 @@
     "NumberOfPages": null,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "26",
@@ -543,7 +642,11 @@
     "NumberOfPages": null,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      3
+    ]
   },
   {
     "$id": "27",
@@ -564,7 +667,12 @@
     "NumberOfPages": null,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      6,
+      12
+    ]
   },
   {
     "$id": "28",
@@ -585,7 +693,10 @@
     "NumberOfPages": 288,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
     "$id": "29",
@@ -606,7 +717,11 @@
     "NumberOfPages": 288,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12,
+      14
+    ]
   },
   {
     "$id": "30",
@@ -627,7 +742,11 @@
     "NumberOfPages": null,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      15
+    ]
   },
   {
     "$id": "31",
@@ -648,7 +767,11 @@
     "NumberOfPages": 72,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12
+    ]
   },
   {
     "$id": "32",
@@ -669,7 +792,11 @@
     "NumberOfPages": 72,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12
+    ]
   },
   {
     "$id": "33",
@@ -690,7 +817,11 @@
     "NumberOfPages": 846,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
     "$id": "34",
@@ -711,7 +842,12 @@
     "NumberOfPages": 72,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      9,
+      12
+    ]
   },
   {
     "$id": "35",
@@ -732,7 +868,11 @@
     "NumberOfPages": 224,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      8,
+      4
+    ]
   },
   {
     "$id": "36",
@@ -753,7 +893,12 @@
     "NumberOfPages": 283,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/1311542.Continuous_Integration",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      16,
+      5
+    ]
   },
   {
     "$id": "37",
@@ -774,7 +919,11 @@
     "NumberOfPages": 160,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/22486596-dataflow-and-reactive-programming-systems",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
     "$id": "38",
@@ -795,7 +944,10 @@
     "NumberOfPages": 411,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17701842-direito-digital",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      11
+    ]
   },
   {
     "$id": "39",
@@ -816,7 +968,11 @@
     "NumberOfPages": 200,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/18197267-don-t-make-me-think-revisited",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      5
+    ]
   },
   {
     "$id": "40",
@@ -837,7 +993,10 @@
     "NumberOfPages": 464,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/361938.The_Last_Cato",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
     "$id": "41",
@@ -858,7 +1017,11 @@
     "NumberOfPages": 299,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/9737235-extreme-programming",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
     "$id": "42",
@@ -879,7 +1042,11 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
     "$id": "43",
@@ -900,7 +1067,10 @@
     "NumberOfPages": 304,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/261666.Fearless_Change",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "44",
@@ -921,7 +1091,11 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/2700831-framework-design-guidelines",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
     "$id": "45",
@@ -942,7 +1116,11 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/38209391-gamification-em-help-desk-e-service-desk",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      17,
+      12
+    ]
   },
   {
     "$id": "46",
@@ -963,7 +1141,10 @@
     "NumberOfPages": 172,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/13598874-gerenciamento-da-comunica-o-em-projetos",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "47",
@@ -984,7 +1165,10 @@
     "NumberOfPages": 178,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/13598823-gerenciamento-de-aquisi-es-em-projetos",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "48",
@@ -1005,7 +1189,10 @@
     "NumberOfPages": 180,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/13598844-gerenciamento-de-pessoas-em-projetos",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "49",
@@ -1026,7 +1213,10 @@
     "NumberOfPages": 172,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/12406973-gerenciamento-do-escopo-em-projetos",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "50",
@@ -1047,7 +1237,10 @@
     "NumberOfPages": 168,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/12407405-gerenciamento-do-tempo-em-projetos",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
     "$id": "51",
@@ -1068,7 +1261,11 @@
     "NumberOfPages": 164,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17159056-gest-o-de-servi-os-e-marketing-interno",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12,
+      7
+    ]
   },
   {
     "$id": "52",
@@ -1089,7 +1286,11 @@
     "NumberOfPages": 148,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17608561-gest-o-e-desenvolvimento-de-produtos-e-marcas",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
     "$id": "53",
@@ -1110,7 +1311,11 @@
     "NumberOfPages": 36,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/4114.Good_to_Great_and_the_Social_Sectors",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
     "$id": "54",
@@ -1131,31 +1336,14 @@
     "NumberOfPages": 270,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/16060523-guia-da-startup",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
     "$id": "55",
-    "Id": 55,
-    "Title": "Implantação de Help-Desk e service desk",
-    "AuthorName": null,
-    "ISBN": "",
-    "ISBN13": "9788575221648",
-    "GoodreadsId": "17661434",
-    "ImageUrl": "https://images.gr-assets.com/books/1363699211m/17661434.jpg",
-    "SmallImageUrl": "https://images.gr-assets.com/books/1363699211s/17661434.jpg",
-    "PublicationDate": "0001-01-01T00:00:00",
-    "Publisher": null,
-    "Language": "por",
-    "Description": "",
-    "AverageRating": 0.00,
-    "RatingCount": 0,
-    "NumberOfPages": 206,
-    "GoodreadsUrl": "https://www.goodreads.com/book/show/17661434-implanta-o-de-help-desk-e-service-desk",
-    "Loans": [],
-    "Quantity": 1
-  },
-  {
-    "$id": "56",
     "Id": 56,
     "Title": "Implantação de Help-Desk e service desk",
     "AuthorName": "Roberto Cohen",
@@ -1173,10 +1361,14 @@
     "NumberOfPages": 206,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17661434-implanta-o-de-help-desk-e-service-desk",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      17,
+      12
+    ]
   },
   {
-    "$id": "57",
+    "$id": "56",
     "Id": 57,
     "Title": "Investimentos Inteligentes: para conquistar e multiplicar seu primeiro milhão",
     "AuthorName": null,
@@ -1194,10 +1386,13 @@
     "NumberOfPages": 268,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6377031-investimentos-inteligentes",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      18
+    ]
   },
   {
-    "$id": "58",
+    "$id": "57",
     "Id": 58,
     "Title": "Lean Software Development: An Agile Toolkit",
     "AuthorName": "Mary Poppendieck, Tom Poppendieck",
@@ -1215,10 +1410,15 @@
     "NumberOfPages": 240,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/194338.Lean_Software_Development",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      12,
+      2
+    ]
   },
   {
-    "$id": "59",
+    "$id": "58",
     "Id": 59,
     "Title": "Manual de Contabilidade Societária. Aplicável a Todas as Sociedades de Acordo com as Normas Internacionais e do CPC",
     "AuthorName": "Sérgio de Iudícibus, Eliseu Martins, Ernesto Rubens Gelbcke, Ariovaldo dos Santos",
@@ -1236,10 +1436,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/39306499-manual-de-contabilidade-societ-ria",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      8,
+      12
+    ]
   },
   {
-    "$id": "60",
+    "$id": "59",
     "Id": 60,
     "Title": "Metodologia de Gerenciamento de Projetos: Methodware",
     "AuthorName": "Carlos Magno da Silva Xavier,‎ Flávio Ribeiro Vivacqua,‎ Otualp Sarmento de Macedo,‎ Luiz Fernando da Silva Xavier",
@@ -1257,10 +1461,13 @@
     "NumberOfPages": 314,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/19031636-metodologia-de-gerenciamento-de-projetos---methodware",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "61",
+    "$id": "60",
     "Id": 61,
     "Title": "Não Trabalhe Muito: Trabalhe Certo!",
     "AuthorName": "Jean Gomes,‎ Catherina McCarthy,‎ Tony Schwartz",
@@ -1278,10 +1485,14 @@
     "NumberOfPages": 328,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/28562525-n-o-trabalhe-muito",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12
+    ]
   },
   {
-    "$id": "62",
+    "$id": "61",
     "Id": 62,
     "Title": "NHibernate 3.0 Cookbook",
     "AuthorName": "Jason Dentler",
@@ -1299,10 +1510,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/10135911-nhibernate-3-0-cookbook",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "63",
+    "$id": "62",
     "Id": 63,
     "Title": "O Investidor Inteligente - Um Guia Prático de Como Ganhar Dinheiro na Bolsa",
     "AuthorName": "Benjamin Graham",
@@ -1320,10 +1535,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/29077195-o-investidor-inteligente",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      18
+    ]
   },
   {
-    "$id": "64",
+    "$id": "63",
     "Id": 64,
     "Title": "Patterns of Enterprise Application Architecture",
     "AuthorName": "Martin Fowler",
@@ -1341,10 +1559,15 @@
     "NumberOfPages": 533,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/70156.Patterns_of_Enterprise_Application_Architecture",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19,
+      2
+    ]
   },
   {
-    "$id": "65",
+    "$id": "64",
     "Id": 65,
     "Title": "Performance Testing with Jmeter 2.9",
     "AuthorName": "Bayo Erinle",
@@ -1356,16 +1579,21 @@
     "PublicationDate": "2013-07-26T00:00:00",
     "Publisher": null,
     "Language": "",
-    "Description": "Performance testing with JMeter 2.9 is critical to the success of any software product launch and continued scalability. Irrespective of the size of the applications user base, its vital to deliver the best user experience to consumers. Apache JMeter is an excellent testing tool that provides an insight into how applications might behave under load enabling organizations to focus on making adequate preparations.\r\n\r\nPerformance Testing with JMeter 2.9 is a practical, hands-on guide that equips you with all the essential skills needed to effectively use JMeter to test web applications using a number of clear and practical step-by-step guides. It allows you take full advantage of the real power behind Apache JMeter, quickly taking you from novice to master.\r\n\r\nPerformance Testing with JMeter 2.9 begins with the fundamentals of performance testing and gets you acquainted with JMeter. It will guide you through recording realistic and maintainable scripts.\r\n\r\nYou will acquire new skills working with tools such as Vagrant, Puppet, and AWS, allowing you to leverage the cloud to aid in distributed testing. You will learn how to do some BeanShell scripting and take advantage of regular expressions, JMeter properties, and extension points to build comprehensive and robust test suites. Also, you will learn how to test RESTful web services, deal with XML, JSON, file downloads/uploads, and much more. Topics like resource monitoring, distributed testing, managing sessions, and extending JMeter are also covered.\r\n\r\nPerformance Testing with JMeter 2.9 will teach you all you need to know to take full advantage of JMeter for testing web applications, dazzle your co-workers, and impress your boss! You will go from novice to pro in no time.",
+    "Description": "Performance testing with JMeter 2.9 is critical to the success of any software product launch and continued scalability. Irrespective of the size of the application’s user base, it’s vital to deliver the best user experience to consumers. Apache JMeter is an excellent testing tool that provides an insight into how applications might behave under load enabling organizations to focus on making adequate preparations.\r\n\r\nPerformance Testing with JMeter 2.9 is a practical, hands-on guide that equips you with all the essential skills needed to effectively use JMeter to test web applications using a number of clear and practical step-by-step guides. It allows you take full advantage of the real power behind Apache JMeter, quickly taking you from novice to master.\r\n\r\nPerformance Testing with JMeter 2.9 begins with the fundamentals of performance testing and gets you acquainted with JMeter. It will guide you through recording realistic and maintainable scripts.\r\n\r\nYou will acquire new skills working with tools such as Vagrant, Puppet, and AWS, allowing you to leverage the cloud to aid in distributed testing. You will learn how to do some BeanShell scripting and take advantage of regular expressions, JMeter properties, and extension points to build comprehensive and robust test suites. Also, you will learn how to test RESTful web services, deal with XML, JSON, file downloads/uploads, and much more. Topics like resource monitoring, distributed testing, managing sessions, and extending JMeter are also covered.\r\n\r\nPerformance Testing with JMeter 2.9 will teach you all you need to know to take full advantage of JMeter for testing web applications, dazzle your co-workers, and impress your boss! You will go from novice to pro in no time.",
     "AverageRating": 3.74,
     "RatingCount": 29,
     "NumberOfPages": 148,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/18267412-performance-testing-with-jmeter-2-9",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2,
+      13
+    ]
   },
   {
-    "$id": "66",
+    "$id": "65",
     "Id": 66,
     "Title": "Real-World Functional Programming: With Examples in F# and C#",
     "AuthorName": "Tomas Petricek, Jon Skeet",
@@ -1383,10 +1611,14 @@
     "NumberOfPages": 500,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6166611-real-world-functional-programming",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "67",
+    "$id": "66",
     "Id": 67,
     "Title": "Redes Elétricas Inteligentes no Brasil - análise de custos e benefícios de um plano nacional de implantação",
     "AuthorName": "Nelson Kagan",
@@ -1404,31 +1636,13 @@
     "NumberOfPages": 280,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/28922588-redes-el-tricas-inteligentes-no-brasil---an-lise-de-custos-e-benef-cios",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      15
+    ]
   },
   {
-    "$id": "68",
-    "Id": 68,
-    "Title": "Redes Elétricas Inteligentes no Brasil. Análise de Custos e Benefícios de Um Plano Nacional",
-    "AuthorName": "Nelson Kagan",
-    "ISBN": "8561325879",
-    "ISBN13": "9788561325879",
-    "GoodreadsId": "28922588",
-    "ImageUrl": "https://images-na.ssl-images-amazon.com/images/I/51L%2BxeQlv2L._SX347_BO1,204,203,200_.jpg",
-    "SmallImageUrl": "https://images-na.ssl-images-amazon.com/images/I/51L%2BxeQlv2L._SX347_BO1,204,203,200_.jpg",
-    "PublicationDate": "2013-01-01T00:00:00",
-    "Publisher": null,
-    "Language": "por",
-    "Description": "O setor elétrico brasileiro, a exemplo do que ocorreu em vários outros países, passou por transformações e reformas institucionais importantes nas últimas duas décadas. De um modelo estatal e fortemente regulado, passou a ser mais dirigido pela ótica de mercado, com estímulos à concorrência em segmentos como a geração e a comercialização. A evolução tecnológica no setor de telecomunicações e sua aproximação com o de energia elétrica, notadamente no segmento de distribuição, têm sinalizado mudanças substanciais nesse quadro, com a expectativa real e imediata de inovações radicais na forma de interação com o usuário final, que passa a ter papel ativo e preponderante nesse processo, podendo, inclusive, gerar sua própria energia, gerir melhor o seu uso, seja em sua residência ou unidade consumidora. Poderá, ainda, demandar novos serviços ao fornecedor de energia elétrica e a integração de serviços de utilidade pública, como internet, telefone, gás e água. Essa transição para o novo modelo de distribuição de energia elétrica, que se convencionou chamar de Redes Elétricas Inteligentes no Brasil, é inevitável e altamente desejável. Por outro lado, a implantação bem-sucedida desse modelo requer providências importantes dos responsáveis pela formulação de políticas públicas e pela regulação do setor, bem como das empresas de energia elétrica e seus fornecedores de tecnologia. Daí a importância de investimentos em pesquisa e desenvolvimento (P&D), incluindo projetos pilotos, demonstrativos e experimentais, como tem sido feito por várias empresas de distribuição. Além de testar, avaliar e desenvolver novas tecnologias, conceitos e técnicas inerentes a esse novo modelo de distribuição de energia elétrica, esses projetos incluem a indispensável formação de recursos humanos e infraestrutura laboratorial.",
-    "AverageRating": 0.00,
-    "RatingCount": 0,
-    "NumberOfPages": 280,
-    "GoodreadsUrl": "https://www.goodreads.com/book/show/28922588-redes-el-tricas-inteligentes-no-brasil---an-lise-de-custos-e-benef-cios",
-    "Loans": [],
-    "Quantity": 1
-  },
-  {
-    "$id": "69",
+    "$id": "67",
     "Id": 69,
     "Title": "Refactoring Databases: Evolutionary Database Design",
     "AuthorName": "Scott Ambler, Pramodkumar Sadalage",
@@ -1446,10 +1660,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/161302.Refactoring_Databases",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      20,
+      2
+    ]
   },
   {
-    "$id": "70",
+    "$id": "68",
     "Id": 70,
     "Title": "Refactoring to Patterns",
     "AuthorName": "Joshua Kerievsky",
@@ -1467,10 +1685,14 @@
     "NumberOfPages": 400,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/85041.Refactoring_to_Patterns",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "71",
+    "$id": "69",
     "Id": 71,
     "Title": "Release It!: Design and Deploy Production-Ready Software (Pragmatic Programmers)",
     "AuthorName": "Michael T. Nygard",
@@ -1488,10 +1710,15 @@
     "NumberOfPages": 326,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/1069827.Release_It_",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      16,
+      2
+    ]
   },
   {
-    "$id": "72",
+    "$id": "70",
     "Id": 72,
     "Title": "REST in Practice: Hypermedia and Systems Architecture",
     "AuthorName": "Jim Webber, Savas Parastatidis, Ian Robinson",
@@ -1509,10 +1736,15 @@
     "NumberOfPages": 448,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/8266727-rest-in-practice",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19,
+      2
+    ]
   },
   {
-    "$id": "73",
+    "$id": "71",
     "Id": 73,
     "Title": "Santa Catarina No Seculo XX: Ensaios E Memoria Fotografica",
     "AuthorName": "Silvio Coelho dos Santos",
@@ -1530,10 +1762,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/15518534-santa-catarina-no-seculo-xx",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "74",
+    "$id": "72",
     "Id": 74,
     "Title": "Selecting and Implementing Energy Trading, Transaction and Risk Management Software - A Primer",
     "AuthorName": "Patrick Reames, G Michael Vasey",
@@ -1551,10 +1786,14 @@
     "NumberOfPages": 250,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/4404099-selecting-and-implementing-energy-trading-transaction-and-risk-manageme",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      15
+    ]
   },
   {
-    "$id": "75",
+    "$id": "73",
     "Id": 75,
     "Title": "Service Design Patterns: Fundamental Design Solutions for SOAP/WSDL and RESTful Web Services",
     "AuthorName": "Robert Daigneau",
@@ -1572,10 +1811,14 @@
     "NumberOfPages": 321,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/10917482-service-design-patterns",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19
+    ]
   },
   {
-    "$id": "76",
+    "$id": "74",
     "Id": 76,
     "Title": "Show Me the Numbers: Designing Tables and Graphs to Enlighten",
     "AuthorName": "Stephen Few",
@@ -1593,10 +1836,14 @@
     "NumberOfPages": 280,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/543936.Show_Me_the_Numbers",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
-    "$id": "77",
+    "$id": "75",
     "Id": 77,
     "Title": "Simply Complexity: A Clear Guide to Complexity Theory",
     "AuthorName": "Neil Johnson",
@@ -1614,10 +1861,14 @@
     "NumberOfPages": 256,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6076145-simply-complexity",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1,
+      2
+    ]
   },
   {
-    "$id": "78",
+    "$id": "76",
     "Id": 78,
     "Title": "Sistema de Bancos de Dados",
     "AuthorName": "Abraham Silberschatz",
@@ -1635,10 +1886,13 @@
     "NumberOfPages": 904,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/20573599-sistema-de-bancos-de-dados",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      20
+    ]
   },
   {
-    "$id": "79",
+    "$id": "77",
     "Id": 79,
     "Title": "Smart and Gets Things Done: Joel Spolsky's Concise Guide to Finding the Best Technical Talent",
     "AuthorName": "Avram Joel Spolsky",
@@ -1656,10 +1910,14 @@
     "NumberOfPages": 182,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/1400993.Smart_and_Gets_Things_Done",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      2
+    ]
   },
   {
-    "$id": "80",
+    "$id": "78",
     "Id": 80,
     "Title": "SOA: Principles of Service Design",
     "AuthorName": "Thomas Erl",
@@ -1677,10 +1935,14 @@
     "NumberOfPages": 573,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/1265221.SOA",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19
+    ]
   },
   {
-    "$id": "81",
+    "$id": "79",
     "Id": 81,
     "Title": "Software Engineering: Design, Reliability, and Management",
     "AuthorName": "Martin L. Shooman",
@@ -1698,10 +1960,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/1915981.Software_Engineering",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19
+    ]
   },
   {
-    "$id": "82",
+    "$id": "80",
     "Id": 82,
     "Title": "Test Driven Development: By Example",
     "AuthorName": "Kent Beck",
@@ -1719,10 +1985,16 @@
     "NumberOfPages": 216,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/387190.Test_Driven_Development",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19,
+      2,
+      13
+    ]
   },
   {
-    "$id": "83",
+    "$id": "81",
     "Id": 83,
     "Title": "Test-Driven JavaScript Development (Developer's Library)",
     "AuthorName": "Christian Johansen",
@@ -1740,10 +2012,15 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/9269233-test-driven-javascript-development",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2,
+      13
+    ]
   },
   {
-    "$id": "84",
+    "$id": "82",
     "Id": 84,
     "Title": "The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine",
     "AuthorName": "Charles Petzold",
@@ -1761,10 +2038,14 @@
     "NumberOfPages": 372,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/2333956.The_Annotated_Turing",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1,
+      2
+    ]
   },
   {
-    "$id": "85",
+    "$id": "83",
     "Id": 85,
     "Title": "The Clean Coder: A Code of Conduct for Professional Programmers",
     "AuthorName": "Robert C. Martin",
@@ -1782,10 +2063,14 @@
     "NumberOfPages": 210,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/10284614-the-clean-coder",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1,
+      2
+    ]
   },
   {
-    "$id": "86",
+    "$id": "84",
     "Id": 86,
     "Title": "The Internet of Things: Key Applications and Protocols",
     "AuthorName": "Olivier Hersent, David Boswarthick, Omar Elloumi",
@@ -1803,10 +2088,14 @@
     "NumberOfPages": 370,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/13839246-the-internet-of-things",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "87",
+    "$id": "85",
     "Id": 87,
     "Title": "Toyota Kata: Managing People for Improvement, Adaptiveness and Superior Results",
     "AuthorName": "Mike Rother",
@@ -1824,10 +2113,14 @@
     "NumberOfPages": 306,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/6736366-toyota-kata",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12,
+      5
+    ]
   },
   {
-    "$id": "88",
+    "$id": "86",
     "Id": 88,
     "Title": "TPL Dataflow by Example: Dataflow and Reactive Programming in .Net",
     "AuthorName": "Matt Carkci",
@@ -1845,10 +2138,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/24755076-tpl-dataflow-by-example",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "89",
+    "$id": "87",
     "Id": 89,
     "Title": "Ultra-Fast ASP.NET: Build Ultra-Fast and Ultra-Scalable web sites using ASP.NET and SQL Server",
     "AuthorName": "Richard Kiessig",
@@ -1866,10 +2163,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/19005804-ultra-fast-asp-net",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "90",
+    "$id": "88",
     "Id": 90,
     "Title": "Um Ator Errante",
     "AuthorName": "Yoshi Oida",
@@ -1887,10 +2188,13 @@
     "NumberOfPages": 226,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/3062863-um-ator-errante",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "91",
+    "$id": "89",
     "Id": 91,
     "Title": "Vendendo Software",
     "AuthorName": null,
@@ -1908,10 +2212,14 @@
     "NumberOfPages": 159,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17825732-vendendo-software",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12,
+      6
+    ]
   },
   {
-    "$id": "92",
+    "$id": "90",
     "Id": 92,
     "Title": "Visualize This: The FlowingData Guide to Design, Visualization, and Statistics",
     "AuthorName": "Nathan Yau",
@@ -1929,10 +2237,13 @@
     "NumberOfPages": 358,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/11054622-visualize-this",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      21
+    ]
   },
   {
-    "$id": "93",
+    "$id": "91",
     "Id": 93,
     "Title": "Você está louco! Uma vida administrada de outra forma",
     "AuthorName": "Ricardo Semler",
@@ -1950,10 +2261,13 @@
     "NumberOfPages": 47,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/17726471-voc-est-louco-uma-vida-administrada-de-outra-forma",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "94",
+    "$id": "92",
     "Id": 94,
     "Title": "MCTS Self-Paced Training Kit (Exam 70-515): Web Applications Development with Microsoft® .NET Framework 4",
     "AuthorName": "Mike Snell, Tony Northrup",
@@ -1971,10 +2285,14 @@
     "NumberOfPages": 1008,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/9538367-mcts-self-paced-training-kit-exam-70-515",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "95",
+    "$id": "93",
     "Id": 95,
     "Title": "Web Operations: Keeping the Data on Time",
     "AuthorName": "John Allspaw, Jesse Robbins",
@@ -1992,10 +2310,15 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/8571725-web-operations",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      21,
+      12,
+      2
+    ]
   },
   {
-    "$id": "96",
+    "$id": "94",
     "Id": 96,
     "Title": "Wikinomics: How Mass Collaboration Changes Everything",
     "AuthorName": null,
@@ -2013,10 +2336,15 @@
     "NumberOfPages": 324,
     "GoodreadsUrl": "https://www.goodreads.com/book/show/154341.Wikinomics",
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      14,
+      1,
+      12
+    ]
   },
   {
-    "$id": "97",
+    "$id": "95",
     "Id": 97,
     "Title": "A Energia na Cidade do Futuro - Uma abordagem didática sobre o setor elétrico",
     "AuthorName": "Guilherme de Azevedo Dantas,Roberto Brandão,Rubens Rosental",
@@ -2034,10 +2362,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      15,
+      12
+    ]
   },
   {
-    "$id": "98",
+    "$id": "96",
     "Id": 98,
     "Title": "Aos Trancos e Barrancos",
     "AuthorName": "Luiz Antonio Hecker Kappel",
@@ -2055,10 +2387,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "99",
+    "$id": "97",
     "Id": 99,
     "Title": "Avaliação de desempenho humano na empresa",
     "AuthorName": "Cecília Whitaker Bergamini,Deobel Garcia Ramos Beraldo",
@@ -2076,10 +2411,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12
+    ]
   },
   {
-    "$id": "100",
+    "$id": "98",
     "Id": 100,
     "Title": "Broquéis Faróis Últimos Sonetos",
     "AuthorName": "Cruz e Souza",
@@ -2097,10 +2436,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "101",
+    "$id": "99",
     "Id": 102,
     "Title": "Cisco CCNA - Guia de Certificação do Exame CCNA",
     "AuthorName": "Odom Wendell",
@@ -2118,10 +2460,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      10,
+      2
+    ]
   },
   {
-    "$id": "102",
+    "$id": "100",
     "Id": 105,
     "Title": "Como Programar em C",
     "AuthorName": "H. M. Deitel,P.J. Deitel",
@@ -2139,10 +2485,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "103",
+    "$id": "101",
     "Id": 108,
     "Title": "Contabilidade para Advogados - Noções Básicas de Contabilidade,Análise das Demonstrações Contábeis,Cálculo de Impostos e Contribuições",
     "AuthorName": "Láudio Camargo Fabretti",
@@ -2160,10 +2510,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      8,
+      11
+    ]
   },
   {
-    "$id": "104",
+    "$id": "102",
     "Id": 109,
     "Title": "Contabilidade Societária - Atualizado pela Lei nº 10.303/01",
     "AuthorName": "José Luiz dos Santos,Paulo Schmidt",
@@ -2181,10 +2535,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      8,
+      12
+    ]
   },
   {
-    "$id": "105",
+    "$id": "103",
     "Id": 110,
     "Title": "Microsoft Official Course 2956B: Core Foundations of Microsoft. Net 2.0 Development",
     "AuthorName": "Microsoft Official Course",
@@ -2202,10 +2560,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "106",
+    "$id": "104",
     "Id": 111,
     "Title": "Dane-se a organização",
     "AuthorName": "Robert Townsend",
@@ -2223,10 +2585,15 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9,
+      12,
+      5
+    ]
   },
   {
-    "$id": "107",
+    "$id": "105",
     "Id": 112,
     "Title": "Datas Históricas de Antônio Carlos 1830 - 1992",
     "AuthorName": "Rogério Kremer",
@@ -2244,10 +2611,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "108",
+    "$id": "106",
     "Id": 113,
     "Title": "Desenvolvendo Aplicações ASP.NET com Web Matrix",
     "AuthorName": "Daniel Wander",
@@ -2265,10 +2635,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "109",
+    "$id": "107",
     "Id": 114,
     "Title": "Dicionário de Termos de Negócios - Espanhol",
     "AuthorName": "PubliFolha",
@@ -2286,10 +2660,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "110",
+    "$id": "108",
     "Id": 115,
     "Title": "Domain-Driven Design Distelled",
     "AuthorName": "Vaughn Vernon",
@@ -2307,10 +2684,15 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      19,
+      2
+    ]
   },
   {
-    "$id": "111",
+    "$id": "109",
     "Id": 116,
     "Title": "Excel 5 For Windows - Técnicas Avançadas",
     "AuthorName": "Bruce Hallberg",
@@ -2328,10 +2710,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
-    "$id": "112",
+    "$id": "110",
     "Id": 117,
     "Title": "Explorando Visual C++",
     "AuthorName": "David J. Kruglinski",
@@ -2349,10 +2734,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "113",
+    "$id": "111",
     "Id": 118,
     "Title": "Ferramentas da Administração",
     "AuthorName": "Editora UDESC",
@@ -2370,10 +2759,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "114",
+    "$id": "112",
     "Id": 119,
     "Title": "Gestão da Qualidade",
     "AuthorName": "Irnard Marshall Junior,Agliberto Alves Cierco,Alexandre Varanda Rocha,Edmarson Bacelar Mota,Sérgio Leusin",
@@ -2391,10 +2783,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12,
+      13
+    ]
   },
   {
-    "$id": "115",
+    "$id": "113",
     "Id": 120,
     "Title": "Gestão de help desk e service desk",
     "AuthorName": "Roberto Cohen",
@@ -2412,10 +2808,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      17,
+      12
+    ]
   },
   {
-    "$id": "116",
+    "$id": "114",
     "Id": 121,
     "Title": "Gestão de Negócios Internacionais",
     "AuthorName": "Marco Antonio S. Vasconcellos, Miguel Lima, Simão Silber",
@@ -2433,10 +2833,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      4,
+      12
+    ]
   },
   {
-    "$id": "117",
+    "$id": "115",
     "Id": 122,
     "Title": "Google Marketing - O guia definitivo de marketing digital",
     "AuthorName": "Conrado Adolpho Vaz",
@@ -2454,10 +2858,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      7
+    ]
   },
   {
-    "$id": "118",
+    "$id": "116",
     "Id": 123,
     "Title": "Guia Abrasel - Santa Catarina",
     "AuthorName": "Abrasel",
@@ -2475,10 +2882,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "119",
+    "$id": "117",
     "Id": 124,
     "Title": "Guia de Certificação MCP, MCSA, MCSE",
     "AuthorName": "Josenildo Feijó",
@@ -2496,10 +2906,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   },
   {
-    "$id": "120",
+    "$id": "118",
     "Id": 125,
     "Title": "Guia de Certificação MCSE - Para Windows XP Professional Exame 70-270",
     "AuthorName": "Luciano de Lima",
@@ -2517,10 +2931,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
-    "$id": "121",
+    "$id": "119",
     "Id": 126,
     "Title": "Guia do Conjunto de Conhecimentos em Gerenciamento de Projetos",
     "AuthorName": "Guia PMBOK",
@@ -2538,10 +2955,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "122",
+    "$id": "120",
     "Id": 127,
     "Title": "Manual de Frascati - Metodologia proposta para levantamentos sobre pesquisa e desenvolvimento experimental",
     "AuthorName": "Frascati?",
@@ -2559,10 +2979,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      14
+    ]
   },
   {
-    "$id": "123",
+    "$id": "121",
     "Id": 128,
     "Title": "Matemática financeira",
     "AuthorName": "Luís Geraldo Mendonça,George Joseph Boggiss,Luiz Alfredo Rodrigues Gaspar,Marcos Guilherme Heringer",
@@ -2580,10 +3003,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
-    "$id": "124",
+    "$id": "122",
     "Id": 129,
     "Title": "Métrica para help desk e service desk",
     "AuthorName": "Roberto Cohen",
@@ -2601,10 +3027,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      17
+    ]
   },
   {
-    "$id": "125",
+    "$id": "123",
     "Id": 130,
     "Title": "O Gerente Minuto - Como tomar decisões rápidas",
     "AuthorName": "Kenneth Blanchard e Spender Johson",
@@ -2622,10 +3051,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "126",
+    "$id": "124",
     "Id": 131,
     "Title": "O Poder do Marketing de Exposições - Guia Completo para ser Bem-Sucedido em Exposições, Feiras de Negócios e Convenções",
     "AuthorName": "Barry Siskind",
@@ -2643,10 +3075,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      7
+    ]
   },
   {
-    "$id": "127",
+    "$id": "125",
     "Id": 132,
     "Title": "Oracle 8i & PL/SQL",
     "AuthorName": "Wilson José de Oliveira",
@@ -2664,10 +3099,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      20
+    ]
   },
   {
-    "$id": "128",
+    "$id": "126",
     "Id": 133,
     "Title": "Palavras de Sabedoria",
     "AuthorName": "Sua Santidade, o Dalai-Lama",
@@ -2685,13 +3123,16 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
   },
   {
-    "$id": "129",
+    "$id": "127",
     "Id": 134,
     "Title": "Planejamento de volta às origens",
-    "AuthorName": "Mary Jean Parson e Matthew J. Culligan",
+    "AuthorName": "Mary Jean Parson, Matthew J. Culligan",
     "ISBN": null,
     "ISBN13": null,
     "GoodreadsId": null,
@@ -2706,10 +3147,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "130",
+    "$id": "128",
     "Id": 135,
     "Title": "Planejamento Estratégico - Teoria, Modelos e Processos",
     "AuthorName": "Maurício Fernandes Pereira",
@@ -2727,10 +3171,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "131",
+    "$id": "129",
     "Id": 136,
     "Title": "Programa Brasileiro da Qualidade e Produtividade em Software",
     "AuthorName": "PBQP Software",
@@ -2748,10 +3195,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
-    "$id": "132",
+    "$id": "130",
     "Id": 137,
     "Title": "Trabalhista! O que mudou?",
     "AuthorName": "Marlos Augusto Melek",
@@ -2769,10 +3219,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      9
+    ]
   },
   {
-    "$id": "133",
+    "$id": "131",
     "Id": 138,
     "Title": "Resumo de Direito Tributário",
     "AuthorName": "Maximilianus Cláudio Américo Führer,Maximiliano Roberto Ernesto Führer",
@@ -2790,10 +3243,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      11
+    ]
   },
   {
-    "$id": "134",
+    "$id": "132",
     "Id": 139,
     "Title": "Resumo de Obrigações e Contratos - (Civis, Comerciais, Consumidor)",
     "AuthorName": "Maximilianus Cláudio Américo Führer",
@@ -2811,10 +3267,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      8,
+      12
+    ]
   },
   {
-    "$id": "135",
+    "$id": "133",
     "Id": 140,
     "Title": "Sarbanes-Oxley - Conformidade TI usando COBIT e Ferramentas open source",
     "AuthorName": "Christian B. Lahti,Roderick Peterson",
@@ -2832,10 +3292,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2
+    ]
   },
   {
-    "$id": "136",
+    "$id": "134",
     "Id": 141,
     "Title": "Tecnologia da Informação - Qualidade de Produto de Software",
     "AuthorName": "Ana Cervigni Guerra,Regina Maria Thienne Colombo",
@@ -2853,10 +3316,14 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      2,
+      13
+    ]
   },
   {
-    "$id": "137",
+    "$id": "135",
     "Id": 142,
     "Title": "Tudo que seus gurus não lhe contaram sobre comunicação empresarial",
     "AuthorName": "Roger Cahen",
@@ -2874,10 +3341,13 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      12
+    ]
   },
   {
-    "$id": "138",
+    "$id": "136",
     "Id": 143,
     "Title": "Visual C++ - Development System for Windows and Windows NT",
     "AuthorName": "Microsoft Official Course",
@@ -2895,6 +3365,10 @@
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
-    "Quantity": 1
+    "Quantity": 1,
+    "Categories": [
+      3,
+      2
+    ]
   }
 ]

@@ -28,6 +28,7 @@ namespace Api.Controllers {
             return View("Edit", book);
         }
 
+        [HttpGet]
         public IActionResult Details(int id) {
             var book = _bookRepository.Load(id);
             var viewModel = new BookResponse(book);

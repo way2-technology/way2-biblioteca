@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Api.Models.Util;
+@{
     Layout = null;
 }
 @model Domain.Responses.BookResponse
@@ -30,38 +31,46 @@
         </div>
     </nav>
     <div class="col">
-        <h2>@Model.Title <small>(@Model.Language)</small></h2>
-        <h3><small class="text-muted">@Model.Authors</small></h3>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class=" d-flex justify-content-center" style="margin-bottom: 20px">
-                <img src="@Model.ImageUrl" style="height: 300px" />
-            </div>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: @Model.Rating%;" aria-valuenow="@Model.Rating" aria-valuemin="0" aria-valuemax="100">@Model.Rating%</div>
-            </div>
-            <div class=" d-flex justify-content-center">
-                <small>@Model.RatingCount reviews (Goodreads)</small>
-            </div>
+        <h2>
+            @Model.Title
+        @if (!String.IsNullOrWhiteSpace(Model.Language)) {
+            <small>(@Model.Language)</small>
+        }
+    </h2>
+    <h3><small class="text-muted">@String.Join(',', Model.Authors ?? new string[0])</small></h3>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class=" d-flex justify-content-center" style="margin-bottom: 20px">
+            <img src="@Model.ImageUrl" style="height: 300px" />
         </div>
-        <div class="col-md-9">
-            <p style="text-align: justify">@Model.Description</p>
-
-            <h4>Detalhes:</h4>
-            <dl class="row">
-                <dt class="col-sm-2">Publicação</dt>
-                <dd class="col-sm-10">@Model.PublicationDate.ToString("dd/MM/yyyy")</dd>
-
-                <dt class="col-sm-2">ISBN</dt>
-                <dd class="col-sm-10">@Model.ISBN</dd>
-
-                <dt class="col-sm-2">Editora</dt>
-                <dd class="col-sm-10">@Model.Publisher</dd>
-
-                <dt class="col-sm-2">Páginas</dt>
-                <dd class="col-sm-10">@Model.NumberOfPages</dd>
-            </dl>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: @Model.Rating%;" aria-valuenow="@Model.Rating" aria-valuemin="0" aria-valuemax="100">@Model.Rating%</div>
+        </div>
+        <div class=" d-flex justify-content-center">
+            <small>@Model.RatingCount reviews (Goodreads)</small>
         </div>
     </div>
+    <div class="col-md-9">
+        <p style="text-align: justify">@Model.Description</p>
+
+        <h4>Detalhes:</h4>
+        <dl class="row">
+            <dt class="col-sm-2">Publicação</dt>
+            <dd class="col-sm-10">@Model.PublicationDate.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-2">ISBN</dt>
+            <dd class="col-sm-10">@Model.ISBN</dd>
+
+            <dt class="col-sm-2">Editora</dt>
+            <dd class="col-sm-10">@Model.Publisher</dd>
+
+            <dt class="col-sm-2">Páginas</dt>
+            <dd class="col-sm-10">@Model.NumberOfPages</dd>
+
+            <dt class="col-sm-2">Categorias</dt>
+            <dd class="col-sm-10">@String.Join(',', Model.Categories.Select(category => CategoryLocalization.Translate(category)))</dd>
+        </dl>
+    </div>
+</div>
 </div>
