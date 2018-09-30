@@ -8,6 +8,7 @@ using MiniBiggy;
 using Newtonsoft.Json;
 
 namespace Domain.Repositories {
+
     public class BookRepository : IBookRepository {
         private readonly IAppSettingsServices _appSettings;
         private PersistentList<Book> _books;
@@ -38,7 +39,9 @@ namespace Domain.Repositories {
                     )
                 .Skip(skip).Take(take).ToList();
         }
+
         private string GetContentFromFile() => System.IO.File.ReadAllText(_appSettings.JsonBookFilePath, Encoding.UTF8);
+
         public void Save(Book bookToSave) {
             var bookFound = _books.Where(b => b.Id == bookToSave.Id).SingleOrDefault();
             if (bookFound != null) {
@@ -61,21 +64,11 @@ namespace Domain.Repositories {
             destination.Categories = origin.Categories;
         }
 
-        // TODO: método para popular a base json do MiniBiggy, vai ser deprecado assim que todos os dados dos livros forem verificados
-        public void Save(IEnumerable<Book> books) {
-            var id = 0;
-            foreach (var book in books) {
-                book.Id = ++id;
-                _books.Add(book);
-            }
-            _books.Save();
-        }
-
         public Book Load(int id) {
             return _books.SingleOrDefault(book => book.Id == id);
         }
 
-        public IEnumerable<Category> GetActiveCategories() => 
+        public IEnumerable<Category> GetActiveCategories() =>
             ListAll(0, int.MaxValue).SelectMany(book => book.Categories).Distinct();
     }
 }
