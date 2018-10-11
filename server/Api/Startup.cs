@@ -22,7 +22,6 @@ namespace Api {
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
             app.ConfigureSwagger();
-            app.UseStaticFiles();
         }
 
         public void ConfigureServices(IServiceCollection services) {
