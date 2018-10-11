@@ -4,6 +4,7 @@ using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers {
+
     public class ApiController : Controller {
         private readonly IBookSearchService _bookSearchService;
 

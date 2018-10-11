@@ -4,14 +4,21 @@ using System.Text;
 using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Services.Settings;
+using MiniBiggy;
 using Newtonsoft.Json;
 
 namespace Domain.Repositories {
+
     public class BookRepository : IBookRepository {
         private readonly IAppSettingsServices _appSettings;
+        private PersistentList<Book> _books;
 
         public BookRepository(IAppSettingsServices appSettings) {
             _appSettings = appSettings;
+            _books = Create.ListOf<Book>()
+                .SavingAt("Static\\bookDatabase.data")
+                .UsingPrettyJsonSerializer()
+                .SavingWhenRequested();
         }
 
         public IEnumerable<Book> ListAll(int skip, int take) {
@@ -32,6 +39,36 @@ namespace Domain.Repositories {
                     )
                 .Skip(skip).Take(take).ToList();
         }
+
         private string GetContentFromFile() => System.IO.File.ReadAllText(_appSettings.JsonBookFilePath, Encoding.UTF8);
+
+        public void Save(Book bookToSave) {
+            var bookFound = _books.Where(b => b.Id == bookToSave.Id).SingleOrDefault();
+            if (bookFound != null) {
+                MapPropertiesToUpdate(bookToSave, bookFound);
+            }
+            else {
+                _books.Add(bookToSave);
+            }
+            _books.Save();
+        }
+
+        private void MapPropertiesToUpdate(Book origin, Book destination) {
+            destination.Title = origin.Title;
+            destination.Authors = origin.Authors;
+            destination.SmallImageUrl = origin.SmallImageUrl;
+            destination.ImageUrl = origin.ImageUrl;
+            destination.ISBN = origin.ISBN;
+            destination.Description = origin.Description;
+            destination.PublicationDate = origin.PublicationDate;
+            destination.Categories = origin.Categories;
+        }
+
+        public Book Load(int id) {
+            return _books.SingleOrDefault(book => book.Id == id);
+        }
+
+        public IEnumerable<Category> GetActiveCategories() =>
+            ListAll(0, int.MaxValue).SelectMany(book => book.Categories).Distinct();
     }
 }

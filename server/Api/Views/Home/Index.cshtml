@@ -1,8 +1,7 @@
-﻿@using Domain.Entities;
-@model IEnumerable<Book>
-@{
-    Layout = null;
-}
+﻿@using Api.Models.Home;
+@using Api.Models.Util;
+@model HomeViewModel
+@{ Layout = null; }
 
 <!DOCTYPE html>
 
@@ -13,30 +12,61 @@
     <title>Way2Lib (Beta)</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Way2 Biblioteca (Beta)</h1>
-        <ul class="list-group">
-            @foreach (var item in Model) {
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col">
-                            <p>
-                                <strong>@item.Title</strong>
-                                @if (item.PublicationDate.Year > 1) {
-                                    <span>(@item.PublicationDate.Year)</span>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Way2_Library (Beta)</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                                }
-                            </p>
-                            <p><i>@item.Authors</i></p>
-                            <p>@item.Description</p>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Featured</a>
+                    </li>
+                </ul>
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" })) {
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+                }
+            </div>
+        </nav>
+        <div class="row" style="margin-top: 20px">
+            <div class="col-3">
+                <div class="list-group">
+                    @foreach (var category in Model.Categories) {
+                        @Html.ActionLink(CategoryLocalization.Translate(category), "ListCategory", "Home", new { cid = (int)category }, new { @class = "list-group-item list-group-item-action" })
+                    }
+                </div>
+            </div>
+            <div class="col-9 row">
+                @{var count = 1; }
+                @foreach (var item in Model.Books) {
+                    <div class="col-4" style="margin-bottom: 30px">
+                        <div class="d-flex justify-content-center">
+                            <a href="@Url.Action("Details", "Book", new { Id = item.Id })">
+                                <img src="@item.ImageUrl" style="width:160px; height: 245px; display: inline;" />
+                            </a>
                         </div>
-                        <div class="col-4">
-                            <img src="@item.ImageUrl" style="max-width:150px" />
+                        <div class="progress" style="margin-top: 10px">
+                            <div class="progress-bar" role="progressbar" style="width: @item.Rating%;" aria-valuenow="@item.Rating" aria-valuemin="0" aria-valuemax="100">@item.Rating%</div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <span class="text-center">@item.Title</span>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <small>@item.Authors?.FirstOrDefault()</small>
                         </div>
                     </div>
-                </li>
-            }
-        </ul>
+                    {
+                        if (count % 3 == 0) {
+                            <div class="w-100"></div>
+                        }
+                        count++;
+                    }
+                }
+            </div>
+        </div>
     </div>
 </body>
 </html>
