@@ -2,6 +2,11 @@
 @{
     Layout = "~/Views/Layout/_Layout1.cshtml";
 }
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/StarRatings.css")" rel="stylesheet" Content-Type="text/css" />
+}
+
 @model Domain.Responses.BookResponse
 <div class="container">
     <div class="col">
@@ -15,11 +20,14 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <div class=" d-flex justify-content-center" style="margin-bottom: 20px">
+            <div class=" d-flex justify-content-center">
                 <img src="@Model.ImageUrl" style="height: 300px" />
             </div>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: @Model.Rating%;" aria-valuenow="@Model.Rating" aria-valuemin="0" aria-valuemax="100">@Model.Rating%</div>
+            <div class=" d-flex justify-content-center">
+                <div class="ratings" style="font-size: 25pt;">
+                    <div class="empty-stars"></div>
+                    <div class="full-stars" style="width:@Model.Rating%"></div>
+                </div>
             </div>
             <div class=" d-flex justify-content-center">
                 <small>@Model.RatingCount reviews (Goodreads)</small>
