@@ -7,7 +7,6 @@
     <title>Way2Lib (Beta)</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Way2 Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,12 +19,14 @@
                     <a class="nav-link disabled" href="#">(beta)</a>
                 </li>
             </ul>
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" })) {
-                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+            {
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Título, descrição ou autores" aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
             }
         </div>
     </nav>
+    <div class="container-fluid">
         @RenderBody()
     </div>
 </body>
