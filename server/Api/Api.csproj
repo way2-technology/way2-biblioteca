@@ -19,6 +19,7 @@
     <ProjectReference Include="..\IoC\IoC.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\Content\css\StarRatings.css" />
     <None Include="wwwroot\images\books\1.jpg" />
     <None Include="wwwroot\images\books\10.jpg" />
     <None Include="wwwroot\images\books\100.jpg" />
