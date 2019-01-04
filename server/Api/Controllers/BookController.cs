@@ -16,6 +16,11 @@ namespace Api.Controllers {
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Create() {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Save(Book book) {
             _bookRepository.Save(book);
