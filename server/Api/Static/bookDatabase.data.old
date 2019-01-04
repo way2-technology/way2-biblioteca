@@ -3530,13 +3530,89 @@
     "PublicationDate": "0001-01-01T00:00:00",
     "Publisher": null,
     "Language": null,
-    "Description": null,
+    "Description": "\"Um dia, comecei a escrever, sem saber que me acorrentara por toda a vida a um nobre senhor, porém implacável. Quando Deus lhe dá um dom, ele também lhe dá um chicote, e o chicote se destina apenas autoflagelação... Estou aqui sozinho, na escuridão de minha loucura, sozinho com meu baralho - e, é claro; o chicote que Deus me deu\".\r\n\r\nCitação extraída da obra intitulada \"A sangue frio\", escrita pelo brilhante e premiado autor americano Truman Capote.",
     "AverageRating": 0.0,
     "RatingCount": 0,
     "NumberOfPages": 0,
     "GoodreadsUrl": null,
     "Loans": [],
     "Quantity": 1,
-    "Categories": []
+    "Categories": [
+      1
+    ]
+  },
+  {
+    "$id": "144",
+    "Id": 151,
+    "Title": "A Floresta da Destruição",
+    "AuthorName": "Ian Livingstone",
+    "ISBN": "858913461X",
+    "ISBN13": "978-8589134613",
+    "GoodreadsId": null,
+    "ImageUrl": "/images/books/151.jpg",
+    "SmallImageUrl": "/images/books/151.jpg",
+    "PublicationDate": "2011-08-01T00:00:00",
+    "Publisher": "Jambô",
+    "Language": "pt-BR",
+    "Description": "Uma aventura em que VOCÊ é o herói!\r\nApenas os tolos ou os muito corajosos arriscariam por livre e espontânea vontade uma jornada à Floresta Madeira Negra, onde trilhas estranhas e labirínticas serpenteiam rumo às profundezas lúgubres. Quem sabe que criaturas monstruosas espreitam nas sombras ameaçadoras, ou que aventuras mortais esperam o viajante desprevenido? Será que você atreve-se a entrar?\r\nEm uma corrida desesperada contra o tempo, nas profundezas da Floresta Madeira Negra, sua missão é encontrar as partes perdidas do lendário Martelo de Ponte de Pedra, forjado pelos anões para proteger a pacífica aldeia de Ponte de Pedra de sua antiga perdição.\r\nTudo de que você precisa é um lápis e uma borracha para embarcar nesta aventura de espada e magia, com um elaborado sistema de combate e uma ficha onde anotar suas vitórias e derrotas.",
+    "AverageRating": 5.0,
+    "RatingCount": 5,
+    "NumberOfPages": 224,
+    "GoodreadsUrl": null,
+    "Loans": [],
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
+  },
+  {
+    "$id": "145",
+    "Id": 152,
+    "Title": "A Cidade dos Ladrões",
+    "AuthorName": "Ian Livingstone",
+    "ISBN": "8589134458",
+    "ISBN13": "978-8589134453",
+    "GoodreadsId": null,
+    "ImageUrl": "/images/books/152.jpg",
+    "SmallImageUrl": "/images/books/152.jpg",
+    "PublicationDate": "2010-05-01T00:00:00",
+    "Publisher": "Jambô",
+    "Language": "pt-BR",
+    "Description": "Uma aventura em que VOCÊ é o herói!\r\nO terror espreita a noite enquanto Zanbar Bone e seus cães da lua, sedentos de sangue, mantém a próspera aldeia de Silverton em xeque. Em seu momento de necessidade, os mercadores de Silverton voltam-se para você, um aventureiro e espadachim de aluguel.\r\nSua missão leva-o às ruas escuras e serpenteantes de Porto Areia Negra, em busca de informações vitais, sem as quais a vitória é impossível. Ladrões, vagabundos e criaturas da noite espreitam os viajantes incautos, e muitas vezes sua única escolha será matar ou morrer! Mas, fora do porto, a mais temível aventura de todas o aguarda — a torre-fortaleza do próprio Príncipe da Noite, Zanbar Bone!\r\nTudo de que você precisa é um lápis e uma borracha para embarcar nesta aventura de espada e magia, com um elaborado sistema de combate e uma ficha onde anotar suas vitórias e derrotas.",
+    "AverageRating": 5.0,
+    "RatingCount": 1,
+    "NumberOfPages": 208,
+    "GoodreadsUrl": null,
+    "Loans": [],
+    "Quantity": 1,
+    "Categories": [
+      1
+    ]
+  },
+  {
+    "$id": "146",
+    "Id": 153,
+    "Title": "Guia Mangá de Eletricidade",
+    "AuthorName": "Kazuhiro Fujitaki",
+    "ISBN": "9788575221907",
+    "ISBN13": "9788575221907",
+    "GoodreadsId": null,
+    "ImageUrl": "/images/books/153.jpg",
+    "SmallImageUrl": "/images/books/153.jpg",
+    "PublicationDate": "2010-01-01T00:00:00",
+    "Publisher": "Novatec",
+    "Language": "pt-BR",
+    "Description": "Rereko é uma aluna de um colégio em Electopia, a terra da eletricidade, e foi reprovada na prova final de eletricidade! Agora ela precisa de aulas de recuperação em um curso de verão na Terra, e desta vez ela tem que passar. Felizmente, Hikaru, seu sempre paciente instrutor, está lá para ajudá-la. Junte-se a eles nas páginas ilustradas do Guia Mangá de Eletricidade e veja como Rereko examina aparelhos elétricos comuns, como lanternas, aquecedores e disjuntores, e aprende o significado de conceitos abstratos como voltagem, potencial, corrente, resistência, condutividade e força eletrostática. Os exemplos reais apresentados no Guia Mangá de Eletricidade ensinam: O que é eletricidade, como funciona, como é gerada e como pode ser usada A relação entre voltagem, corrente e resistência (lei de Ohm) Os conceitos elétricos fundamentais, como indutância e capacitância Como funcionam os componentes complexos como transformadores, semicondutores, diodos e transistores Como a eletricidade produz calor e a relação entre corrente e campos magnéticos E muito mais! Se ao pensar em como a eletricidade realmente funciona, sua cabeça entra em curto-circuito, deixe o Guia Mangá de Eletricidade ensinar tudo sobre isso de um jeito divertido e eletrizante.",
+    "AverageRating": null,
+    "RatingCount": null,
+    "NumberOfPages": 224,
+    "GoodreadsUrl": null,
+    "Loans": [],
+    "Quantity": 1,
+    "Categories": [
+      15,
+      1,
+      2
+    ]
   }
 ]
