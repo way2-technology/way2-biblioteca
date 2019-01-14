@@ -12,7 +12,8 @@
     <div class="col">
         <h2>
             @Model.Title
-            @if (!String.IsNullOrWhiteSpace(Model.Language)) {
+            @if (!String.IsNullOrWhiteSpace(Model.Language))
+            {
                 <small>(@Model.Language)</small>
             }
         </h2>
@@ -50,8 +51,12 @@
                 <dt class="col-sm-2">Páginas</dt>
                 <dd class="col-sm-10">@Model.NumberOfPages</dd>
 
-                <dt class="col-sm-2">Categorias</dt>
-                <dd class="col-sm-10">@String.Join(',', Model.Categories.Select(category => CategoryLocalization.Translate(category)))</dd>
+                @if (Model.Categories != null)
+                {
+
+                    <dt class="col-sm-2">Categorias</dt>
+                    <dd class="col-sm-10">@String.Join(',', Model.Categories?.Select(category => category.Name))</dd>
+                }
             </dl>
         </div>
     </div>

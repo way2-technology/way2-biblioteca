@@ -13,7 +13,7 @@
     <div class="col-3">
         <div class="list-group">
             @foreach (var category in Model.Categories) {
-                @Html.ActionLink(CategoryLocalization.Translate(category), "ListCategory", "Home", new { cid = (int) category }, new { @class = "list-group-item list-group-item-action" })
+                @Html.ActionLink(category.Name, "ListCategory", "Home", new { cid = category.Id }, new { @class = "list-group-item list-group-item-action" })
             }
         </div>
     </div>

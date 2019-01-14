@@ -16,7 +16,7 @@ namespace Tests.Domain.Repositories {
             _appSettingsMock = new Mock<IAppSettingsServices>();
             _appSettingsMock.SetupGet(mock => mock.JsonBookFilePath).Returns("./Domain/Repositories/livros.json");
 
-            _repo = new BookRepository(_appSettingsMock.Object);
+            _repo = new BookRepository(null);
         }
 
         [Fact]

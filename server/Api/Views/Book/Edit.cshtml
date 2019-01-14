@@ -126,7 +126,8 @@
             <div class="form-group row">
                 <label for="goodreads_url" class="col-sm-2 col-form-label">Categories</label>
                 <div class="col-sm-10">
-                    @Html.DropDownListFor(model => model.Categories, Html.GetEnumSelectList(typeof(Category)).OrderBy(d => d.Text), new { multiple = true, @class = "custom-select", size = 25 })
+                    @Html.DropDownList("CategoryId", new MultiSelectList(Model.Categories, "Id", "Name"), new { multiple = "multiple" })
+                    @*@Html.DropDownListFor(model => model.Categories, Html.GetEnumSelectList(typeof(Category)).OrderBy(d => d.Text), new { multiple = true, @class = "custom-select", size = 25 })*@
                 </div>
             </div>
 

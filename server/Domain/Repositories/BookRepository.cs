@@ -1,74 +1,97 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Dapper;
 using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Services.Settings;
-using MiniBiggy;
-using Newtonsoft.Json;
+using Domain.Interfaces.Factories;
+using Domain.Interfaces.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Domain.Repositories {
+namespace Domain.Repositories
+{
+    public class BookRepository : IBookRepository
+    {
+        private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-    public class BookRepository : IBookRepository {
-        private readonly IAppSettingsServices _appSettings;
-        private PersistentList<Book> _books;
+        private const string BaseBooksSql = @"
+                SELECT id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
+                    publication as PublicationDate, description as Description, goodreads_rating as AverageRating, goodreads_rating_count as RatingCount,
+                    pages as NumberOfPages, goodreads_url as GoodreadsUrl
+                FROM book
+                {0}
+                ORDER by goodreads_rating desc, title
+                OFFSET     @offset ROWS
+                FETCH NEXT @fetch ROWS ONLY;";
 
-        public BookRepository(IAppSettingsServices appSettings) {
-            _appSettings = appSettings;
-            _books = Create.ListOf<Book>()
-                .SavingAt("Static\\bookDatabase.data")
-                .UsingPrettyJsonSerializer()
-                .SavingWhenRequested();
+        public BookRepository(ISqlConnectionFactory sqlConnectionFactory)
+        {
+            _sqlConnectionFactory = sqlConnectionFactory;
         }
 
-        public IEnumerable<Book> ListAll(int skip, int take) {
-            var content = GetContentFromFile();
-            return ParseJson(content).Skip(skip).Take(take);
+        public IEnumerable<Book> ListAll(int skip, int take) =>
+            SearchMany<Book>(BuildSql(), new { offset = skip, fetch = take });
+
+        public IEnumerable<Book> Search(string keyword, int skip, int take)
+        {
+            var sql = BuildSql($"title like '%{keyword}%' or description like '%{keyword}%'");
+            return SearchMany<Book>(sql, new { offset = skip, fetch = take });
         }
 
-        private IEnumerable<Book> ParseJson(string jsonContent) =>
-            (IEnumerable<Book>) JsonConvert.DeserializeObject(jsonContent, typeof(List<Book>));
-
-        public IEnumerable<Book> Search(string keyword, int skip, int take) {
-            var content = GetContentFromFile();
-            return ParseJson(content)
-                .Where(book =>
-                    book.Title.ToUpper().Contains(keyword.ToUpper()) ||
-                    (book.Description != null && book.Description.ToUpper().Contains(keyword.ToUpper())) ||
-                    (book.Authors != null && book.Authors.ToUpper().Contains(keyword.ToUpper()))
-                    )
-                .Skip(skip).Take(take).ToList();
+        public void Save(Book bookToSave)
+        {
+            throw new NotImplementedException();
         }
 
-        private string GetContentFromFile() => System.IO.File.ReadAllText(_appSettings.JsonBookFilePath, Encoding.UTF8);
-
-        public void Save(Book bookToSave) {
-            var bookFound = _books.Where(b => b.Id == bookToSave.Id).SingleOrDefault();
-            if (bookFound != null) {
-                MapPropertiesToUpdate(bookToSave, bookFound);
+        public Book Load(int id)
+        {
+            using (var conn = _sqlConnectionFactory.CreateNewConnection())
+            {
+                var sql = BuildSql("id = @id") +
+                    "select c.id, name from category c join book_categories bc on bc.category_id = c.id and bc.book_id = @id;";
+                using (var multi = conn.QueryMultiple(sql, new { id, offset = 0, fetch = int.MaxValue }))
+                {
+                    var book = multi.Read<Book>().FirstOrDefault();
+                    if (book != null)
+                    {
+                        book.Categories = multi.Read<Category>().ToArray();
+                        return book;
+                    }
+                }
             }
-            else {
-                _books.Add(bookToSave);
-            }
-            _books.Save();
-        }
-
-        private void MapPropertiesToUpdate(Book origin, Book destination) {
-            destination.Title = origin.Title;
-            destination.Authors = origin.Authors;
-            destination.SmallImageUrl = origin.SmallImageUrl;
-            destination.ImageUrl = origin.ImageUrl;
-            destination.ISBN = origin.ISBN;
-            destination.Description = origin.Description;
-            destination.PublicationDate = origin.PublicationDate;
-            destination.Categories = origin.Categories;
-        }
-
-        public Book Load(int id) {
-            return _books.SingleOrDefault(book => book.Id == id);
+            return null;
         }
 
         public IEnumerable<Category> GetActiveCategories() =>
-            ListAll(0, int.MaxValue).SelectMany(book => book.Categories).Distinct();
+            SearchMany<Category>("select id as ID, name as Name from category order by name", null);
+
+        private IEnumerable<T> SearchMany<T>(string sql, object parameters)
+        {
+            using (var conn = _sqlConnectionFactory.CreateNewConnection())
+            {
+                return conn.Query<T>(sql, parameters);
+            }
+        }
+
+        public IEnumerable<Book> ListAll(int categoryId, int skip, int take)
+        {
+            var sql = @"
+                SELECT b.id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
+                    publication as PublicationDate, description as Description, goodreads_rating as AverageRating, goodreads_rating_count as RatingCount,
+                    pages as NumberOfPages, goodreads_url as GoodreadsUrl
+                FROM book b
+                join book_categories bc on bc.book_id = b.id
+				where bc.category_id = @categoryId
+                ORDER by goodreads_rating desc, title
+                OFFSET     @skip ROWS
+                FETCH NEXT @take ROWS ONLY;";
+
+            using (var conn = _sqlConnectionFactory.CreateNewConnection())
+            {
+                return conn.Query<Book>(sql, new { categoryId, skip, take });
+            }
+        }
+
+        private string BuildSql(string condition = null) =>
+            condition == null ? string.Format(BaseBooksSql, string.Empty) :
+            string.Format(BaseBooksSql, $" where {condition}");
     }
 }

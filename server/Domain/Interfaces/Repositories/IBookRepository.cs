@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using Domain.Entities;
+﻿using Domain.Entities;
+using System.Collections.Generic;
 
-namespace Domain.Interfaces {
-
-    public interface IBookRepository {
-
+namespace Domain.Interfaces.Repositories
+{
+    public interface IBookRepository
+    {
         IEnumerable<Book> ListAll(int skip, int take);
+
+        IEnumerable<Book> ListAll(int categoryId, int skip, int take);
 
         IEnumerable<Book> Search(string keyword, int skip, int take);
 
