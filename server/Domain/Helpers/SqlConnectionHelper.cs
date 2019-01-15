@@ -11,10 +11,10 @@ namespace Domain.Helpers
         {
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = "way2libdbserver.database.windows.net",
-                UserID = "way2lib",
-                Password = "YT8Hfwd!",
-                InitialCatalog = "way2librarydb",
+                DataSource = "***",
+                UserID = "***",
+                Password = "***",
+                InitialCatalog = "***",
             };
 
             return new SqlConnection(builder.ConnectionString);
