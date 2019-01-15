@@ -1,5 +1,8 @@
 ﻿@using Domain.Entities;
-@model Domain.Entities.Book;
+@model Api.Models.Book.BookEditViewModel;
+@{
+    Layout = "~/Views/Layout/_Layout1.cshtml";
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Way2Lib (Beta) - Edit Book</title>
@@ -7,50 +10,50 @@
 </head>
 <body>
     <div class="container">
-        @Html.ActionLink("Home", "Index", "Home")
         <h2>Book Edit</h2>
-        @using (Html.BeginForm("Save", "Book", FormMethod.Post)) {
+        @using (Html.BeginForm("Save", "Book", FormMethod.Post))
+        {
             <div class="form-group row">
                 <div class="col-md-10">
                     <div class="form-group row">
                         <label for="id" class="col-sm-2 col-form-label">ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control " name="Id" placeholder="Book ID" value="@Model.Id" readonly>
+                            <input type="text" class="form-control " name="Id" placeholder="Book ID" value="@Model.Book.Id" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="author_name" class="col-sm-2 col-form-label">Title</label>
+                        <label for="book_title" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Title" placeholder="Book title" value="@Model.Title">
+                            <input type="text" class="form-control" name="Title" placeholder="Book title" value="@Model.Book.Title">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="author_name" class="col-sm-2 col-form-label">Author Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Authors" placeholder="Authors name, comma separated" value="@Model.Authors">
+                            @Html.DropDownList("Author", Model.AllAuthors, new { multiple = "multiple" })
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ISBN" placeholder="ISBN 10" value="@Model.ISBN">
+                            <input type="text" class="form-control" name="ISBN" placeholder="ISBN 10" value="@Model.Book.ISBN10">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="isbn" class="col-sm-2 col-form-label">ISBN13</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="ISBN13" placeholder="ISBN 13" value="@Model.ISBN13">
+                            <input type="text" class="form-control" name="ISBN13" placeholder="ISBN 13" value="@Model.Book.ISBN13">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <img src="@Model.ImageUrl" style="max-height:200px; margin-bottom:10px" class="img-thumbnail" />
+                    <img src="@Model.Book.ImageUrl" style="max-height:200px; margin-bottom:10px" class="img-thumbnail" />
                     @{
-                        var urlAuthorPlusTitle = $"{Model.Title} {Model.Authors}";
+                        var urlAuthorPlusTitle = $"{Model.Book.Title} {Model.Book.Authors?.Select(author => author.Name).ToList()}";
                     }
                     <div class="list-group">
-                        <a href="https://www.google.com.br/search?q=@Model.ISBN" target="_blank" class="list-group-item list-group-item-action" }>Google it! (ISBN)</a>
+                        <a href="https://www.google.com.br/search?q=@Model.Book.ISBN13" target="_blank" class="list-group-item list-group-item-action" }>Google it! (ISBN)</a>
                         <a href="https://www.google.com.br/search?q=@urlAuthorPlusTitle" target="_blank" class="list-group-item list-group-item-action" }>Google it! (title)</a>
                     </div>
                 </div>
@@ -58,76 +61,69 @@
             <div class="form-group row">
                 <label for="isbn" class="col-sm-2 col-form-label">Goodreads ID</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="GoodreadsId" placeholder="Goodreads ID" value="@Model.GoodreadsId">
+                    <input type="text" class="form-control" name="GoodreadsId" placeholder="Goodreads ID" value="@Model.Book.GoodreadsId">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="image_url" class="col-sm-2 col-form-label">Image URL</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="ImageUrl" placeholder="Image URL regular size" value="@Model.ImageUrl">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="image_url_small" class="col-sm-2 col-form-label">Small image URL</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="SmallImageUrl" placeholder="Image URL small size" value="@Model.SmallImageUrl">
+                    <input type="text" class="form-control" name="ImageUrl" placeholder="Image URL regular size" value="@Model.Book.ImageUrl">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="publication_date" class="col-sm-2 col-form-label">Publication Date</label>
                 <div class="col-sm-10">
-                    <input type="datetime" class="form-control" name="PublicationDate" placeholder="Publication Date" value="@Model.PublicationDate">
+                    <input type="datetime" class="form-control" name="PublicationDate" placeholder="Publication Date" value="@Model.Book.PublicationDate">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Publisher" placeholder="publisher" value="@Model.Publisher">
+                    @Html.DropDownList("Publisher", Model.AllPublishers, "Selecione...")
                 </div>
             </div>
             <div class="form-group row">
                 <label for="language" class="col-sm-2 col-form-label">Language</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Language" placeholder="Language" value="@Model.Language">
+                    @Html.DropDownList("Language", Model.AllLanguages, "Selecione...")
                 </div>
             </div>
             <div class="form-group row">
                 <label for="description" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
-                    <textarea rows="20" class="form-control" name="Description" placeholder="description">@Model.Description</textarea>
+                    <textarea rows="20" class="form-control" name="Description" placeholder="description">@Model.Book.Description</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="average_rating" class="col-sm-2 col-form-label">Average Rating</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="AverageRating" placeholder="Average Rating" value="@Model.AverageRating">
+                    <input type="text" class="form-control" name="AverageRating" placeholder="Average Rating" value="@Model.Book.AverageRating">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="rating_count" class="col-sm-2 col-form-label">Rating Count</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="RatingCount" placeholder="Rating Count" value="@Model.RatingCount">
+                    <input type="text" class="form-control" name="RatingCount" placeholder="Rating Count" value="@Model.Book.RatingCount">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="number_of_pages" class="col-sm-2 col-form-label">Number Of Pages</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="NumberOfPages" placeholder="Number Of Pages" value="@Model.NumberOfPages">
+                    <input type="text" class="form-control" name="NumberOfPages" placeholder="Number Of Pages" value="@Model.Book.NumberOfPages">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="goodreads_url" class="col-sm-2 col-form-label">Goodreads Url</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="GoodreadsUrl" placeholder="GoodreadsUrl" value="@Model.GoodreadsUrl">
+                    <input type="text" class="form-control" name="GoodreadsUrl" placeholder="GoodreadsUrl" value="@Model.Book.GoodreadsUrl">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="goodreads_url" class="col-sm-2 col-form-label">Categories</label>
                 <div class="col-sm-10">
-                    @Html.DropDownList("CategoryId", new MultiSelectList(Model.Categories, "Id", "Name"), new { multiple = "multiple" })
-                    @*@Html.DropDownListFor(model => model.Categories, Html.GetEnumSelectList(typeof(Category)).OrderBy(d => d.Text), new { multiple = true, @class = "custom-select", size = 25 })*@
+                    @Html.DropDownList("CategoryId", Model.AllCategories, new { multiple = "multiple" })
                 </div>
             </div>
 

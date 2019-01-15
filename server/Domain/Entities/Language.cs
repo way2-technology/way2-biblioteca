@@ -1,8 +1,8 @@
 ﻿namespace Domain.Entities {
 
-    public enum Language {
-        English = 1,
-        Portuguese,
-        Spanish
+    public class Language {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Shortname { get; set; }
     }
 }

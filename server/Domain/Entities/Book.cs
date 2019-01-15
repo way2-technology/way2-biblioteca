@@ -7,9 +7,9 @@ namespace Domain.Entities {
         [JsonProperty("Title")]
         public string Title { get; set; }
         [JsonProperty("AuthorName")]
-        public string Authors { get; set; }
+        public Author[] Authors { get; set; }
         [JsonProperty("ISBN")]
-        public string ISBN { get; set; }
+        public string ISBN10 { get; set; }
         [JsonProperty("ISBN13")]
         public string ISBN13 { get; set; }
         [JsonProperty("GoodreadsId")]
@@ -21,9 +21,9 @@ namespace Domain.Entities {
         [JsonProperty("PublicationDate")]
         public DateTime PublicationDate { get; set; }
         [JsonProperty("Publisher")]
-        public string Publisher { get; set; }
+        public Publisher Publisher { get; set; }
         [JsonProperty("Language")]
-        public string Language { get; set; }
+        public Language Language { get; set; }
         [JsonProperty("Description")]
         public string Description { get; set; }
         [JsonProperty("AverageRating")]

@@ -32,15 +32,17 @@ namespace Tests.Domain.Repositories {
             var expected = new Book {
                 Title = "Book A",
                 PublicationDate = new DateTime(2003, 1, 1),
-                Authors = "Uncle Bob",
+                Authors = new[] {
+                    new Author { Name = "Uncle Bob" }
+                },
                 Description = "Descricao do livro A",
                 AverageRating  = 4.02m,
                 RatingCount = 38,
                 NumberOfPages = 360,
-                ISBN = "8521312369",
+                ISBN10 = "8521312369",
                 ISBN13 = "9788521312369",
                 GoodreadsId = "17695175",
-                Language = "por",
+                Language = new Language { Name = "por" },
                 GoodreadsUrl = "https://www.goodreads.com/book/show/17695175-a-meta---um-processo-de-melhoria-cont-nua",
                 ImageUrl = "https://images.gr-assets.com/books/1364317608m/17695175m.jpg",
                 SmallImageUrl = "https://images.gr-assets.com/books/1364317608s/17695175s.jpg",
@@ -52,21 +54,21 @@ namespace Tests.Domain.Repositories {
         [Fact]
         public void Search_ShouldFindSearchingForTitle() {
             var expected = new[] { "8521312369", "8577804445" };
-            var actual = _repo.Search("book", 0, 10).Select(d => d.ISBN).ToArray();
+            var actual = _repo.Search("book", 0, 10).Select(d => d.ISBN10).ToArray();
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void Search_ShouldFindSearchingForAuthor() {
             var expected = new[] { "8521312369", "8577809999" };
-            var actual = _repo.Search("bob", 0, 10).Select(d => d.ISBN);
+            var actual = _repo.Search("bob", 0, 10).Select(d => d.ISBN10);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void Search_ShouldFindSearchingForDescription() {
             var expected = new[] { "8577809999" };
-            var actual = _repo.Search("foRest", 0, 10).Select(d => d.ISBN).ToArray();
+            var actual = _repo.Search("foRest", 0, 10).Select(d => d.ISBN10).ToArray();
             Assert.Equal(expected, actual);
         }
 
@@ -76,7 +78,7 @@ namespace Tests.Domain.Repositories {
         [InlineData("book", 1, 1, new[] { "8577804445" })]
         [InlineData("book", 1, 2, new[] { "8577804445" })]
         public void Search_ShouldPaginateCorrectly(string keyword, int skip, int take, string[] isbnExpected) {
-            var actual = _repo.Search(keyword, skip, take).Select(item => item.ISBN).ToArray();
+            var actual = _repo.Search(keyword, skip, take).Select(item => item.ISBN10).ToArray();
             Assert.Equal(isbnExpected, actual);
         }
 

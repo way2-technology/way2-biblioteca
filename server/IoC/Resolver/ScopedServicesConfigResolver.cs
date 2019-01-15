@@ -1,5 +1,5 @@
-﻿using Domain.Factories;
-using Domain.Interfaces.Factories;
+﻿using Domain.Helpers;
+using Domain.Interfaces.Helpers;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services.Auth;
 using Domain.Interfaces.Services.Search;
@@ -22,7 +22,11 @@ namespace IoC.Resolver
             services.AddScoped<IAppSettingsServices, AppSettingsServices>();
             services.AddScoped<IBookSearchService, BookSearchService>();
             services.AddScoped<IBookRepository, BookRepository>();
-            services.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>();
+            services.AddScoped<ISqlConnectionHelper, SqlConnectionHelper>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPublisherRepository, PublisherRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
         }
     }
 }

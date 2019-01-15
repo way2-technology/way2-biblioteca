@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Domain.Entities;
-using Domain.Interfaces.Factories;
+using Domain.Interfaces.Helpers;
 using Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,30 +10,30 @@ namespace Domain.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        private readonly ISqlConnectionHelper _sqlConnectionHelper;
 
-        private const string BaseBooksSql = @"
-                SELECT id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
+        private const string BookFields = @"id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
                     publication as PublicationDate, description as Description, goodreads_rating as AverageRating, goodreads_rating_count as RatingCount,
-                    pages as NumberOfPages, goodreads_url as GoodreadsUrl
-                FROM book
-                {0}
+                    pages as NumberOfPages, goodreads_url as GoodreadsUrl";
+
+        private string BaseBooksSql(string condition) =>
+            $@"SELECT {BookFields} FROM book {condition}
                 ORDER by goodreads_rating desc, title
-                OFFSET     @offset ROWS
+               OFFSET     @offset ROWS
                 FETCH NEXT @fetch ROWS ONLY;";
 
-        public BookRepository(ISqlConnectionFactory sqlConnectionFactory)
+        public BookRepository(ISqlConnectionHelper sqlConnectionFactory)
         {
-            _sqlConnectionFactory = sqlConnectionFactory;
+            _sqlConnectionHelper = sqlConnectionFactory;
         }
 
         public IEnumerable<Book> ListAll(int skip, int take) =>
-            SearchMany<Book>(BuildSql(), new { offset = skip, fetch = take });
+            _sqlConnectionHelper.Query<Book>(BuildSql(), new { offset = skip, fetch = take });
 
         public IEnumerable<Book> Search(string keyword, int skip, int take)
         {
             var sql = BuildSql($"title like '%{keyword}%' or description like '%{keyword}%'");
-            return SearchMany<Book>(sql, new { offset = skip, fetch = take });
+            return _sqlConnectionHelper.Query<Book>(sql, new { offset = skip, fetch = take });
         }
 
         public void Save(Book bookToSave)
@@ -43,7 +43,7 @@ namespace Domain.Repositories
 
         public Book Load(int id)
         {
-            using (var conn = _sqlConnectionFactory.CreateNewConnection())
+            using (var conn = _sqlConnectionHelper.CreateNewConnection())
             {
                 var sql = BuildSql("id = @id") +
                     "select c.id, name from category c join book_categories bc on bc.category_id = c.id and bc.book_id = @id;";
@@ -61,37 +61,24 @@ namespace Domain.Repositories
         }
 
         public IEnumerable<Category> GetActiveCategories() =>
-            SearchMany<Category>("select id as ID, name as Name from category order by name", null);
-
-        private IEnumerable<T> SearchMany<T>(string sql, object parameters)
-        {
-            using (var conn = _sqlConnectionFactory.CreateNewConnection())
-            {
-                return conn.Query<T>(sql, parameters);
-            }
-        }
+            _sqlConnectionHelper.Query<Category>("select id as ID, name as Name from category order by name", null);
 
         public IEnumerable<Book> ListAll(int categoryId, int skip, int take)
         {
-            var sql = @"
-                SELECT b.id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
-                    publication as PublicationDate, description as Description, goodreads_rating as AverageRating, goodreads_rating_count as RatingCount,
-                    pages as NumberOfPages, goodreads_url as GoodreadsUrl
+            var sql = $@"
+                SELECT {BookFields}
                 FROM book b
                 join book_categories bc on bc.book_id = b.id
 				where bc.category_id = @categoryId
                 ORDER by goodreads_rating desc, title
                 OFFSET     @skip ROWS
                 FETCH NEXT @take ROWS ONLY;";
-
-            using (var conn = _sqlConnectionFactory.CreateNewConnection())
-            {
-                return conn.Query<Book>(sql, new { categoryId, skip, take });
-            }
+            return _sqlConnectionHelper.Query<Book>(sql, new { categoryId, skip, take });
         }
 
         private string BuildSql(string condition = null) =>
-            condition == null ? string.Format(BaseBooksSql, string.Empty) :
-            string.Format(BaseBooksSql, $" where {condition}");
+            condition == null ?
+            BaseBooksSql(string.Empty) :
+            BaseBooksSql($" where {condition}");
     }
 }
