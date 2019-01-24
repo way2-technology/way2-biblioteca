@@ -12,13 +12,13 @@ namespace Domain.Repositories
     {
         private readonly ISqlConnectionHelper _sqlConnectionHelper;
 
-        private const string BookFields = @"id as Id, title as Title, isbn13 as ISBN13, isbn10 as ISBN, goodreads_id as GoodreadsId, image_url as ImageUrl,
-                    publication as PublicationDate, description as Description, goodreads_rating as AverageRating, goodreads_rating_count as RatingCount,
-                    pages as NumberOfPages, goodreads_url as GoodreadsUrl";
+        private const string BookFields = @" b.id as Id, b.title as Title, b.isbn13 as ISBN13, b.isbn10 as ISBN, b.goodreads_id as GoodreadsId, b.image_url as ImageUrl,
+                    b.publication as PublicationDate, b.description as Description, b.goodreads_rating as AverageRating, b.goodreads_rating_count as RatingCount,
+                    b.pages as NumberOfPages, b.goodreads_url as GoodreadsUrl ";
 
         private string BaseBooksSql(string condition) =>
-            $@"SELECT {BookFields} FROM book {condition}
-                ORDER by goodreads_rating desc, title
+            $@"SELECT {BookFields} FROM book b {condition}
+                ORDER by b.goodreads_rating desc, b.title
                OFFSET     @offset ROWS
                 FETCH NEXT @fetch ROWS ONLY;";
 
