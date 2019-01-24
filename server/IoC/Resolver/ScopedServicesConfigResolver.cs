@@ -20,6 +20,7 @@ namespace IoC.Resolver
             services.AddScoped<IAppSettings, AppSettings>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAppSettingsServices, AppSettingsServices>();
+            services.AddScoped<IConnectionStringsServices, ConnectionStringsServices>();
             services.AddScoped<IBookSearchService, BookSearchService>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ISqlConnectionHelper, SqlConnectionHelper>();

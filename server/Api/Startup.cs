@@ -1,4 +1,5 @@
 ﻿using Api.AppStart;
+using Domain.Settings;
 using IoC.Resolver;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace Api {
             services.AddMvc();
             AddservicesAuthentication(services);
             services.ConfigureScopedServices();
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
         }
     }
 }
