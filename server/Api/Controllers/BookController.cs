@@ -19,13 +19,6 @@ namespace Api.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Save(Book book)
-        {
-            _bookRepository.Save(book);
-            return Redirect(Url.Action("Index", "Home"));
-        }
-
         [HttpGet]
         public IActionResult Details(int id)
         {
