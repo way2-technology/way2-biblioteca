@@ -1,8 +1,7 @@
 ﻿@using Api.Models.Home;
-@using Api.Models.Util;
 @model HomeViewModel
 @{
-    Layout = "~/Views/Layout/_Layout1.cshtml";
+    Layout = "~/Views/Layout/_mainLayout.cshtml";
 }
 
 @section Styles {
@@ -13,7 +12,7 @@
     <div class="col-3">
         <div class="list-group">
             @foreach (var category in Model.Categories) {
-                @Html.ActionLink(CategoryLocalization.Translate(category), "ListCategory", "Home", new { cid = (int) category }, new { @class = "list-group-item list-group-item-action" })
+                @Html.ActionLink(category.Name, "ListCategory", "Home", new { cid = category.Id }, new { @class = "list-group-item list-group-item-action" })
             }
         </div>
     </div>
@@ -29,7 +28,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="ratings" style="font-size: 20pt;">
                         <div class="empty-stars"></div>
-                        <div class="full-stars" style="width:@item.Rating%"></div>
+                        <div class="full-stars" style="width:@item.AverageRating%"></div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">

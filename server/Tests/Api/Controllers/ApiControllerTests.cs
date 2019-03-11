@@ -34,10 +34,8 @@ namespace Tests.Api.Controllers {
         public void Books_ShouldReturnData() {
             var data = new[]{
                 new Book {
-                    Authors = "author",
                     Description = "description",
                     ImageUrl = "imageUrl",
-                    ISBN = "isbn",
                     PublicationDate = new DateTime(2018, 6, 3),
                     SmallImageUrl = "smallImageUrl"
                 }

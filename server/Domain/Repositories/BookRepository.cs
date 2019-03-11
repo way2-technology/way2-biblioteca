@@ -1,74 +1,84 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Dapper;
 using Domain.Entities;
-using Domain.Interfaces;
-using Domain.Services.Settings;
-using MiniBiggy;
-using Newtonsoft.Json;
+using Domain.Interfaces.Helpers;
+using Domain.Interfaces.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Domain.Repositories {
+namespace Domain.Repositories
+{
+    public class BookRepository : IBookRepository
+    {
+        private readonly ISqlConnectionHelper _sqlConnectionHelper;
 
-    public class BookRepository : IBookRepository {
-        private readonly IAppSettingsServices _appSettings;
-        private PersistentList<Book> _books;
+        private const string BookFields = @" b.id as Id, b.title as Title, b.isbn13 as ISBN13, b.isbn10 as ISBN, b.goodreads_id as GoodreadsId, b.image_url as ImageUrl,
+                    b.publication as PublicationDate, b.description as Description, b.goodreads_rating as AverageRating, b.goodreads_rating_count as RatingCount,
+                    b.pages as NumberOfPages, b.goodreads_url as GoodreadsUrl ";
 
-        public BookRepository(IAppSettingsServices appSettings) {
-            _appSettings = appSettings;
-            _books = Create.ListOf<Book>()
-                .SavingAt("Static\\bookDatabase.data")
-                .UsingPrettyJsonSerializer()
-                .SavingWhenRequested();
+        private string BaseBooksSql(string condition) =>
+            $@"SELECT {BookFields} FROM book b {condition}
+                ORDER by b.goodreads_rating desc, b.title
+               OFFSET     @offset ROWS
+                FETCH NEXT @fetch ROWS ONLY;";
+
+        public BookRepository(ISqlConnectionHelper sqlConnectionFactory)
+        {
+            _sqlConnectionHelper = sqlConnectionFactory;
         }
 
-        public IEnumerable<Book> ListAll(int skip, int take) {
-            var content = GetContentFromFile();
-            return ParseJson(content).Skip(skip).Take(take);
+        public IEnumerable<Book> ListAll(int skip, int take) =>
+            _sqlConnectionHelper.Query<Book>(BuildSql(), new { offset = skip, fetch = take });
+
+        public IEnumerable<Book> Search(string keyword, int skip, int take)
+        {
+            var sql = BuildSql($"title like '%{keyword}%' or description like '%{keyword}%'");
+            return _sqlConnectionHelper.Query<Book>(sql, new { offset = skip, fetch = take });
         }
 
-        private IEnumerable<Book> ParseJson(string jsonContent) =>
-            (IEnumerable<Book>) JsonConvert.DeserializeObject(jsonContent, typeof(List<Book>));
-
-        public IEnumerable<Book> Search(string keyword, int skip, int take) {
-            var content = GetContentFromFile();
-            return ParseJson(content)
-                .Where(book =>
-                    book.Title.ToUpper().Contains(keyword.ToUpper()) ||
-                    (book.Description != null && book.Description.ToUpper().Contains(keyword.ToUpper())) ||
-                    (book.Authors != null && book.Authors.ToUpper().Contains(keyword.ToUpper()))
-                    )
-                .Skip(skip).Take(take).ToList();
+        public void Save(Book bookToSave)
+        {
+            throw new NotImplementedException();
         }
 
-        private string GetContentFromFile() => System.IO.File.ReadAllText(_appSettings.JsonBookFilePath, Encoding.UTF8);
-
-        public void Save(Book bookToSave) {
-            var bookFound = _books.Where(b => b.Id == bookToSave.Id).SingleOrDefault();
-            if (bookFound != null) {
-                MapPropertiesToUpdate(bookToSave, bookFound);
+        public Book Load(int id)
+        {
+            using (var conn = _sqlConnectionHelper.CreateNewConnection())
+            {
+                var sql = BuildSql("id = @id") +
+                    "select c.id, name from category c join book_categories bc on bc.category_id = c.id and bc.book_id = @id;";
+                using (var multi = conn.QueryMultiple(sql, new { id, offset = 0, fetch = int.MaxValue }))
+                {
+                    var book = multi.Read<Book>().FirstOrDefault();
+                    if (book != null)
+                    {
+                        book.Categories = multi.Read<Category>().ToArray();
+                        return book;
+                    }
+                }
             }
-            else {
-                _books.Add(bookToSave);
-            }
-            _books.Save();
-        }
-
-        private void MapPropertiesToUpdate(Book origin, Book destination) {
-            destination.Title = origin.Title;
-            destination.Authors = origin.Authors;
-            destination.SmallImageUrl = origin.SmallImageUrl;
-            destination.ImageUrl = origin.ImageUrl;
-            destination.ISBN = origin.ISBN;
-            destination.Description = origin.Description;
-            destination.PublicationDate = origin.PublicationDate;
-            destination.Categories = origin.Categories;
-        }
-
-        public Book Load(int id) {
-            return _books.SingleOrDefault(book => book.Id == id);
+            return null;
         }
 
         public IEnumerable<Category> GetActiveCategories() =>
-            ListAll(0, int.MaxValue).SelectMany(book => book.Categories).Distinct();
+            _sqlConnectionHelper.Query<Category>("select id as ID, name as Name from category order by name", null);
+
+        public IEnumerable<Book> ListAll(int categoryId, int skip, int take)
+        {
+            var sql = $@"
+                SELECT {BookFields}
+                FROM book b
+                join book_categories bc on bc.book_id = b.id
+				where bc.category_id = @categoryId
+                ORDER by goodreads_rating desc, title
+                OFFSET     @skip ROWS
+                FETCH NEXT @take ROWS ONLY;";
+            return _sqlConnectionHelper.Query<Book>(sql, new { categoryId, skip, take });
+        }
+
+        private string BuildSql(string condition = null) =>
+            condition == null ?
+            BaseBooksSql(string.Empty) :
+            BaseBooksSql($" where {condition}");
     }
 }

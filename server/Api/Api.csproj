@@ -3,14 +3,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Static\bookDatabase.data" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Static\bookDatabase.data">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.2" />
@@ -171,5 +163,8 @@
     <None Include="wwwroot\images\books\97.jpg" />
     <None Include="wwwroot\images\books\98.jpg" />
     <None Include="wwwroot\images\books\99.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Static\" />
   </ItemGroup>
 </Project>

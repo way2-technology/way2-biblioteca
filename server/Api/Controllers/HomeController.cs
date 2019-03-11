@@ -1,24 +1,27 @@
-﻿using System;
-using System.Linq;
-using Api.Models.Home;
-using Domain.Entities;
+﻿using Api.Models.Home;
 using Domain.Interfaces.Services.Search;
 using Domain.Responses;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
-namespace Api.Controllers {
-
-    public class HomeController : Controller {
+namespace Api.Controllers
+{
+    public class HomeController : Controller
+    {
         private readonly IBookSearchService _bookSearchService;
 
-        public HomeController(IBookSearchService bookSearchService) {
+        public HomeController(IBookSearchService bookSearchService)
+        {
             _bookSearchService = bookSearchService;
         }
 
         [HttpGet]
-        public IActionResult Index() {
+        public IActionResult Index()
+        {
             var bookList = _bookSearchService.ListAll(0, int.MaxValue);
-            var viewModel = new HomeViewModel {
+            var viewModel = new HomeViewModel
+            {
                 Books = bookList.Select(book => new BookResponse(book)),
                 Categories = _bookSearchService.ListCategories(),
             };
@@ -26,21 +29,24 @@ namespace Api.Controllers {
         }
 
         [HttpGet]
-        public IActionResult ListCategory(int cid) {
-            var books = _bookSearchService.ListAll(0, int.MaxValue).Where(book => book.Categories.Contains((Category) cid));
-            var viewModel = new HomeViewModel {
-                Books = books.Select(book => new BookResponse(book)),
+        public IActionResult ListCategory(int cid)
+        {
+            var viewModel = new HomeViewModel
+            {
+                Books = _bookSearchService.ListAll(cid, 0, int.MaxValue).Select(book => new BookResponse(book)),
                 Categories = _bookSearchService.ListCategories(),
             };
             return View("Index", viewModel);
         }
 
         [HttpGet]
-        public IActionResult Search(string q) {
+        public IActionResult Search(string q)
+        {
             var bookList = String.IsNullOrWhiteSpace(q) ?
                 _bookSearchService.ListAll(0, int.MaxValue) :
                 _bookSearchService.Search(q, 0, int.MaxValue);
-            var viewModel = new HomeViewModel {
+            var viewModel = new HomeViewModel
+            {
                 Books = bookList.Select(book => new BookResponse(book)),
                 Categories = _bookSearchService.ListCategories(),
             };
@@ -48,7 +54,8 @@ namespace Api.Controllers {
         }
 
         [HttpGet]
-        public IActionResult Edit(int id) {
+        public IActionResult Edit(int id)
+        {
             var book = _bookSearchService.FindById(id);
             var viewModel = new BookResponse(book);
             return View(viewModel);
