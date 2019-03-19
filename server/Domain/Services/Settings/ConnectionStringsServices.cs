@@ -1,8 +1,5 @@
 ﻿using Domain.Interfaces.Settings;
 using Domain.Settings;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-
 namespace Domain.Services.Settings
 {
     public class ConnectionStringsServices : IConnectionStringsServices
