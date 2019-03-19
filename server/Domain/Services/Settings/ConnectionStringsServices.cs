@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces.Settings;
 using Domain.Settings;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace Domain.Services.Settings
@@ -8,9 +9,9 @@ namespace Domain.Services.Settings
     {
         private readonly IConnectionStrings _connectionStrings;
 
-        public ConnectionStringsServices(IOptions<ConnectionStrings> connectionStrings)
+        public ConnectionStringsServices(ConnectionStrings connectionStrings)
         {
-            _connectionStrings = connectionStrings.Value;
+            _connectionStrings = connectionStrings;
         }
 
         public string SqlAzure => _connectionStrings.SqlAzure;

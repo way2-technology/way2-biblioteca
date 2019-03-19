@@ -19,9 +19,13 @@ namespace Domain.Helpers
 
         public IEnumerable<T> Query<T>(string sql, object @params = null)
         {
-            using (var connection = CreateNewConnection())
+            var connection = CreateNewConnection();
+            try
             {
                 return connection.Query<T>(sql, @params);
+            }
+            finally {
+                connection.Close();
             }
         }
     }
