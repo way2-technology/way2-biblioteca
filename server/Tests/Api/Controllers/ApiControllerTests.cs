@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Api.Controllers;
-using Domain.Entities;
-using Domain.Interfaces.Services.Search;
-using Domain.Responses;
+using Entities.Entities;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Newtonsoft.Json;
+using Services.Interfaces.Features.Search;
 using Xunit;
 
 namespace Tests.Api.Controllers {

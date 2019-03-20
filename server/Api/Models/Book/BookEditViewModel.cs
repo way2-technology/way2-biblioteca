@@ -1,4 +1,4 @@
-﻿using Domain.Responses;
+﻿using Entities.Responses;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Api.Models.Book

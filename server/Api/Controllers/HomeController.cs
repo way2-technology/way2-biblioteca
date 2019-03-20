@@ -1,12 +1,11 @@
-﻿using Api.Models.Home;
-using Domain.Interfaces.Services.Search;
-using Domain.Responses;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Linq;
+using Api.Models.Home;
+using Entities.Responses;
+using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces.Features.Search;
 
-namespace Api.Controllers
-{
+namespace Api.Controllers {
     public class HomeController : Controller
     {
         private readonly IBookSearchService _bookSearchService;

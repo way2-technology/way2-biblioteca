@@ -1,5 +1,5 @@
 ﻿using Api.AppStart;
-using Domain.Settings;
+using Entities.Settings;
 using IoC.Resolver;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Domain.Interfaces.Services.Search;
-using Domain.Responses;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces.Features.Search;
 
 namespace Api.Controllers {
 
