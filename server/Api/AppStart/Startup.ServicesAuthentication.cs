@@ -1,4 +1,4 @@
-﻿using Domain.Settings;
+﻿using Entities.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

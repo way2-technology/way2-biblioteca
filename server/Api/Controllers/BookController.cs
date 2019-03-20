@@ -1,10 +1,8 @@
-﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
-using Domain.Responses;
+﻿using Data.Interfaces.Repositories;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
-{
+namespace Api.Controllers {
     public class BookController : Controller
     {
         private readonly IBookRepository _bookRepository;

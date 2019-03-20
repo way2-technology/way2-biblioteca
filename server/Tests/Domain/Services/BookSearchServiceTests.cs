@@ -1,10 +1,9 @@
-﻿using Domain.Interfaces.Repositories;
-using Domain.Services.Search;
+﻿using Data.Interfaces.Repositories;
 using Moq;
+using Services.Features.Search;
 using Xunit;
 
-namespace Tests.Domain.Services
-{
+namespace Tests.Entities.Services {
     public class BookSearchServiceTests
     {
         private readonly BookSearchService _bookSearchService;
