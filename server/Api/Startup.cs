@@ -30,8 +30,7 @@ namespace Api {
             services.ConfigureSwagger();
             services.AddMvc();
             AddservicesAuthentication(services);
-            services.ConfigureScopedServices();
-            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            services.ConfigureServices(Configuration["ConnectionStrings:SqlAzure"]);
         }
     }
 }
