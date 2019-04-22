@@ -22,7 +22,6 @@ export default Vue.extend({
 });
 </script>
 
-
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -38,9 +37,6 @@ export default Vue.extend({
   a {
     font-weight: bold;
     color: $--color-black;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 
@@ -51,7 +47,11 @@ body {
 
 .app__content {
   height: calc(100vh - 60px);
-  background: #f5f7fb;
-  padding: 20px;
+  background: $light-1;
+}
+
+.page-container {
+  max-width: $--width-container;
+  margin: 0 auto;
 }
 </style>
