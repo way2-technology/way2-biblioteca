@@ -6,7 +6,10 @@ import "./registerServiceWorker";
 import ElementUI from "element-ui";
 import "./assets/scss/element.scss";
 
+import Unicon from './icons';
+
 Vue.use(ElementUI);
+Vue.use(Unicon);
 
 Vue.config.ignoredElements = [/^el-/];
 Vue.config.productionTip = false;
