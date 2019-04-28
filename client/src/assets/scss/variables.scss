@@ -1,7 +1,5 @@
-/*Element - Colors*/
-
-$--color-black: #000 !default;
-$--color-black-2: #495057 !default;
+/*Element - Colors
+------------------*/
 $--color-primary: #246AB6 !default;
 $--color-primary-light-1: #2B76C7 !default;
 $--color-primary-light-2: #3482D6 !default;
@@ -10,20 +8,21 @@ $--color-primary-light-4: #67A6E9 !default;
 $--color-primary-light-5: #8ABAF4 !default;
 $--color-primary-light-6: #ACCEFB !default;
 $--color-primary-light-7: #E6F0FF !default;
-$--color-success: #67c23a !default;
+$--color-success: #5eba00 !default;
 $--color-warning: #e6a23c !default;
-$--color-danger: #f56c6c !default;
+$--color-danger: #cd201f !default;
 $--color-info: #909399 !default;
+$--color-black: #24292e !default;
 
-/* Colors */
-$dark-1: #24292e;
-$dark-2: #32373a;
-$dark-3: #3F4448;
-$light-1: #f5f7fa;
-$light-2: #ebecf1;
-$text-1: #606266;
-$border-grey-1: #ebecf1;
-$border-grey-2: #dbe0eb;
+/*App - Colors
+--------------*/
+$--color-black-2: #32373a;
+$--color-black-3: #3F4448;
+$--color-light-1: #f5f7fb;
+$--color-light-2: #ebecf1;
+$--color-grey-1: #495057;
+$--color-grey-2: #606266;
 
-/* Sizes */
+/* Sizes 
+--------*/
 $--width-container: 1200px;
