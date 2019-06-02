@@ -15,7 +15,7 @@ import Vue from "vue";
 import Header from "@/layouts/Header.vue";
 
 export default Vue.extend({
-  name: "home",
+  name: "app",
   components: {
     Header
   }
@@ -23,6 +23,16 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+html {
+  background: $--color-light-1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -31,23 +41,7 @@ export default Vue.extend({
   color: $--color-black;
   display: flex;
   flex-direction: column;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: $--color-black;
-  }
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.app__content {
-  height: calc(100vh - 60px);
-  background: $light-1;
+  
 }
 
 .page-container {

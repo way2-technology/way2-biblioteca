@@ -1,9 +1,9 @@
-import Unicon from 'vue-unicons';
+import Unicon from "vue-unicons";
 import { 
   uniEntry,
   uniFilter,
   uniPlus 
-} from 'vue-unicons/src/icons';
+} from "vue-unicons/src/icons";
 
 Unicon.add([
   uniEntry, 

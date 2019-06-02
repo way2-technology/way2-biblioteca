@@ -1,12 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import "./registerServiceWorker";
-
+import Unicon from "./icons";
 import ElementUI from "element-ui";
+import "./registerServiceWorker";
 import "./assets/scss/element.scss";
-
-import Unicon from './icons';
 
 Vue.use(ElementUI);
 Vue.use(Unicon);

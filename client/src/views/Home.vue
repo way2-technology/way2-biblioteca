@@ -3,25 +3,53 @@
     <div class="home__subheader">
       <div class="page-container">
         <div class="buttons">
-          <el-button class="btn btn-filter" type="text">
+          <el-button class="btn btn-add" type="text">
             <unicon name="filter"></unicon>
-            <span>Filtros</span>
+            <strong>Filtrar</strong>
+          </el-button>
+          <el-button class="btn btn-add" type="text">
+            <unicon name="plus"></unicon>
+            <strong>Novo</strong>
           </el-button>
         </div>
       </div>
     </div>
     <div class="home__container">
-      
+      <!-- <div class="home__books-filters">
+        <BooksFilters />
+      </div> -->
+      <div class="home__books">
+        <template v-for="(book, index) in 5">
+          <Book :key="index" />
+        </template>
+      </div> 
     </div>
   </el-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import BooksFilters from "@/components/Books/BooksFilters.vue";
+import Book from "@/components/Books/Book.vue";
 
 export default Vue.extend({
   name: "home",
-  components: {}
+  components: {
+    BooksFilters,
+    Book
+  },
+  data() {
+    return {
+      books: []
+    };
+  },
+  async mounted(){
+    // await fetch("https://www.booknomads.com/api/v0/isbn/9789000035526")
+    // .then(res => res.json())
+    // .then(data => {
+    //   console.log(`data`, data)
+    // });
+  }
 });
 </script>
 
@@ -43,10 +71,11 @@ export default Vue.extend({
 }
 
 .home__subheader {
-  background: $dark-2;
-  border-bottom: 1px solid $border-grey-2;
+  background: $--color-black;
+  border-top: 1px solid $--color-black-3;
   position: sticky;
   top: 0;
+  z-index: 1;
 
   > div {
     display: flex;
@@ -65,25 +94,64 @@ export default Vue.extend({
     font-size: 14px;
   }
 
-  .btn-filter {
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    padding: 5px;
     margin-left: 8px;
     color: #fff;
+    border-radius: 2px;
+
+    &:last-child {
+      margin-right: -16px;
+    }
 
     /deep/ span {
       display: flex;
       align-items: center;
       text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 1px;
     }
 
     svg {
       fill: #fff;
       width: 14px;
-      margin-right: 5px;
+      height: 100%;
+      margin-right: 3px;
+    }
+
+    &:hover {
+      span,
+      svg {
+        color: $--color-primary-light-3;
+        fill: $--color-primary-light-3;
+      }
     }
   }
-  
+}
+
+.home__container {
+  padding: 16px;
+  display: flex;
+}
+
+.home__books {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin: 0 auto;
+
+  @media(max-width: 767px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media(max-width: 479px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 

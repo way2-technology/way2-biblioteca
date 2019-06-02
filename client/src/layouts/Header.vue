@@ -23,9 +23,6 @@
       <div class="header__user">
         <template v-if="!userLoggedIn">
           <div class="content user">
-            <el-button type="success" class="btn btn-add">
-              <unicon name="plus"></unicon>Novo Livro
-            </el-button>
             <figure class="avatar"></figure>
             <span class="info">
               <span class="name">Robson Braga de Queiroz</span>
@@ -63,12 +60,12 @@ export default Vue.extend({
     };
   },
   computed: {
-    userLoggedIn() {
+    userLoggedIn(): boolean {
       return false;
     }
   },
   methods: {
-    setSearchFocus(value: boolean) {
+    setSearchFocus(value: boolean): void {
       this.inputSearch.isFocused = value;
     }
   }
@@ -79,7 +76,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .header {
   padding: 0.55rem 1rem;
-  background: $dark-1;
+  background: $--color-black;
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   display: flex;
@@ -127,7 +124,7 @@ export default Vue.extend({
   position: relative;
 
   /deep/ input[type="text"] {
-    background: $dark-3;
+    background: $--color-black-3;
     border-color: transparent;
     border-radius: 3px;
     transition: 0.2s;
@@ -144,7 +141,7 @@ export default Vue.extend({
     top: 100%;
     background: #fff;
     border-radius: 3px;
-    border: 1px solid $border-grey-2;
+    border: 1px solid $--color-grey-2;
     transition: 0.1s;
     opacity: 0;
     visibility: hidden;
@@ -184,7 +181,7 @@ export default Vue.extend({
 .header__notifications {
   button {
     padding: 0;
-    color: $--color-black;
+    color: $--color-black-2;
   }
   /deep/ i {
     font-size: 20px;
