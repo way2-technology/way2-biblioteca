@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Way2Logo from "@/assets/img/Way2LogoSvg";
+import Way2Logo from "@/assets/img/Way2LogoSvg.vue";
 
 export default Vue.extend({
   components: {
@@ -92,7 +92,7 @@ export default Vue.extend({
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;
-  z-index: 1;
+  z-index: 2;
 }
 
 .header__container {
@@ -136,12 +136,12 @@ export default Vue.extend({
 
   &-sugestions {
     position: absolute;
-    width: calc(100% - 40.5px);
+    width: calc(100% - 39px);
     height: 100px;
     top: 100%;
     background: #fff;
     border-radius: 3px;
-    border: 1px solid $--color-grey-2;
+    border: 1px solid #ddd;
     transition: 0.1s;
     opacity: 0;
     visibility: hidden;
@@ -154,7 +154,7 @@ export default Vue.extend({
     visibility: visible;
   }
   .header__search {
-    z-index: 2;
+    z-index: 3;
 
     /deep/ input[type="text"] {
       background: #fff;
@@ -197,7 +197,7 @@ export default Vue.extend({
   }
 
   .avatar {
-       width: 30px;
+    width: 30px;
     height: 30px;
     border-radius: 100%;
     background: #eee;
@@ -212,7 +212,7 @@ export default Vue.extend({
     .name {
       font-size: 15px;
       font-weight: bold;
-      max-width: 165px;
+      max-width: 115px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

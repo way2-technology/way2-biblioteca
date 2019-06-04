@@ -1,22 +1,19 @@
 <template>
-  <el-card class="book">
-    <figure class="book__image">
-      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png">
-    </figure>
-    <div class="book__content">
+  <el-link class="book" @click="alertV">
+    <el-card>
+      <figure class="book__image">
+        <img src="https://way2library.azurewebsites.net/images/books/41.jpg">
+      </figure>
+
       <h2>Book 1</h2>
-      <div class="desc">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At magni doloribus corporis quas laboriosam praesentium. Ullam obcaecati perspiciatis, exercitationem atque excepturi ex blanditiis temporibus nemo, maiores adipisci consequatur. Officiis, debitis.</p>
-      </div>
-      <div class="stars">
-        <el-rate
-          v-model="value"
-          disabled
-          text-color="#ff9900">
-        </el-rate>
-      </div>
-    </div>
-  </el-card>
+
+      <el-rate
+        v-model="value"
+        disabled
+        text-color="#ff9900">
+      </el-rate>
+    </el-card>
+  </el-link>
 </template>
 
 <script lang="ts">
@@ -26,29 +23,47 @@ export default Vue.extend({
   name: "book",
   data() {
     return {
-      value: 5
+      value: 4.1
     };
   },
+  methods: {
+    alertV(): void {
+      alert('click')
+    }
+  }
 });
 </script>
 
 <style lang="scss">
 .book {
+  cursor: pointer;
+
+  .el-card {
+    box-shadow: none !important;
+    transition: 0.2s;
+
+    &:hover {
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+
+
 
   .el-card__body {
     display: flex;
-    padding: 10px;
+    align-items: center;
+    flex-direction: column;
+    padding: 8px;
   }
 
   &__image {
     border: 1px solid #eee;
-    border-radius: 5px;
+    border-radius: 4px;
     position: relative;
     overflow: hidden;
     min-width: 160px;
     width: 160px;
-    height: 200px;
-    flex-basis: 160px;
+    height: 245px;
 
     img {
       position: absolute;
