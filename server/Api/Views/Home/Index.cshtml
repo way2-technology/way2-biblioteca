@@ -1,0 +1,49 @@
+﻿@using Api.Models.Home;
+@model HomeViewModel
+@{
+    Layout = "~/Views/Layout/_mainLayout.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/StarRatings.css")" rel="stylesheet" Content-Type="text/css" />
+}
+
+<div class="row" style="margin-top: 20px">
+    <div class="col-3">
+        <div class="list-group">
+            @foreach (var category in Model.Categories) {
+                @Html.ActionLink(category.Name, "ListCategory", "Home", new { cid = category.Id }, new { @class = "list-group-item list-group-item-action" })
+            }
+        </div>
+    </div>
+    <div class="col-9 row">
+        @{var count = 1; }
+        @foreach (var item in Model.Books) {
+            <div class="col-4" style="margin-bottom: 40px">
+                <div class="d-flex justify-content-center">
+                    <a href="@Url.Action("Details", "Book", new { Id = item.Id })">
+                        <img src="@item.ImageUrl" style="width:160px; height: 245px; display: inline;" />
+                    </a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="ratings" style="font-size: 20pt;">
+                        <div class="empty-stars"></div>
+                        <div class="full-stars" style="width:@item.AverageRating%"></div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <span class="text-center">@item.Title</span>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <small>@item.Authors?.FirstOrDefault()</small>
+                </div>
+            </div>
+            {
+                if (count % 3 == 0) {
+                    <div class="w-100"></div>
+                }
+                count++;
+            }
+        }
+    </div>
+</div>

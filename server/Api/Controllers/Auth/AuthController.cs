@@ -1,10 +1,9 @@
-﻿using Domain.Interfaces.Services.Auth;
-using Domain.Responses.Auth;
+﻿using System;
+using Entities.Responses.Auth;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Services.Interfaces.Features.Auth;
 
-namespace Api.Controllers.Auth
-{
+namespace Api.Controllers.Auth {
     [Route("[controller]")]
     public class AuthController : Controller
     {
