@@ -1,6 +1,6 @@
 <template>
   <div class="subheader">
-    <div>
+    <div class="subheader__wrapper">
       <el-button class="btn btn-add" type="text">
         <unicon name="filter"></unicon>
         <strong>Filtrar</strong>
@@ -21,7 +21,7 @@
   top: 0;
   z-index: 1;
 
-  > div {
+  &__wrapper {
     max-width: $--width-container;
     margin: 0 auto;
     padding: 5px 16px;
@@ -30,31 +30,11 @@
     align-items: center;
   }
 
-  h1,
-  button {
-    margin: 0;
-    padding: 0;
-  }
-
-  .page-title {
-    font-size: 14px;
-  }
-
-  .buttons {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .btn {
     padding: 5px;
     margin-left: 8px;
     color: #fff;
     border-radius: 2px;
-
-    &:last-child {
-      margin-right: -16px;
-    }
 
     /deep/ span {
       display: flex;
