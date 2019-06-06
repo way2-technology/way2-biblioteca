@@ -21,5 +21,14 @@ namespace Api.Controllers {
             var response = searchResult.Select(book => new BookResponse(book));
             return new JsonResult(response);
         }
+
+        [HttpGet]
+        public JsonResult Book(int id) {
+            var book = _bookSearchService.FindById(id);
+            if (book == null) {
+                return new JsonResult(null);
+            }
+            return new JsonResult(new BookResponse(book));
+        }
     }
 }
