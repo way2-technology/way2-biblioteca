@@ -4,7 +4,7 @@ import router from "./router";
 import Unicon from "./icons";
 import ElementUI from "element-ui";
 import "./registerServiceWorker";
-import "./assets/scss/element.scss";
+import "./assets/scss/main.scss";
 
 Vue.use(ElementUI);
 Vue.use(Unicon);

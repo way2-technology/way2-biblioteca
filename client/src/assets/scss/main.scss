@@ -1,0 +1,23 @@
+/* theme color */
+
+@import "./variables";
+
+/* icon font path, required */
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import "~element-ui/packages/theme-chalk/src/index";
+
+/* General Styles */
+
+.no-desktop {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .no-desktop {
+    display: block;
+  }
+  .no-mobile {
+    display: none !important;
+  }
+}

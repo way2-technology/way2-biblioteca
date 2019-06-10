@@ -19,7 +19,7 @@
   border-top: 1px solid $--color-black-3;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 
   &__wrapper {
     max-width: $--width-container;
@@ -36,11 +36,11 @@
     color: #fff;
     border-radius: 2px;
 
-    /deep/ span {
+    span {
       display: flex;
       align-items: center;
       text-transform: uppercase;
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 1px;
     }
 

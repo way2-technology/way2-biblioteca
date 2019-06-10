@@ -1,6 +1,12 @@
 <template>
-  <el-header class="header">
-    <div class="header__container" :class="{ 'header__search-focused': inputSearch.isFocused }">
+  <el-header
+    class="header"
+    :class="{
+      'header--search-focused': search.isFocused,
+      'header--search-mobile-open': search.openOnMobile
+    }"
+  >
+    <div class="header__container">
       <div class="header__logo">
         <router-link to="/">
           <Way2Logo/>
@@ -8,23 +14,25 @@
       </div>
       <div class="header__search">
         <el-input
-          class="header__search-input"
+          class="input"
           placeholder="Digite para buscar algum livro..."
           suffix-icon="el-icon-search"
+          v-model="search.value"
           @focus="setSearchFocus(true)"
         ></el-input>
-        <div class="header__search-sugestions"></div>
+        <div class="sugestions"></div>
+        <el-button
+          class="toggle-mobile"
+          type="text"
+          icon="el-icon-search"
+          @click="toggleSearchMobile"
+        ></el-button>
       </div>
-      <!-- <div class="header__notifications">
-        <el-tooltip effect="dark" content="Notificações" placement="bottom-end">
-          <el-button icon="el-icon-bell" type="text" circle></el-button>
-        </el-tooltip>
-      </div>-->
       <div class="header__user">
         <template v-if="!userLoggedIn">
           <div class="content user">
             <figure class="avatar"></figure>
-            <span class="info">
+            <span class="info no-mobile">
               <span class="name">Robson Braga de Queiroz</span>
               <small class="role">Desenvolvedor</small>
             </span>
@@ -53,9 +61,10 @@ export default Vue.extend({
   },
   data() {
     return {
-      inputSearch: {
+      search: {
         value: "",
-        isFocused: false
+        isFocused: false,
+        openOnMobile: false
       }
     };
   },
@@ -66,14 +75,17 @@ export default Vue.extend({
   },
   methods: {
     setSearchFocus(value: boolean): void {
-      this.inputSearch.isFocused = value;
+      this.search.isFocused = value;
+    },
+    toggleSearchMobile() {
+      this.search.openOnMobile = !this.search.openOnMobile;
     }
   }
 });
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header {
   padding: 0.55rem 1rem;
   background: $--color-black;
@@ -92,7 +104,7 @@ export default Vue.extend({
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;
-  z-index: 2;
+  z-index: 8;
 }
 
 .header__container {
@@ -108,7 +120,7 @@ export default Vue.extend({
   max-width: 90px;
   padding-top: 7px;
 
-  /deep/ svg {
+  svg {
     width: 100%;
     height: 100%;
     path {
@@ -118,12 +130,14 @@ export default Vue.extend({
 }
 
 .header__search {
-  flex-grow: 1;
-  padding: 0 1.2rem;
-  transition: 0.2s;
+  margin: 0 1.2rem;
   position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  transition: 0.2s;
 
-  /deep/ input[type="text"] {
+  input[type="text"] {
     background: $--color-black-3;
     border-color: transparent;
     border-radius: 3px;
@@ -134,9 +148,9 @@ export default Vue.extend({
     }
   }
 
-  &-sugestions {
+  .sugestions {
     position: absolute;
-    width: calc(100% - 39px);
+    width: 100%;
     height: 100px;
     top: 100%;
     background: #fff;
@@ -146,24 +160,38 @@ export default Vue.extend({
     opacity: 0;
     visibility: hidden;
   }
+
+  .toggle-mobile {
+    display: none;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .input {
+      display: none;
+    }
+    .toggle-mobile {
+      display: block;
+    }
+  }
 }
 
-.header__search-focused {
+.header--search-focused {
   .header__overlay {
     opacity: 1;
     visibility: visible;
   }
   .header__search {
-    z-index: 3;
+    z-index: 9;
 
-    /deep/ input[type="text"] {
+    input[type="text"] {
       background: #fff;
       border-radius: 3px 3px 0 0;
       border-bottom-color: transparent;
-      
     }
 
-    &-sugestions {
+    .sugestions {
       border-left-color: transparent;
       border-right-color: transparent;
       border-bottom-color: transparent;
@@ -183,13 +211,12 @@ export default Vue.extend({
     padding: 0;
     color: $--color-black-2;
   }
-  /deep/ i {
+  i {
     font-size: 20px;
   }
 }
 
 .header__user {
-  
   .content {
     display: flex;
     align-items: center;
@@ -237,7 +264,7 @@ export default Vue.extend({
       fill: #fff;
     }
 
-    /deep/ span {
+    span {
       display: flex;
       align-items: center;
     }
@@ -246,13 +273,21 @@ export default Vue.extend({
   .btn-add {
     margin-right: 1rem;
     background-color: $--color-primary;
-    background-image: linear-gradient(-180deg, $--color-primary-light-3, $--color-primary-light-2 90%);
+    background-image: linear-gradient(
+      -180deg,
+      $--color-primary-light-3,
+      $--color-primary-light-2 90%
+    );
     border: 1px solid rgba(27, 31, 35, 0.2);
     color: #fff;
     font-size: 14px;
 
     &:hover {
-      background-image: linear-gradient(-180deg, $--color-primary, $--color-primary-light-1 90%);
+      background-image: linear-gradient(
+        -180deg,
+        $--color-primary,
+        $--color-primary-light-1 90%
+      );
       background-position: -0.5em;
       border-color: rgba(27, 31, 35, 0.5);
     }

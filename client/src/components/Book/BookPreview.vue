@@ -2,16 +2,16 @@
   <el-link class="book" @click="alertV">
     <el-card>
       <figure class="book__image">
-        <img src="https://way2library.azurewebsites.net/images/books/41.jpg">
+        <img :src="image">
       </figure>
 
-      <h2>Book 1</h2>
+      <div class="book__categories">
+        <el-tag size="mini">{{category}}</el-tag>
+      </div>
 
-      <el-rate
-        v-model="value"
-        disabled
-        text-color="#ff9900">
-      </el-rate>
+      <h2 class="book__title">{{ title }}</h2>
+
+      <el-rate v-model="value" disabled text-color="#ff9900"></el-rate>
     </el-card>
   </el-link>
 </template>
@@ -20,7 +20,18 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "book",
+  name: "book-preview",
+  props: {
+    title: {
+      type: String
+    },
+    category: {
+      type: String
+    },
+    image: {
+      type: String
+    }
+  },
   data() {
     return {
       value: 4.1
@@ -28,7 +39,7 @@ export default Vue.extend({
   },
   methods: {
     alertV(): void {
-      alert('click')
+      alert("click");
     }
   }
 });
@@ -47,17 +58,17 @@ export default Vue.extend({
     }
   }
 
-
-
   .el-card__body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 8px;
+    justify-content: center;
+    padding: 16px;
+    min-height: 410px;
   }
 
   &__image {
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
@@ -73,6 +84,19 @@ export default Vue.extend({
       width: 100%;
       height: 100%;
     }
+  }
+
+  .book__categories {
+    margin: 15px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .book__title {
+    margin: 5px 0 10px;
+    font-size: 20px;
+    line-height: 22px;
   }
 }
 </style>
