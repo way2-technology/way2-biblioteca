@@ -64,7 +64,7 @@ export default Vue.extend({
     flex-direction: column;
     justify-content: center;
     padding: 16px;
-    min-height: 410px;
+    min-height: 100%;
   }
 
   &__image {
@@ -94,9 +94,12 @@ export default Vue.extend({
   }
 
   .book__title {
-    margin: 5px 0 10px;
+    margin: 8px 0;
     font-size: 20px;
     line-height: 22px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
   }
 }
 </style>

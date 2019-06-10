@@ -45,16 +45,16 @@ export default Vue.extend({
       }
     };
   },
-  async mounted() {
+  mounted() {
     this.getBooks();
   },
   methods: {
-    async getBooks($evtPage) {
+    async getBooks($evtPage = 0) {
       this.books.loading = true;
 
       await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${
-          $evtPage ? $evtPage : 0
+          $evtPage
         }&maxResults=12`
       )
         .then(res => res.json())
@@ -62,6 +62,10 @@ export default Vue.extend({
           const { items, totalItems } = response;
           this.books.totalItems = totalItems;
           this.books.items = this.parseBooks(items);
+          this.books.loading = false;
+          window.scrollTo({top: 0, behavior: "smooth"});
+        })
+        .catch(() => {
           this.books.loading = false;
         });
     },
@@ -112,6 +116,10 @@ export default Vue.extend({
     grid-gap: 20px;
     position: relative;
 
+    /deep/ .el-card {
+      height: 100%;
+    }
+
     /deep/ .el-loading-mask {
       z-index: 2;
     }
@@ -119,11 +127,24 @@ export default Vue.extend({
 
   &__pagination {
     margin: 40px 0;
+
+    /deep/ {
+      .el-pagination.is-background .el-pager li,
+      .el-pagination.is-background button[type="button"]:not(:disabled) {
+        background-color: #fff;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .el-pagination.is-background .el-pager li {
+          min-width: auto;
+        }
+        .el-pagination.is-background .el-pager li.more {
+          display: none;
+        }
+      }
+    }
   }
-  /deep/ .el-pagination.is-background .el-pager li,
-  /deep/ .el-pagination.is-background button[type="button"]:not(:disabled) {
-    background-color: #fff;
-  }
+
 }
 </style>
 
