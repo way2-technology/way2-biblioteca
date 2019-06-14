@@ -1,8 +1,8 @@
 <template>
   <el-container class="home">
     <SubHeader/>
-    <section class="home__container">
-      <div class="home__books" v-loading="books.loading">
+    <div class="home__container">
+      <div class="books" v-loading="books.loading">
         <template v-for="(book, index) in books.items">
           <BookPreview
             :title="book.title"
@@ -12,7 +12,7 @@
           />
         </template>
       </div>
-      <div class="home__pagination" v-if="books.items.length > 0">
+      <div class="books-pagination" v-if="books.items.length > 0">
         <el-pagination
           background
           layout="prev, pager, next"
@@ -21,7 +21,8 @@
           @current-change="getBooks"
         ></el-pagination>
       </div>
-    </section>
+    </div>
+    <BookDetails />
   </el-container>
 </template>
 
@@ -29,12 +30,14 @@
 import Vue from "vue";
 import SubHeader from "@/layouts/SubHeader.vue";
 import BookPreview from "@/components/Book/BookPreview.vue";
+import BookDetails from "@/components/Book/BookDetails.vue";
 
 export default Vue.extend({
   name: "home",
   components: {
     SubHeader,
-    BookPreview
+    BookPreview,
+    BookDetails
   },
   data() {
     return {
@@ -100,15 +103,12 @@ export default Vue.extend({
     margin: 0 auto;
     width: 100%;
     max-width: $--width-container;
-  }
-
-  &__container {
     padding: 16px;
     display: flex;
     flex-direction: column;
   }
 
-  &__books {
+  .books {
     min-height: calc(100vh - 120px);
     width: 100%;
     display: grid;
@@ -125,13 +125,19 @@ export default Vue.extend({
     }
   }
 
-  &__pagination {
+  .books-pagination {
     margin: 40px 0;
 
     /deep/ {
       .el-pagination.is-background .el-pager li,
       .el-pagination.is-background button[type="button"]:not(:disabled) {
         background-color: #fff;
+        box-shadow: 0px 1px 2px #cacaca;
+      }
+
+      .el-pagination.is-background .el-pager li:not(.disabled).active {
+        background-color: #246AB6;
+        color: #FFFFFF;
       }
 
       @media only screen and (max-width: 767px) {
