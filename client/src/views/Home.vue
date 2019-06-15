@@ -2,27 +2,29 @@
   <el-container class="home">
     <SubHeader/>
     <div class="home__container">
-      <div class="books" v-loading="books.loading">
-        <template v-for="(book, index) in books.items">
+      <div class="books" v-loading="booksPreview.loading">
+        <template v-for="(book, index) in booksPreview.books">
           <BookPreview
+            :id="book.id"
             :title="book.title"
             :category="book.category"
             :image="book.image"
             :key="index"
+            @trigger-show-book="showBookDetails"
           />
         </template>
       </div>
-      <div class="books-pagination" v-if="books.items.length > 0">
+      <div class="books-pagination" v-if="booksPreview.books.length > 0">
         <el-pagination
           background
           layout="prev, pager, next"
           :pager-count="5"
-          :total="books.totalItems"
+          :total="booksPreview.totalItems"
           @current-change="getBooks"
         ></el-pagination>
       </div>
     </div>
-    <BookDetails />
+    <BookDetails v-model="bookDetails.active" :book="bookDetails.book" />
   </el-container>
 </template>
 
@@ -31,6 +33,22 @@ import Vue from "vue";
 import SubHeader from "@/layouts/SubHeader.vue";
 import BookPreview from "@/components/Book/BookPreview.vue";
 import BookDetails from "@/components/Book/BookDetails.vue";
+
+interface IBook {
+  id?: string;
+  volumeInfo?: any;
+}
+
+interface IBookPreview {
+  books: object[];
+  totalItems: number;
+  loading: boolean;
+}
+
+interface IBookDetails {
+  book: object;
+  active: boolean;
+}
 
 export default Vue.extend({
   name: "home",
@@ -41,19 +59,24 @@ export default Vue.extend({
   },
   data() {
     return {
-      books: {
-        items: [],
+      rawBooks: [] as object[],
+      booksPreview: {
+        books: [],
         totalItems: 0,
-        loading: true
-      }
+        loading: false
+      } as IBookPreview,
+      bookDetails: {
+        book: {},
+        active: false
+      } as IBookDetails
     };
   },
   mounted() {
     this.getBooks();
   },
   methods: {
-    async getBooks($evtPage = 0) {
-      this.books.loading = true;
+    async getBooks($evtPage: number = 0): Promise<void> {
+      this.booksPreview.loading = true;
 
       await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${
@@ -62,33 +85,48 @@ export default Vue.extend({
       )
         .then(res => res.json())
         .then(response => {
-          const { items, totalItems } = response;
-          this.books.totalItems = totalItems;
-          this.books.items = this.parseBooks(items);
-          this.books.loading = false;
+          const { 
+            items, 
+            totalItems 
+          } = response;
+
+          this.rawBooks = items;
+          this.booksPreview.totalItems = totalItems;
+          this.booksPreview.books = this.parsePreviewBooks(items);
+          this.booksPreview.loading = false;
+
           window.scrollTo({top: 0, behavior: "smooth"});
         })
         .catch(() => {
-          this.books.loading = false;
+          this.booksPreview.loading = false;
         });
     },
-    parseBooks(books) {
-      return books.map((book, index) => {
-        const title = book.volumeInfo.title;
-        const category = book.volumeInfo.categories
-          ? book.volumeInfo.categories[0]
-          : "General";
-        const image = book.volumeInfo.imageLinks
-          ? book.volumeInfo.imageLinks.thumbnail
-          : "";
+    parsePreviewBooks(books: object[]): object[] {
+      return books.map((book: IBook) => {
+        const { 
+          id, 
+          volumeInfo: {
+            categories, 
+            title: titleBookApi, 
+            imageLinks: { 
+              thumbnail 
+            } 
+          } 
+        } = book;
 
         return {
-          id: book.id,
-          title,
-          category,
-          image
+          id,
+          title: titleBookApi,
+          category: categories && typeof categories === "object" ? categories[0] : "General",
+          image: thumbnail ? thumbnail : ""
         };
       });
+    },
+    showBookDetails($id: string): void {
+      this.bookDetails.active = true;      
+      this.bookDetails.book = this.rawBooks.filter((book: IBook) => {
+        return book.id === $id;
+      })[0];
     }
   }
 });

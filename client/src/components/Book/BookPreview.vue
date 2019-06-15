@@ -1,5 +1,5 @@
 <template>
-  <el-link class="book" @click="alertV">
+  <el-link class="book" @click="triggerShowBook">
     <el-card>
       <figure class="book__image">
         <img :src="image">
@@ -11,35 +11,46 @@
 
       <h2 class="book__title">{{ title }}</h2>
 
-      <el-rate v-model="value" disabled text-color="#ff9900"></el-rate>
+      <el-rate 
+        disabled
+        v-model="rate.value" 
+        :colors="rate.colors"
+      />
     </el-card>
   </el-link>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import BookRate from "./BookRate.mixin";
 
 export default Vue.extend({
   name: "book-preview",
   props: {
+    id: {
+      type: [String, Number],
+      required: true
+    },
     title: {
-      type: String
+      type: String,
+      default: ""
     },
     category: {
-      type: String
+      type: String,
+      default: ""
     },
     image: {
-      type: String
+      type: String,
+      default: ""
     }
   },
+  mixins: [BookRate],
   data() {
-    return {
-      value: 4.1
-    };
+    return {};
   },
   methods: {
-    alertV(): void {
-      alert("click");
+    triggerShowBook(): void {
+      this.$emit("trigger-show-book", this.id);
     }
   }
 });
