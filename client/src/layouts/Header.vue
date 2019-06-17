@@ -100,7 +100,7 @@ export default Vue.extend({
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;

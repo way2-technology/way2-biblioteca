@@ -1,43 +1,35 @@
 <template>
-  <transition name="translate-x" v-if="value">
-    <aside class="book-details" :class="{'book-details--open': value}">
+  <transition name="translate-aside">
+    <aside class="book-details" v-if="value" :class="{'book-details--open': value}">
       <div class="book-details__wrapper">
         <el-header>
           <h2 class="title">{{ bookDisplay.title }}</h2>
-          <el-button 
-            class="close" 
-            size="mini" 
-            icon="el-icon-close" 
-            circle 
-            @click="closeDetails">
-          </el-button>
+          <el-button
+            class="close"
+            size="mini"
+            icon="el-icon-close"
+            circle
+            @click="closeBookDetails"
+          ></el-button>
         </el-header>
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img :src="bookDisplay.image" alt="">
+              <img :src="bookDisplay.image" alt>
             </figure>
 
             <div class="rate">
-              <el-rate 
-                disabled
-                v-model="rate.value" 
-                :colors="rate.colors"
-              />
+              <el-rate disabled v-model="rate.value" :colors="rate.colors"/>
               <span class="count">5 Reviews</span>
             </div>
           </el-col>
           <el-col>
-            <div class="description">
-              {{bookDisplay.description}}
-            </div>
+            <div class="description">{{bookDisplay.description}}</div>
           </el-col>
         </el-row>
-        <el-row class="comments">
-
-        </el-row>
+        <el-row class="comments"></el-row>
       </div>
-      <div class="book-details__overlay" @click="closeDetails"></div>
+      <div class="book-details__overlay" @click="closeBookDetails"></div>
     </aside>
   </transition>
 </template>
@@ -54,7 +46,7 @@ export default Vue.extend({
     },
     book: {
       type: Object
-    },
+    }
   },
   mixins: [BookRate],
   data() {
@@ -62,34 +54,27 @@ export default Vue.extend({
   },
   computed: {
     bookDisplay(): object {
-      const { 
-        id, 
+      const {
+        id,
         volumeInfo: {
-          title: volTitle, 
-          description: volDesc,
-          categories: volCats, 
-          imageLinks: { 
-            thumbnail 
-          } 
-        } 
+          title: bookTitle,
+          description: bookDesc,
+          categories: bookCats,
+          imageLinks: { thumbnail }
+        }
       } = this.book;
-
-      const title: string = volTitle ? volTitle : "";
-      const description: string = volDesc ? volDesc : "";
-      const category: string = volCats && typeof volCats === "object" ? volCats[0] : "";
-      const image: string = thumbnail ? thumbnail : "";
 
       return {
         id,
-        title,
-        description,
-        category,
-        image
+        title: bookTitle ? bookTitle : "",
+        description: bookDesc ? bookDesc : "",
+        category: bookCats && typeof bookCats === "object" ? bookCats[0] : "",
+        image: thumbnail ? thumbnail : ""
       };
     }
   },
   methods: {
-    closeDetails(): void {
+    closeBookDetails(): void {
       this.$emit("input", false);
     }
   }
@@ -180,5 +165,17 @@ export default Vue.extend({
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
   }
+}
+
+.translate-aside-enter-active {
+  transition: all 0.2s ease;
+}
+.translate-aside-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.translate-aside-enter,
+.translate-aside-leave-to {
+  transform: translateX(5px);
+  opacity: 0;
 }
 </style>

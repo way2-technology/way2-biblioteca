@@ -24,7 +24,7 @@
         ></el-pagination>
       </div>
     </div>
-    <BookDetails v-model="bookDetails.active" :book="bookDetails.book" />
+    <BookDetails v-model="bookDetails.active" :book="bookDetails.book"/>
   </el-container>
 </template>
 
@@ -59,7 +59,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      rawBooks: [] as object[],
+      rawApiResults: [] as object[],
       booksPreview: {
         books: [],
         totalItems: 0,
@@ -79,23 +79,18 @@ export default Vue.extend({
       this.booksPreview.loading = true;
 
       await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${
-          $evtPage
-        }&maxResults=12`
+        `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${$evtPage}&maxResults=12`
       )
         .then(res => res.json())
         .then(response => {
-          const { 
-            items, 
-            totalItems 
-          } = response;
+          const { items, totalItems } = response;
 
-          this.rawBooks = items;
+          this.rawApiResults = items;
           this.booksPreview.totalItems = totalItems;
           this.booksPreview.books = this.parsePreviewBooks(items);
           this.booksPreview.loading = false;
 
-          window.scrollTo({top: 0, behavior: "smooth"});
+          window.scrollTo({ top: 0, behavior: "smooth" });
         })
         .catch(() => {
           this.booksPreview.loading = false;
@@ -103,28 +98,29 @@ export default Vue.extend({
     },
     parsePreviewBooks(books: object[]): object[] {
       return books.map((book: IBook) => {
-        const { 
-          id, 
+        const {
+          id,
           volumeInfo: {
-            categories, 
-            title: titleBookApi, 
-            imageLinks: { 
-              thumbnail 
-            } 
-          } 
+            categories,
+            title: titleBookApi,
+            imageLinks: { thumbnail }
+          }
         } = book;
 
         return {
           id,
           title: titleBookApi,
-          category: categories && typeof categories === "object" ? categories[0] : "General",
+          category:
+            categories && typeof categories === "object"
+              ? categories[0]
+              : "General",
           image: thumbnail ? thumbnail : ""
         };
       });
     },
     showBookDetails($id: string): void {
-      this.bookDetails.active = true;      
-      this.bookDetails.book = this.rawBooks.filter((book: IBook) => {
+      this.bookDetails.active = true;
+      this.bookDetails.book = this.rawApiResults.filter((book: IBook) => {
         return book.id === $id;
       })[0];
     }
@@ -174,8 +170,8 @@ export default Vue.extend({
       }
 
       .el-pagination.is-background .el-pager li:not(.disabled).active {
-        background-color: #246AB6;
-        color: #FFFFFF;
+        background-color: #246ab6;
+        color: #fff;
       }
 
       @media only screen and (max-width: 767px) {
@@ -188,7 +184,6 @@ export default Vue.extend({
       }
     }
   }
-
 }
 </style>
 
