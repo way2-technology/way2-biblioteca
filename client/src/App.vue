@@ -23,14 +23,18 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-html {
-  background: $--color-light-1;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  background: $--color-light-1;
+}
+
+body {
+  overflow: hidden;
 }
 
 #app {
@@ -41,7 +45,16 @@ html {
   color: $--color-black;
   display: flex;
   flex-direction: column;
-  
+  overflow: auto;
+  height: 100vh;
+}
+
+.app__header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  z-index: 9;
 }
 
 .page-container {

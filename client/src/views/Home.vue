@@ -1,6 +1,6 @@
 <template>
   <el-container class="home">
-    <SubHeader/>
+    
     <div class="home__container">
       <div class="books" v-loading="booksPreview.loading">
         <template v-for="(book, index) in booksPreview.books">
@@ -30,14 +30,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import SubHeader from "@/layouts/SubHeader.vue";
 import BookPreview from "@/components/Book/BookPreview.vue";
 import BookDetails from "@/components/Book/BookDetails.vue";
-
-interface IBook {
-  id?: string;
-  volumeInfo?: any;
-}
 
 interface IBookPreview {
   books: object[];
@@ -53,13 +47,12 @@ interface IBookDetails {
 export default Vue.extend({
   name: "home",
   components: {
-    SubHeader,
     BookPreview,
     BookDetails
   },
   data() {
     return {
-      rawApiResults: [] as object[],
+      rawApiBooks: [] as object[],
       booksPreview: {
         books: [],
         totalItems: 0,
@@ -70,6 +63,11 @@ export default Vue.extend({
         active: false
       } as IBookDetails
     };
+  },
+  computed: {
+    appElement() {
+      return document.querySelector("#app");
+    }
   },
   mounted() {
     this.getBooks();
@@ -85,31 +83,31 @@ export default Vue.extend({
         .then(response => {
           const { items, totalItems } = response;
 
-          this.rawApiResults = items;
-          this.booksPreview.totalItems = totalItems;
+          this.rawApiBooks = items;
           this.booksPreview.books = this.parsePreviewBooks(items);
+          this.booksPreview.totalItems = totalItems;
           this.booksPreview.loading = false;
 
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          this.appElement.scrollTo({ top: 0, behavior: "smooth" });
         })
         .catch(() => {
           this.booksPreview.loading = false;
         });
     },
     parsePreviewBooks(books: object[]): object[] {
-      return books.map((book: IBook) => {
+      return books.map((book: any) => {
         const {
           id,
           volumeInfo: {
             categories,
-            title: titleBookApi,
+            title,
             imageLinks: { thumbnail }
           }
         } = book;
 
         return {
           id,
-          title: titleBookApi,
+          title,
           category:
             categories && typeof categories === "object"
               ? categories[0]
@@ -120,7 +118,7 @@ export default Vue.extend({
     },
     showBookDetails($id: string): void {
       this.bookDetails.active = true;
-      this.bookDetails.book = this.rawApiResults.filter((book: IBook) => {
+      this.bookDetails.book = this.rawApiBooks.filter((book: any) => {
         return book.id === $id;
       })[0];
     }

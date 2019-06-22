@@ -2,7 +2,7 @@
   <transition name="translate-aside">
     <aside class="book-details" v-if="value" :class="{'book-details--open': value}">
       <div class="book-details__wrapper">
-        <el-header>
+        <header>
           <h2 class="title">{{ bookDisplay.title }}</h2>
           <el-button
             class="close"
@@ -11,7 +11,7 @@
             circle
             @click="closeBookDetails"
           ></el-button>
-        </el-header>
+        </header>
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
@@ -23,11 +23,38 @@
               <span class="count">5 Reviews</span>
             </div>
           </el-col>
-          <el-col>
+          <el-col class="info">
             <div class="description">{{bookDisplay.description}}</div>
+            <div class="details">
+              <ul>
+                <li>
+                  <strong>Publicação:</strong>
+                  <span>01/05/2010</span>
+                </li>
+                <li>
+                  <strong>ISBN:</strong>
+                  <span>978-8589134453</span>
+                </li>
+                <li>
+                  <strong>Editora:</strong>
+                  <span></span>
+                </li>
+                <li>
+                  <strong>Páginas:</strong>
+                  <span>208</span>
+                </li>
+                <li>
+                  <strong>Categorias:</strong>
+                  <span>Literatura</span>
+                </li>
+              </ul>
+            </div>
           </el-col>
         </el-row>
-        <el-row class="comments"></el-row>
+        <!-- <el-row class="book-details__comments">
+          <h3>Comentários:</h3>
+          <BookComments />
+        </el-row> -->
       </div>
       <div class="book-details__overlay" @click="closeBookDetails"></div>
     </aside>
@@ -36,9 +63,21 @@
 
 <script lang="ts">
 import Vue from "vue";
+import BookComments from "./BookComments.vue";
 import BookRate from "./BookRate.mixin";
 
+interface IBookDisplay {
+  id: [number, string];
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+}
+
 export default Vue.extend({
+  components: {
+    BookComments
+  },
   props: {
     value: {
       type: Boolean,
@@ -53,7 +92,7 @@ export default Vue.extend({
     return {};
   },
   computed: {
-    bookDisplay(): object {
+    bookDisplay(): IBookDisplay {
       const {
         id,
         volumeInfo: {
@@ -100,18 +139,25 @@ export default Vue.extend({
     background: #fff;
     display: flex;
     flex-direction: column;
+    text-align: left;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    overflow: auto;
     z-index: 1;
   }
 
-  .el-header {
-    position: relative;
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    padding: 0 20px;
+    min-height: 60px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e8e8e8;
 
     h2 {
-      font-size: 22px;
+      font-size: 26px;
     }
 
     .close {
@@ -122,13 +168,20 @@ export default Vue.extend({
     }
   }
 
+  &__content,
+  &__comments {
+    padding: 20px;
+  }
+
   &__content {
     display: flex;
-    flex-grow: 1;
-    padding: 20px;
 
     .el-col {
       width: auto;
+
+      &:nth-child(1) {
+        text-align: center;
+      }
     }
 
     .image {
@@ -136,7 +189,7 @@ export default Vue.extend({
       border-radius: 4px;
       position: relative;
       overflow: hidden;
-      width: 190px;
+      width: 222px;
       height: 300px;
 
       img {
@@ -150,13 +203,49 @@ export default Vue.extend({
     }
 
     .rate {
-      margin: 15px 0;
+      margin: 15px 0 0;
+
+      .count {
+        display: block;
+        margin: 10px 0 0;
+      }
+    }
+
+    .info {
+      flex-grow: 1;
+      padding-left: 30px;
     }
 
     .description {
-      padding-left: 30px;
-      text-align: left;
+      margin-bottom: 20px;
     }
+
+    .details {
+      ul {
+        list-style: none;
+        margin: 10px 0;
+        border: 1px solid #eee;
+        border-radius: 5px;
+      }
+
+      li {
+        display: block;
+        border-bottom: 1px solid #eee;
+        padding: 8px;
+      }
+
+      li strong {
+        margin-right: 5px;
+      }
+
+      li:last-child {
+        border: 0;
+      }
+    }
+  }
+
+  &__comments {
+    border-top: 1px solid #eee;
   }
 
   &__overlay {
