@@ -1,6 +1,5 @@
 <template>
   <el-container class="home">
-    
     <div class="home__container">
       <div class="books" v-loading="booksPreview.loading">
         <template v-for="(book, index) in booksPreview.books">
@@ -65,7 +64,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    appElement() {
+    appElement(): HTMLElement | any {
       return document.querySelector("#app");
     }
   },
@@ -88,7 +87,9 @@ export default Vue.extend({
           this.booksPreview.totalItems = totalItems;
           this.booksPreview.loading = false;
 
-          this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+          this.$nextTick(() => {
+            this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+          });
         })
         .catch(() => {
           this.booksPreview.loading = false;
@@ -159,6 +160,7 @@ export default Vue.extend({
 
   .books-pagination {
     margin: 40px 0;
+    text-align: center;
 
     /deep/ {
       .el-pagination.is-background .el-pager li,

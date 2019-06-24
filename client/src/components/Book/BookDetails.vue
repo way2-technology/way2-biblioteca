@@ -54,7 +54,7 @@
         <!-- <el-row class="book-details__comments">
           <h3>Comentários:</h3>
           <BookComments />
-        </el-row> -->
+        </el-row>-->
       </div>
       <div class="book-details__overlay" @click="closeBookDetails"></div>
     </aside>
@@ -63,7 +63,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BookComments from "./BookComments.vue";
+// import BookComments from "./BookComments.vue";
 import BookRate from "./BookRate.mixin";
 
 interface IBookDisplay {
@@ -76,7 +76,7 @@ interface IBookDisplay {
 
 export default Vue.extend({
   components: {
-    BookComments
+    // BookComments
   },
   props: {
     value: {

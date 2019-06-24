@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Header from "@/layouts/Header.vue";
+import Header from "@/components/Header/Header.vue";
 
 export default Vue.extend({
   name: "app",
@@ -30,7 +30,11 @@ export default Vue.extend({
 }
 
 html {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: $--color-light-1;
+  color: $--color-black;
 }
 
 body {
@@ -38,11 +42,6 @@ body {
 }
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: $--color-black;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -53,7 +52,7 @@ body {
   width: 100%;
   position: sticky;
   top: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   z-index: 9;
 }
 
