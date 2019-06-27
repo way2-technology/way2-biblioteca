@@ -5,19 +5,24 @@
     </div>
     <div class="app__content">
       <router-view/>
+
+      <aside class="book-details">
+        <!-- <BookDetails /> -->
+      </aside>
     </div>
-    <div class="app__footer"></div>
   </el-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
+import BookDetails from "@/components/Book/BookDetails.vue";
 
 export default Vue.extend({
   name: "app",
   components: {
-    Header
+    Header,
+    BookDetails
   }
 });
 </script>

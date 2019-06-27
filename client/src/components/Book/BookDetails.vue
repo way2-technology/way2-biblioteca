@@ -7,6 +7,7 @@
           <el-button
             class="close"
             size="mini"
+            type="info"
             icon="el-icon-close"
             circle
             @click="closeBookDetails"
@@ -29,23 +30,27 @@
               <ul>
                 <li>
                   <strong>Publicação:</strong>
-                  <span>01/05/2010</span>
+                  <span>{{bookDisplay.publicacao}}</span>
                 </li>
                 <li>
                   <strong>ISBN:</strong>
-                  <span>978-8589134453</span>
+                  <span>{{bookDisplay.isbn}}</span>
                 </li>
                 <li>
                   <strong>Editora:</strong>
-                  <span></span>
+                  <span>{{bookDisplay.editora}}</span>
                 </li>
                 <li>
                   <strong>Páginas:</strong>
-                  <span>208</span>
+                  <span>{{bookDisplay.paginas}}</span>
                 </li>
                 <li>
                   <strong>Categorias:</strong>
-                  <span>Literatura</span>
+                  <ul>
+                    <li v-for="(category, key) in categories" :key="key">
+                      {{category}}
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>
@@ -63,15 +68,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-// import BookComments from "./BookComments.vue";
-import BookRate from "./BookRate.mixin";
+import BookRateMixin from "./BookRate.mixin";
 
 interface IBookDisplay {
   id: [number, string];
   title: string;
   description: string;
-  category: string;
   image: string;
+  categorias: string[];
+  publicacao: Date;
+  isbn: string;
+  editora: string;
+  paginas: number;
 }
 
 export default Vue.extend({
@@ -87,10 +95,7 @@ export default Vue.extend({
       type: Object
     }
   },
-  mixins: [BookRate],
-  data() {
-    return {};
-  },
+  mixins: [BookRateMixin],
   computed: {
     bookDisplay(): IBookDisplay {
       const {
@@ -107,8 +112,12 @@ export default Vue.extend({
         id,
         title: bookTitle ? bookTitle : "",
         description: bookDesc ? bookDesc : "",
-        category: bookCats && typeof bookCats === "object" ? bookCats[0] : "",
-        image: thumbnail ? thumbnail : ""
+        image: thumbnail ? thumbnail : "",
+        categorias: bookCats,
+        publicacao: new Date(),
+        isbn: "978-8589134453",
+        editora: "xxxxx",
+        paginas: 200,
       };
     }
   },
@@ -134,7 +143,6 @@ export default Vue.extend({
     position: absolute;
     top: 0;
     right: 0;
-    width: 70%;
     height: 100%;
     background: #fff;
     display: flex;
@@ -143,6 +151,10 @@ export default Vue.extend({
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
     overflow: auto;
     z-index: 1;
+
+    @media screen and (min-width: 767px) {
+      width: 75%;
+    }
   }
 
   header {
@@ -176,6 +188,11 @@ export default Vue.extend({
   &__content {
     display: flex;
 
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .el-col {
       width: auto;
 
@@ -207,13 +224,16 @@ export default Vue.extend({
 
       .count {
         display: block;
-        margin: 10px 0 0;
+        margin: 15px 0;
       }
     }
 
     .info {
       flex-grow: 1;
-      padding-left: 30px;
+
+      @media screen and (min-width: 767px) {
+        padding-left: 30px;
+      }
     }
 
     .description {

@@ -118,6 +118,7 @@ export default Vue.extend({
       });
     },
     showBookDetails($id: string): void {
+      // SEPARAR FUNCIONALIDADE PARA RECEBER BOOK GERAL DO STORE NO APP.VUE
       this.bookDetails.active = true;
       this.bookDetails.book = this.rawApiBooks.filter((book: any) => {
         return book.id === $id;

@@ -111,6 +111,7 @@ export default Vue.extend({
     flex-grow: 1;
     display: flex;
     align-items: center;
+    text-align: center;
   }
 }
 </style>
