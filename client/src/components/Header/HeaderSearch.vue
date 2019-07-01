@@ -15,7 +15,7 @@
         :fetch-suggestions="searchBooks"
         :debounce="500"
         :trigger-on-focus="false"
-        @select="selectBookSearched"
+        @select="showBookDetails"
         @focus="setSearchFocus(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
@@ -39,9 +39,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { EventBus } from "@/providers/EventBus.js";
+
 export default Vue.extend({
   data() {
     return {
+      rawApiBooks: [] as object[],
       search: {
         value: "" as string,
         isFocused: false as boolean,
@@ -59,8 +62,10 @@ export default Vue.extend({
         .then(response => {
           const { items, totalItems } = response;
 
-          if(items && items.length)
+          if (items && items.length) {
+            this.rawApiBooks = items;
             this.search.booksResults = this.parseSearchedBooks(items);
+          }
         });
 
       callback(this.search.booksResults);
@@ -87,8 +92,14 @@ export default Vue.extend({
         };
       });
     },
-    selectBookSearched($book): void {
-      alert(JSON.stringify($book));
+    showBookDetails($bookPreview: any): void {
+      this.setSearchFocus(false);
+
+      const book = this.rawApiBooks.find(
+        (element: any) => element.id === $bookPreview.id
+      );
+
+      EventBus.$emit("show-book-details", book);
     },
     setSearchFocus(value: boolean): void {
       this.search.isFocused = value;

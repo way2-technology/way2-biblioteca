@@ -23,14 +23,13 @@
         ></el-pagination>
       </div>
     </div>
-    <BookDetails v-model="bookDetails.active" :book="bookDetails.book"/>
   </el-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import BookPreview from "@/components/Book/BookPreview.vue";
-import BookDetails from "@/components/Book/BookDetails.vue";
+import { EventBus } from "@/providers/EventBus.js";
 
 interface IBookPreview {
   books: object[];
@@ -38,16 +37,10 @@ interface IBookPreview {
   loading: boolean;
 }
 
-interface IBookDetails {
-  book: object;
-  active: boolean;
-}
-
 export default Vue.extend({
   name: "home",
   components: {
-    BookPreview,
-    BookDetails
+    BookPreview
   },
   data() {
     return {
@@ -56,11 +49,7 @@ export default Vue.extend({
         books: [],
         totalItems: 0,
         loading: false
-      } as IBookPreview,
-      bookDetails: {
-        book: {},
-        active: false
-      } as IBookDetails
+      } as IBookPreview
     };
   },
   computed: {
@@ -118,11 +107,9 @@ export default Vue.extend({
       });
     },
     showBookDetails($id: string): void {
-      // SEPARAR FUNCIONALIDADE PARA RECEBER BOOK GERAL DO STORE NO APP.VUE
-      this.bookDetails.active = true;
-      this.bookDetails.book = this.rawApiBooks.filter((book: any) => {
-        return book.id === $id;
-      })[0];
+      const book = this.rawApiBooks.find((element: any) => element.id === $id);
+
+      EventBus.$emit("show-book-details", book);
     }
   }
 });

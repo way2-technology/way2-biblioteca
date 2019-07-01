@@ -5,11 +5,8 @@
     </div>
     <div class="app__content">
       <router-view/>
-
-      <aside class="book-details">
-        <!-- <BookDetails /> -->
-      </aside>
     </div>
+    <BookDetails v-model="bookDetails.active" :book="bookDetails.book"/>
   </el-container>
 </template>
 
@@ -17,12 +14,32 @@
 import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
 import BookDetails from "@/components/Book/BookDetails.vue";
+import { EventBus } from "@/providers/EventBus.js";
 
 export default Vue.extend({
   name: "app",
   components: {
     Header,
     BookDetails
+  },
+  data() {
+    return {
+      bookDetails: {
+        active: false as boolean,
+        book: {} as object
+      }
+    };
+  },
+  beforeMount() {
+    this.listenEventBookDetails();
+  },
+  methods: {
+    listenEventBookDetails(): void {
+      EventBus.$on("show-book-details", book => {
+        this.bookDetails.book = book;
+        this.bookDetails.active = true;
+      });
+    }
   }
 });
 </script>

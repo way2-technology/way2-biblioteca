@@ -36,14 +36,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
+
 export default Vue.extend({
   computed: {
     userLoggedIn(): boolean {
       return false; // Implementar usuario do localstorage
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

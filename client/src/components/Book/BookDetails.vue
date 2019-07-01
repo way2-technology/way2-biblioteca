@@ -16,7 +16,7 @@
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img :src="bookDisplay.image" alt>
+              <img :src="bookDisplay.image" :alt="bookDisplay.title">
             </figure>
 
             <div class="rate">
@@ -44,13 +44,11 @@
                   <strong>Páginas:</strong>
                   <span>{{bookDisplay.paginas}}</span>
                 </li>
-                <li>
+                <li class="cateogries">
                   <strong>Categorias:</strong>
-                  <ul>
-                    <li v-for="(category, key) in categories" :key="key">
-                      {{category}}
-                    </li>
-                  </ul>
+                  <template v-for="(category, key) in bookDisplay.categories">
+                    <el-tag :key="key" size="mini">{{category}}</el-tag>
+                  </template>
                 </li>
               </ul>
             </div>
@@ -75,7 +73,7 @@ interface IBookDisplay {
   title: string;
   description: string;
   image: string;
-  categorias: string[];
+  categories: string[];
   publicacao: Date;
   isbn: string;
   editora: string;
@@ -113,11 +111,11 @@ export default Vue.extend({
         title: bookTitle ? bookTitle : "",
         description: bookDesc ? bookDesc : "",
         image: thumbnail ? thumbnail : "",
-        categorias: bookCats,
+        categories: bookCats,
         publicacao: new Date(),
         isbn: "978-8589134453",
         editora: "xxxxx",
-        paginas: 200,
+        paginas: 200
       };
     }
   },
@@ -169,7 +167,12 @@ export default Vue.extend({
     border-bottom: 1px solid #e8e8e8;
 
     h2 {
-      font-size: 26px;
+      font-size: 24px;
+      white-space: nowrap;
+      width: 100%;
+      max-width: 95%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .close {
@@ -247,19 +250,27 @@ export default Vue.extend({
         border: 1px solid #eee;
         border-radius: 5px;
       }
-
       li {
         display: block;
         border-bottom: 1px solid #eee;
         padding: 8px;
+
+        &:last-child {
+          border: 0;
+        }
+
+        strong {
+          margin-right: 5px;
+        }
       }
 
-      li strong {
-        margin-right: 5px;
-      }
+      .cateogries {
+        display: flex;
+        align-items: center;
 
-      li:last-child {
-        border: 0;
+        .el-tag {
+          margin: 0 5px;
+        }
       }
     }
   }

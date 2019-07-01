@@ -45,9 +45,6 @@ export default Vue.extend({
     }
   },
   mixins: [BookRate],
-  data() {
-    return {};
-  },
   methods: {
     triggerShowBook(): void {
       this.$emit("trigger-show-book", this.id);
