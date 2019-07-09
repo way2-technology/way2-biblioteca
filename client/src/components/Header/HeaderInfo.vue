@@ -10,7 +10,7 @@
           </button>
         </el-tooltip>
         <el-tooltip effect="dark" content="Novo Livro" placement="bottom">
-          <button type="button">
+          <button type="button" @click="emitEventModalNewBook">
             <unicon name="plus-circle"></unicon>
           </button>
         </el-tooltip>
@@ -37,11 +37,18 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { EventBus } from "@/providers/EventBus.js";
 
 export default Vue.extend({
+  name: "header-info",
   computed: {
     userLoggedIn(): boolean {
       return false; // Implementar usuario do localstorage
+    }
+  },
+  methods: {
+    emitEventModalNewBook() {
+      EventBus.$emit("show-modal-new-book");
     }
   }
 });

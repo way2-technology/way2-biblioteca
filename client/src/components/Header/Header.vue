@@ -3,7 +3,7 @@
     <div class="header__container">
       <div class="header__logo">
         <router-link to="/">
-          <Way2Logo/>
+          <Way2Logo />
         </router-link>
       </div>
       <HeaderSearch />
@@ -14,11 +14,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Way2Logo from "@/assets/img/Way2LogoSvg.vue";
 import HeaderSearch from "./HeaderSearch.vue";
 import HeaderInfo from "./HeaderInfo.vue";
-import Way2Logo from "@/assets/img/Way2LogoSvg.vue";
 
 export default Vue.extend({
+  name: "header-index",
   components: {
     Way2Logo,
     HeaderSearch,
@@ -58,6 +59,5 @@ export default Vue.extend({
       }
     }
   }
-
 }
 </style>

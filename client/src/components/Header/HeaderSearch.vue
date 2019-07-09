@@ -19,7 +19,7 @@
         @focus="setSearchFocus(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
-          <img :src="item.image" :alt="item.title">
+          <img :src="item.image" :alt="item.title" />
           <div>
             <h3>{{item.title}}</h3>
             <el-tag size="mini">{{item.category}}</el-tag>
@@ -42,6 +42,7 @@ import Vue from "vue";
 import { EventBus } from "@/providers/EventBus.js";
 
 export default Vue.extend({
+  name: "header-search",
   data() {
     return {
       rawApiBooks: [] as object[],
@@ -64,21 +65,17 @@ export default Vue.extend({
 
           if (items && items.length) {
             this.rawApiBooks = items;
-            this.search.booksResults = this.parseSearchedBooks(items);
+            this.search.booksResults = this.parseBooks(items);
           }
         });
 
       callback(this.search.booksResults);
     },
-    parseSearchedBooks(books: object[]): object[] {
+    parseBooks(books: object[]): object[] {
       return books.map((book: any) => {
         const {
           id,
-          volumeInfo: {
-            categories,
-            title,
-            imageLinks: { thumbnail }
-          }
+          volumeInfo: { categories, title, imageLinks }
         } = book;
 
         return {
@@ -88,7 +85,7 @@ export default Vue.extend({
             categories && typeof categories === "object"
               ? categories[0]
               : "General",
-          image: thumbnail ? thumbnail : ""
+          image: imageLinks.thumbnail ? imageLinks.thumbnail : ""
         };
       });
     },
@@ -209,6 +206,12 @@ export default Vue.extend({
       border: 1px solid #ddd;
       border-radius: 3px;
     }
+  }
+}
+
+.el-scrollbar {
+  .el-autocomplete-suggestion__wrap {
+    max-height: 400px;
   }
 }
 </style>

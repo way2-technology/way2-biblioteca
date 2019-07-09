@@ -1,12 +1,15 @@
 <template>
   <el-container id="app">
     <div class="app__header">
-      <Header/>
+      <Header />
     </div>
     <div class="app__content">
-      <router-view/>
+      <router-view />
     </div>
-    <BookDetails v-model="bookDetails.active" :book="bookDetails.book"/>
+    <div class="app__global-components">
+      <BookDetails />
+      <ModalNewBook />
+    </div>
   </el-container>
 </template>
 
@@ -14,32 +17,14 @@
 import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
 import BookDetails from "@/components/Book/BookDetails.vue";
-import { EventBus } from "@/providers/EventBus.js";
+import ModalNewBook from "@/components/ModalNewBook.vue";
 
 export default Vue.extend({
   name: "app",
   components: {
     Header,
-    BookDetails
-  },
-  data() {
-    return {
-      bookDetails: {
-        active: false as boolean,
-        book: {} as object
-      }
-    };
-  },
-  beforeMount() {
-    this.listenEventBookDetails();
-  },
-  methods: {
-    listenEventBookDetails(): void {
-      EventBus.$on("show-book-details", book => {
-        this.bookDetails.book = book;
-        this.bookDetails.active = true;
-      });
-    }
+    BookDetails,
+    ModalNewBook
   }
 });
 </script>

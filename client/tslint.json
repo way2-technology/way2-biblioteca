@@ -26,6 +26,7 @@
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
     "no-string-literal": false,
+    "no-empty": false,
     "semicolon": [
       true,
       "always"

@@ -9,7 +9,7 @@
             :category="book.category"
             :image="book.image"
             :key="index"
-            @trigger-show-book="showBookDetails"
+            @trigger-show-book="emitEventShowBookDetails"
           />
         </template>
       </div>
@@ -106,7 +106,7 @@ export default Vue.extend({
         };
       });
     },
-    showBookDetails($id: string): void {
+    emitEventShowBookDetails($id: string): void {
       const book = this.rawApiBooks.find((element: any) => element.id === $id);
 
       EventBus.$emit("show-book-details", book);

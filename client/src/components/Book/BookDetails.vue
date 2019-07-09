@@ -1,6 +1,6 @@
 <template>
   <transition name="translate-aside">
-    <aside class="book-details" v-if="value" :class="{'book-details--open': value}">
+    <aside class="book-details" v-if="visible" :class="{'book-details--open': visible}">
       <div class="book-details__wrapper">
         <header>
           <h2 class="title">{{ bookDisplay.title }}</h2>
@@ -16,11 +16,11 @@
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img :src="bookDisplay.image" :alt="bookDisplay.title">
+              <img :src="bookDisplay.image" :alt="bookDisplay.title" />
             </figure>
 
             <div class="rate">
-              <el-rate disabled v-model="rate.value" :colors="rate.colors"/>
+              <el-rate disabled v-model="rate.value" :colors="rate.colors" />
               <span class="count">5 Reviews</span>
             </div>
           </el-col>
@@ -30,19 +30,15 @@
               <ul>
                 <li>
                   <strong>Publicação:</strong>
-                  <span>{{bookDisplay.publicacao}}</span>
-                </li>
-                <li>
-                  <strong>ISBN:</strong>
-                  <span>{{bookDisplay.isbn}}</span>
+                  <span>{{ bookDisplay.publicacao.toLocaleDateString() }}</span>
                 </li>
                 <li>
                   <strong>Editora:</strong>
-                  <span>{{bookDisplay.editora}}</span>
+                  <span>{{ bookDisplay.editora }}</span>
                 </li>
                 <li>
                   <strong>Páginas:</strong>
-                  <span>{{bookDisplay.paginas}}</span>
+                  <span>{{ bookDisplay.paginas }}</span>
                 </li>
                 <li class="cateogries">
                   <strong>Categorias:</strong>
@@ -54,10 +50,6 @@
             </div>
           </el-col>
         </el-row>
-        <!-- <el-row class="book-details__comments">
-          <h3>Comentários:</h3>
-          <BookComments />
-        </el-row>-->
       </div>
       <div class="book-details__overlay" @click="closeBookDetails"></div>
     </aside>
@@ -67,6 +59,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BookRateMixin from "./BookRate.mixin";
+import { EventBus } from "@/providers/EventBus.js";
 
 interface IBookDisplay {
   id: [number, string];
@@ -75,25 +68,21 @@ interface IBookDisplay {
   image: string;
   categories: string[];
   publicacao: Date;
-  isbn: string;
   editora: string;
   paginas: number;
 }
 
 export default Vue.extend({
-  components: {
-    // BookComments
-  },
-  props: {
-    value: {
-      type: Boolean,
-      default: true
-    },
-    book: {
-      type: Object
-    }
-  },
   mixins: [BookRateMixin],
+  data() {
+    return {
+      visible: false,
+      book: {} as any
+    };
+  },
+  created() {
+    this.listenEventBookDetails();
+  },
   computed: {
     bookDisplay(): IBookDisplay {
       const {
@@ -113,16 +102,21 @@ export default Vue.extend({
         image: thumbnail ? thumbnail : "",
         categories: bookCats,
         publicacao: new Date(),
-        isbn: "978-8589134453",
         editora: "xxxxx",
         paginas: 200
       };
     }
   },
   methods: {
+    listenEventBookDetails(): EventBus<void> {
+      EventBus.$on("show-book-details", book => {
+        this.book = book;
+        this.visible = true;
+      });
+    },
     closeBookDetails(): void {
-      this.$emit("input", false);
-    }
+      this.visible = false;
+    },
   }
 });
 </script>
@@ -288,7 +282,7 @@ export default Vue.extend({
 }
 
 .translate-aside-enter-active {
-  transition: all 0.2s ease;
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .translate-aside-leave-active {
   transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
