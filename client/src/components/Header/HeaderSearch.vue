@@ -55,7 +55,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    async searchBooks(queryString, callback): Promise<void> {
+    async searchBooks(queryString: string, callback: any): Promise<void> {
       await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
       )
@@ -110,7 +110,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .header__search {
-  width: 100%;
+  flex-grow: 1;
 
   .content {
     margin-left: 1.2rem;
@@ -137,15 +137,8 @@ export default Vue.extend({
   }
 
   .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     visibility: hidden;
-    transition: 0.2s;
     z-index: 8;
   }
 

@@ -1,14 +1,17 @@
 <template>
-  <div id="filter-books" class="popover-filter-books" v-if="visible">
-    <div class="popover-filter-books__header">
-      <h3>Filtrar Livros</h3>
-      <el-button type="text" icon="el-icon-close">Limpar</el-button>
+  <div id="filter-books" class="filter-books">
+    <div class="filter-books__wrapper">
+      <div class="filter-books__header">
+        <h3>Filtrar Livros</h3>
+        <el-button type="text" icon="el-icon-close">Limpar</el-button>
+      </div>
+      <div class="filter-books__list">
+        <label class="item" v-for="(item, index) in 10" :key="index">
+          <el-checkbox>Option</el-checkbox>
+        </label>
+      </div>
     </div>
-    <div class="popover-filter-books__list">
-      <label class="filter-item" v-for="(item, index) in 10" :key="index">
-        <el-checkbox>Option</el-checkbox>
-      </label>
-    </div>
+    <div class="overlay" @click="closePopover()"></div>
   </div>
 </template>
 
@@ -16,79 +19,35 @@
 import Vue from "vue";
 export default Vue.extend({
   name: "popover-filter-books",
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
-    }
-  },
   model: {
     prop: "visible",
-    event: "change"
+    event: "visible"
   },
   data() {
     return {
       categories: [] as object[]
     };
   },
-  beforeMount() {
-    document.addEventListener("click", e => {
-      this.targetIsInsideElement(e);
-    }, true);
-  },
-  beforeDestroy() {
-    document.removeEventListener("click", e => {
-      this.targetIsInsideElement(e);
-    }, true);
-  },
-  computed: {
-    popoverElement(): HTMLElement | any {
-      return document.querySelector("#filter-books");
-    }
-  },
   methods: {
-    toggleEventListenerClosePopover(type: string = "add"): void {
-      const $eventFunction =
-        type === "add"
-          ? document.addEventListener
-          : document.removeEventListener;
-    },
-    targetIsInsideElement(e) {
-      const { target } = e;
-      console.log(target);
-      console.log(this.popoverElement);
-      if (target) {
-        if (target === this.popoverElement) {
-          return true;
-        }
-      }
-      return false;
-    },
-    closePopover(e) {
-      // if (!this.targetIsInsideElement(e)) {
-      //   this.element.style.display = "none";
-      //   this._isOpen = false;
-      //   this.killOutSideClick();
-      // }
+    closePopover(): void {
+      this.$emit("close");
     }
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.popover-filter-books {
+.filter-books {
   background-clip: padding-box;
   background-color: #fff;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 3px;
   box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
   font-size: 12px;
-  margin-bottom: 20px;
-  margin-top: 4px;
   position: relative;
   width: 300px;
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 10px);
   right: 0;
 
   &:before {
@@ -96,11 +55,17 @@ export default Vue.extend({
     position: absolute;
     border-color: transparent;
     border-style: solid;
-    top: -12px;
-    right: 10px;
+    top: -15px;
+    right: 8px;
     border-top-width: 0;
-    border-width: 6px;
+    border-width: 8px;
     border-bottom-color: #f6f8fa;
+    z-index: 2;
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 1;
   }
 
   &__header {
@@ -124,8 +89,9 @@ export default Vue.extend({
     overflow: auto;
     position: relative;
 
-    .filter-item {
+    .item {
       border-bottom: 1px solid #eaecef;
+      background: #fff;
       color: inherit;
       cursor: pointer;
       display: block;
@@ -145,6 +111,10 @@ export default Vue.extend({
         margin-right: 10px;
       }
     }
+  }
+
+  .overlay {
+    background: transparent;
   }
 }
 </style>

@@ -3,12 +3,15 @@
     <div v-if="!userLoggedIn">
       <div class="actions">
         <div>
-          <button type="button" @click="popoverVisible = false">
+          <button type="button" @click="popoverVisible = !popoverVisible">
             <el-badge :value="12">
               <unicon name="filter"></unicon>
             </el-badge>
           </button>
-          <PopoverFilterBooks v-model="popoverVisible" />
+
+          <template v-if="popoverVisible">
+            <PopoverFilterBooks @close="popoverVisible = false" />
+          </template>
         </div>
         <div>
           <button type="button" @click="emitEventModalNewBook">
@@ -56,7 +59,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      popoverVisible: true
+      popoverVisible: false
     };
   },
   methods: {
@@ -94,6 +97,7 @@ export default Vue.extend({
       border: 0;
       min-height: 40px;
       cursor: pointer;
+      outline: none;
 
       svg {
         fill: #fff;

@@ -9,6 +9,8 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 /* General Styles */
 
+// Responsive
+
 .no-desktop {
   display: none;
 }
@@ -17,7 +19,20 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   .no-desktop {
     display: block;
   }
+
   .no-mobile {
     display: none !important;
   }
+}
+
+// Overlay
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
 }

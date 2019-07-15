@@ -48,7 +48,7 @@ export default Vue.extend({
   }
 
   &__logo {
-    max-width: 120px;
+    max-width: 75px;
     padding-top: 7px;
 
     svg {
