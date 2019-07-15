@@ -2,18 +2,19 @@
   <div class="header__info">
     <div v-if="!userLoggedIn">
       <div class="actions">
-        <el-tooltip effect="dark" content="Filtrar Livros" placement="bottom">
-          <button type="button">
+        <div>
+          <button type="button" @click="popoverVisible = false">
             <el-badge :value="12">
               <unicon name="filter"></unicon>
             </el-badge>
           </button>
-        </el-tooltip>
-        <el-tooltip effect="dark" content="Novo Livro" placement="bottom">
+          <PopoverFilterBooks v-model="popoverVisible" />
+        </div>
+        <div>
           <button type="button" @click="emitEventModalNewBook">
             <unicon name="plus-circle"></unicon>
           </button>
-        </el-tooltip>
+        </div>
       </div>
       <div class="user">
         <div class="content user">
@@ -37,14 +38,26 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { EventBus } from "@/providers/EventBus.js";
+import PopoverFilterBooks from "@/components/PopoverFilterBooks/PopoverFilterBooks.vue";
+import EventBus from "@/providers/EventBus.js";
 
 export default Vue.extend({
   name: "header-info",
+  components: {
+    PopoverFilterBooks
+  },
   computed: {
     userLoggedIn(): boolean {
       return false; // Implementar usuario do localstorage
+    },
+    contendPopover() {
+      return "<h2>Test</h2>";
     }
+  },
+  data() {
+    return {
+      popoverVisible: true
+    };
   },
   methods: {
     emitEventModalNewBook() {
@@ -67,14 +80,19 @@ export default Vue.extend({
     justify-content: space-around;
     margin: 0 10px;
 
+    > div,
     button {
-      background: transparent;
-      border: 0;
-      min-height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-grow: 1;
+      position: relative;
+    }
+
+    button {
+      background: transparent;
+      border: 0;
+      min-height: 40px;
       cursor: pointer;
 
       svg {

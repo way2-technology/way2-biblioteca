@@ -17,7 +17,7 @@
 import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
 import BookDetails from "@/components/Book/BookDetails.vue";
-import ModalNewBook from "@/components/ModalNewBook.vue";
+import ModalNewBook from "@/components/ModalNewBook/ModalNewBook.vue";
 
 export default Vue.extend({
   name: "app",

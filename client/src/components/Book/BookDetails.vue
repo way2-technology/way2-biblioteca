@@ -7,7 +7,7 @@
           <el-button
             class="close"
             size="mini"
-            type="info"
+            type="plain"
             icon="el-icon-close"
             circle
             @click="closeBookDetails"
@@ -59,7 +59,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BookRateMixin from "./BookRate.mixin";
-import { EventBus } from "@/providers/EventBus.js";
+import EventBus from "@/providers/EventBus.js";
 
 interface IBookDisplay {
   id: [number, string];
@@ -116,11 +116,10 @@ export default Vue.extend({
     },
     closeBookDetails(): void {
       this.visible = false;
-    },
+    }
   }
 });
 </script>
-
 
 <style lang="scss">
 .book-details {
@@ -135,6 +134,7 @@ export default Vue.extend({
     position: absolute;
     top: 0;
     right: 0;
+    width: 100%;
     height: 100%;
     background: #fff;
     display: flex;
@@ -153,7 +153,7 @@ export default Vue.extend({
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #fff;
+    background: #f4f4f4;
     padding: 0 20px;
     min-height: 60px;
     display: flex;

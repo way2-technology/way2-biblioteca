@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { EventBus } from "@/providers/EventBus.js";
+import EventBus from "@/providers/EventBus.js";
 
 export default Vue.extend({
   name: "header-search",

@@ -29,7 +29,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BookPreview from "@/components/Book/BookPreview.vue";
-import { EventBus } from "@/providers/EventBus.js";
+import EventBus from "@/providers/EventBus.js";
 
 interface IBookPreview {
   books: object[];
