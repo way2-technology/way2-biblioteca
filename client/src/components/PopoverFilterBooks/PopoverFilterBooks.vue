@@ -65,7 +65,7 @@ export default Vue.extend({
 
   &__wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   &__header {
@@ -115,6 +115,7 @@ export default Vue.extend({
 
   .overlay {
     background: transparent;
+    z-index: 1;
   }
 }
 </style>

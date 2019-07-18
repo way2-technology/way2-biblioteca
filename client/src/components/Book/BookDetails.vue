@@ -1,6 +1,6 @@
 <template>
   <transition name="translate-aside">
-    <aside class="book-details" v-if="visible" :class="{'book-details--open': visible}">
+    <aside class="book-details" v-if="asideVisble" :class="{'book-details--open': asideVisble}">
       <div class="book-details__wrapper">
         <header>
           <h2 class="title">{{ bookDisplay.title }}</h2>
@@ -23,9 +23,14 @@
               <el-rate disabled v-model="rate.value" :colors="rate.colors" />
               <span class="count">5 Reviews</span>
             </div>
+
+            <div class="loan">
+              <span class="label">Livro disponível</span>
+              <el-button round type="primary" plain>Pegar este livro emprestado</el-button>
+            </div>
           </el-col>
           <el-col class="info">
-            <div class="description">{{bookDisplay.description}}</div>
+            
             <div class="details">
               <ul>
                 <li>
@@ -48,6 +53,7 @@
                 </li>
               </ul>
             </div>
+            <div class="description">{{bookDisplay.description}}</div>
           </el-col>
         </el-row>
       </div>
@@ -59,7 +65,6 @@
 <script lang="ts">
 import Vue from "vue";
 import BookRateMixin from "./BookRate.mixin";
-import EventBus from "@/providers/EventBus.js";
 
 interface IBookDisplay {
   id: [number, string];
@@ -74,17 +79,19 @@ interface IBookDisplay {
 
 export default Vue.extend({
   mixins: [BookRateMixin],
-  data() {
-    return {
-      visible: false,
-      book: {} as any
-    };
-  },
-  created() {
-    this.listenEventBookDetails();
-  },
   computed: {
+    asideVisble(): boolean {
+      const {
+        bookDetails: { visible }
+      } = this["$store"].state;
+
+      return visible;
+    },
     bookDisplay(): IBookDisplay {
+      const {
+        bookDetails: { book }
+      } = this["$store"].state;
+
       const {
         id,
         volumeInfo: {
@@ -93,7 +100,7 @@ export default Vue.extend({
           categories: bookCats,
           imageLinks: { thumbnail }
         }
-      } = this.book;
+      } = book;
 
       return {
         id,
@@ -108,14 +115,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    listenEventBookDetails(): EventBus<void> {
-      EventBus.$on("show-book-details", book => {
-        this.book = book;
-        this.visible = true;
-      });
-    },
     closeBookDetails(): void {
-      this.visible = false;
+      this["$store"].commit("CLOSE_BOOK_DETAILS");
     }
   }
 });
@@ -205,6 +206,7 @@ export default Vue.extend({
       overflow: hidden;
       width: 222px;
       height: 300px;
+      margin: 0 auto;
 
       img {
         position: absolute;
@@ -217,11 +219,40 @@ export default Vue.extend({
     }
 
     .rate {
-      margin: 15px 0 0;
+      margin: 15px 0;
+      border-bottom: 1px solid #eee;
 
       .count {
         display: block;
-        margin: 15px 0;
+        margin: 5px 0 10px;
+      }
+    }
+
+    .loan {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .label {
+        text-transform: uppercase;
+        position: relative;
+        font-size: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+
+        &:before {
+          content: "";
+          width: 5px;
+          height: 5px;
+          border-radius: 100%;
+          background: green;
+          position: absolute;
+          left: -10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
 

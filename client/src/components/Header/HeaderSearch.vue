@@ -96,7 +96,7 @@ export default Vue.extend({
         (element: any) => element.id === $bookPreview.id
       );
 
-      EventBus.$emit("show-book-details", book);
+      this["$store"].commit("SHOW_BOOK_DETAILS", book);
     },
     setSearchFocus(value: boolean): void {
       this.search.isFocused = value;

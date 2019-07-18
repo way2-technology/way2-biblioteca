@@ -1,16 +1,18 @@
 import Unicon from "vue-unicons";
-import { 
+import {
   uniEntry,
   uniFilter,
   uniPlus,
-  uniPlusCircle
+  uniPlusCircle,
+  uniUserCircle
 } from "vue-unicons/src/icons";
 
 Unicon.add([
-  uniEntry, 
+  uniEntry,
   uniFilter,
   uniPlus,
-  uniPlusCircle
+  uniPlusCircle,
+  uniUserCircle
 ]);
 
 export default Unicon;

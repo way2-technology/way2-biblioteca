@@ -9,7 +9,7 @@
             :category="book.category"
             :image="book.image"
             :key="index"
-            @trigger-show-book="emitEventShowBookDetails"
+            @trigger-show-book="showBookDetails"
           />
         </template>
       </div>
@@ -42,22 +42,20 @@ export default Vue.extend({
   components: {
     BookPreview
   },
-  data() {
-    return {
-      rawApiBooks: [] as object[],
-      booksPreview: {
-        books: [],
-        totalItems: 0,
-        loading: false
-      } as IBookPreview
-    };
-  },
+  data: () => ({
+    rawApiBooks: [] as object[],
+    booksPreview: {
+      books: [],
+      totalItems: 0,
+      loading: false
+    } as IBookPreview
+  }),
   computed: {
     appElement(): HTMLElement | any {
       return document.querySelector("#app");
     }
   },
-  mounted() {
+  created() {
     this.getBooks();
   },
   methods: {
@@ -106,10 +104,10 @@ export default Vue.extend({
         };
       });
     },
-    emitEventShowBookDetails($id: string): void {
+    showBookDetails($id: string): void {
       const book = this.rawApiBooks.find((element: any) => element.id === $id);
 
-      EventBus.$emit("show-book-details", book);
+      this["$store"].commit("SHOW_BOOK_DETAILS", book);
     }
   }
 });
