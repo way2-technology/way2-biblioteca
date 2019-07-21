@@ -25,12 +25,13 @@
             </div>
 
             <div class="loan">
-              <span class="label">Livro disponível</span>
-              <el-button round type="primary" plain>Pegar este livro emprestado</el-button>
+              <el-button type="primary">
+                <Unicon name="bookmark" />
+                <span>Pegar este livro emprestado</span>
+              </el-button>
             </div>
           </el-col>
           <el-col class="info">
-            
             <div class="details">
               <ul>
                 <li>
@@ -50,6 +51,10 @@
                   <template v-for="(category, key) in bookDisplay.categories">
                     <el-tag :key="key" size="mini">{{category}}</el-tag>
                   </template>
+                </li>
+                <li>
+                  <strong>ISBN:</strong>
+                  <span>9780062259677</span>
                 </li>
               </ul>
             </div>
@@ -235,23 +240,17 @@ export default Vue.extend({
       align-items: center;
       margin-bottom: 20px;
 
-      .label {
-        text-transform: uppercase;
-        position: relative;
-        font-size: 10px;
-        margin-bottom: 10px;
-        display: inline-block;
+      .el-button {
+        padding: 10px;
+        > span {
+          display: flex;
+          align-items: center;
+        }
 
-        &:before {
-          content: "";
-          width: 5px;
-          height: 5px;
-          border-radius: 100%;
-          background: green;
-          position: absolute;
-          left: -10px;
-          top: 50%;
-          transform: translateY(-50%);
+        svg {
+          fill: #fff;
+          width: 18px;
+          margin-right: 5px;
         }
       }
     }
@@ -271,7 +270,7 @@ export default Vue.extend({
     .details {
       ul {
         list-style: none;
-        margin: 10px 0;
+        margin-bottom: 20px;
         border: 1px solid #eee;
         border-radius: 5px;
       }

@@ -1,8 +1,8 @@
 <template>
-  <el-link class="book" @click="triggerShowBook">
+  <el-link class="book">
     <el-card>
-      <figure class="book__image">
-        <img :src="image">
+      <figure class="book__image" @click="triggerShowBook">
+        <img :src="image" />
       </figure>
 
       <div class="book__categories">
@@ -11,11 +11,20 @@
 
       <h2 class="book__title">{{ title }}</h2>
 
-      <el-rate 
-        disabled
-        v-model="rate.value" 
-        :colors="rate.colors"
-      />
+      <footer>
+        <el-rate disabled v-model="rate.value" :colors="rate.colors" />
+
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Pegar este livro emprestado"
+          placement="top"
+        >
+          <button type="text">
+            <Unicon name="bookmark" />
+          </button>
+        </el-tooltip>
+      </footer>
     </el-card>
   </el-link>
 </template>
@@ -71,7 +80,7 @@ export default Vue.extend({
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    padding: 16px;
+    padding: 0;
     min-height: 100%;
   }
 
@@ -83,6 +92,7 @@ export default Vue.extend({
     min-width: 160px;
     width: 160px;
     height: 245px;
+    margin: 15px 0;
 
     img {
       position: absolute;
@@ -95,20 +105,34 @@ export default Vue.extend({
   }
 
   .book__categories {
-    margin: 15px 0 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .book__title {
-    margin: 8px 0;
+    padding: 15px;
     font-size: 20px;
     line-height: 22px;
     flex-grow: 1;
     display: flex;
     align-items: center;
     text-align: center;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding: 8px 16px;
+
+    button {
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
   }
 }
 </style>

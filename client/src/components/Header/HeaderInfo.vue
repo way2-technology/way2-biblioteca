@@ -1,6 +1,6 @@
 <template>
   <div class="header__info">
-    <div v-if="!userLoggedIn">
+    <div v-if="userLogged">
       <div class="actions">
         <div>
           <button type="button" @click="popoverVisible = !popoverVisible">
@@ -13,27 +13,32 @@
             <PopoverFilterBooks @close="popoverVisible = false" />
           </template>
         </div>
-        <div>
-          <button type="button" @click="emitEventModalNewBook">
-            <unicon name="plus-circle"></unicon>
-          </button>
-        </div>
       </div>
       <div class="user">
-        <div class="content user">
-          <figure class="avatar"></figure>
-          <span class="info no-mobile">
-            <span class="name">Robson Braga de Queiroz</span>
-            <small class="role">Desenvolvedor</small>
-          </span>
-        </div>
+        <el-dropdown trigger="click" @command="handleDropdownCommand">
+          <button type="button" class="btn-dropdown">
+            <figure class="avatar">
+              <img :src="userLogged.avatar" alt="User Avatar" />
+            </figure>
+            <span class="name no-mobile">{{ userLogged.firstName }}</span>
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item icon="el-icon-circle-plus" command="add-book">Novo Livro</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-plus" command="see-books">Ver Livros emprestados</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus" command="see-goals">Metas de leitura</el-dropdown-item>
+            <el-dropdown-item command="logout">
+              <unicon name="entry"></unicon>Sair
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
     <div v-else>
       <div class="login">
-        <el-button type="plain">
+        <GoogleLogin :params="googleParams" :onSuccess="handleLoginGoogle">
           <unicon name="entry"></unicon>Login
-        </el-button>
+        </GoogleLogin>
       </div>
     </div>
   </div>
@@ -42,28 +47,50 @@
 <script lang="ts">
 import Vue from "vue";
 import PopoverFilterBooks from "@/components/PopoverFilterBooks/PopoverFilterBooks.vue";
+import GoogleLogin from "vue-google-login";
 import EventBus from "@/providers/EventBus.js";
 
 export default Vue.extend({
   name: "header-info",
   components: {
-    PopoverFilterBooks
-  },
-  computed: {
-    userLoggedIn(): boolean {
-      return false; // Implementar usuario do localstorage
-    },
-    contendPopover() {
-      return "<h2>Test</h2>";
-    }
+    PopoverFilterBooks,
+    GoogleLogin
   },
   data() {
     return {
-      popoverVisible: false
+      popoverVisible: false,
+      googleParams: {
+        client_id:
+          "598656881420-qi31ki4kif89imbuu209qsac7s2j6i0j.apps.googleusercontent.com"
+      }
     };
   },
+  computed: {
+    userLogged(): object {
+      const {
+        user: { info }
+      } = this["$store"].state;
+
+      return info;
+    }
+  },
   methods: {
-    emitEventModalNewBook() {
+    handleLoginGoogle($user: any): void {
+      this["$store"].commit("USER_LOGIN", $user);
+    },
+    handleLogout(): void {
+      this["$store"].commit("USER_LOGOUT");
+    },
+    handleDropdownCommand(command: string): void {
+      switch (command) {
+        case "add-book":
+          this.emitEventModalNewBook();
+          break;
+        case "logout":
+          this.handleLogout();
+      }
+    },
+    emitEventModalNewBook(): EventBus<void> {
       EventBus.$emit("show-modal-new-book");
     }
   }
@@ -81,7 +108,6 @@ export default Vue.extend({
     display: flex;
     width: 70px;
     justify-content: space-around;
-    margin: 0 10px;
 
     > div,
     button {
@@ -107,10 +133,22 @@ export default Vue.extend({
   }
 
   .user {
-    .content {
+    .btn-dropdown {
       display: flex;
       align-items: center;
       text-align: left;
+      padding: 5px 8px;
+      color: #fff;
+      background: transparent;
+      border: 0;
+      border-radius: 2px;
+      cursor: pointer;
+      outline: none;
+      transition: 0.2s;
+
+      &:hover {
+        background: #3f4448;
+      }
     }
 
     .avatar {
@@ -119,26 +157,20 @@ export default Vue.extend({
       border-radius: 100%;
       background: #eee;
       margin: 0 8px 0 0;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
     }
 
-    .info {
-      display: flex;
-      flex-direction: column;
-      color: #fff;
-
-      .name {
-        font-size: 15px;
-        font-weight: bold;
-        max-width: 115px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .role {
-        color: #9aa0ac;
-        font-size: 12px;
-      }
+    .name {
+      font-size: 15px;
+      font-weight: bold;
+      max-width: 115px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .btn {
@@ -167,6 +199,10 @@ export default Vue.extend({
       height: 40px;
       margin-left: 1.2rem;
       border-radius: 2px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      outline: none;
 
       span {
         display: flex;

@@ -1,7 +1,9 @@
 import state from "./state";
-import { BookDetailsMutations } from "./BookDetails.store";
+import { UserMutations } from "./User/User.store";
+import { BookDetailsMutations } from "./BookDetails/BookDetails.store";
 
 const mutations = {
+  ...UserMutations,
   ...BookDetailsMutations
 };
 

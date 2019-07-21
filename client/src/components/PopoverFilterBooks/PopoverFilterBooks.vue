@@ -47,20 +47,15 @@ export default Vue.extend({
   position: relative;
   width: 300px;
   position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
+      top: calc(100% + 11px);
+    right: 0;
+  z-index: 1;
 
-  &:before {
-    content: "";
-    position: absolute;
-    border-color: transparent;
-    border-style: solid;
-    top: -15px;
-    right: 8px;
-    border-top-width: 0;
-    border-width: 8px;
-    border-bottom-color: #f6f8fa;
-    z-index: 2;
+  @media screen and (max-width: 767px) {
+    top: 70px;
+    right: 16px;
+    position: fixed;
+    width: calc(100% - 33px);
   }
 
   &__wrapper {
@@ -116,6 +111,10 @@ export default Vue.extend({
   .overlay {
     background: transparent;
     z-index: 1;
+
+    @media screen and (max-width: 767px) {
+      background: rgba(0, 0, 0, 0.4);
+    }
   }
 }
 </style>

@@ -4,7 +4,9 @@ import {
   uniFilter,
   uniPlus,
   uniPlusCircle,
-  uniUserCircle
+  uniUserCircle,
+  uniNotebooks,
+  uniBookmark
 } from "vue-unicons/src/icons";
 
 Unicon.add([
@@ -12,7 +14,9 @@ Unicon.add([
   uniFilter,
   uniPlus,
   uniPlusCircle,
-  uniUserCircle
+  uniUserCircle,
+  uniNotebooks,
+  uniBookmark
 ]);
 
 export default Unicon;
