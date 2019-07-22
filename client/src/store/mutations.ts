@@ -1,4 +1,4 @@
-import state from "./state";
+import state from "./State";
 import { UserMutations } from "./User/User.store";
 import { BookDetailsMutations } from "./BookDetails/BookDetails.store";
 

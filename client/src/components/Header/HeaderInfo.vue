@@ -1,6 +1,6 @@
 <template>
   <div class="header__info">
-    <div v-if="userLogged">
+    <div v-if="$userLogged">
       <div class="actions">
         <div>
           <button type="button" @click="popoverVisible = !popoverVisible">
@@ -18,9 +18,9 @@
         <el-dropdown trigger="click" @command="handleDropdownCommand">
           <button type="button" class="btn-dropdown">
             <figure class="avatar">
-              <img :src="userLogged.avatar" alt="User Avatar" />
+              <img :src="$userLogged.avatar" alt="User Avatar" />
             </figure>
-            <span class="name no-mobile">{{ userLogged.firstName }}</span>
+            <span class="name no-mobile">{{ $userLogged.firstName }}</span>
             <i class="el-icon-arrow-down el-icon--right"></i>
           </button>
           <el-dropdown-menu slot="dropdown">
@@ -37,7 +37,8 @@
     <div v-else>
       <div class="login">
         <GoogleLogin :params="googleParams" :onSuccess="handleLoginGoogle">
-          <unicon name="entry"></unicon>Login
+          <unicon name="entry"></unicon>
+          <strong>ENTRAR</strong>
         </GoogleLogin>
       </div>
     </div>
@@ -65,18 +66,18 @@ export default Vue.extend({
       }
     };
   },
-  computed: {
-    userLogged(): object {
-      const {
-        user: { info }
-      } = this["$store"].state;
-
-      return info;
-    }
-  },
   methods: {
     handleLoginGoogle($user: any): void {
       this["$store"].commit("USER_LOGIN", $user);
+      this.verifyIfUserLogged();
+    },
+    verifyIfUserLogged() {
+      if (!this["$userLogged"]) {
+        this.$message.error("Oops, usuário não permitido.");
+      } else {
+        const { fullName } = this["$userLogged"];
+        this.$message.success(`Bem vindo: ${fullName}`);
+      }
     },
     handleLogout(): void {
       this["$store"].commit("USER_LOGOUT");

@@ -1,9 +1,4 @@
-const getUser = (): object => {
-  const user: any = localStorage.getItem("user");
-  return JSON.parse(user);
-};
-
-const getParsedUser = (user): object => {
+const getUserLogin = (user): object => {
   const {
     w3: { Paa: avatar, U3: email, ig: fullName, ofa: firstName }
   } = user;
@@ -16,22 +11,26 @@ const getParsedUser = (user): object => {
   };
 };
 
-const setUser = (state, user): void => {
-  const userParsed = getParsedUser(user);
+const getUserStorage = (): object => {
+  const user: any = localStorage.getItem("user");
+  return JSON.parse(user);
+};
 
-  state.user.info = userParsed;
+const setUser = (state, user): void => {
+  state.user.info = user;
   state.user.token = "token";
 
   localStorage.setItem("token", "token");
-  localStorage.setItem("user", JSON.stringify(userParsed));
+  localStorage.setItem("user", JSON.stringify(user));
 };
 
-const validateUser = (user): boolean => {
-  return true;
+const validateEmailUser = ({ email }): boolean => {
+  return new RegExp("[a-zA-Z0-9]+\@way2.com.br").test(email);
 };
 
 export {
-  getUser,
+  getUserStorage,
+  getUserLogin,
   setUser,
-  validateUser
+  validateEmailUser
 };

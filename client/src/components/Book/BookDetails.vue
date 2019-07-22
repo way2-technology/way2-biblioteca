@@ -24,12 +24,14 @@
               <span class="count">5 Reviews</span>
             </div>
 
-            <div class="loan">
-              <el-button type="primary">
-                <Unicon name="bookmark" />
-                <span>Pegar este livro emprestado</span>
-              </el-button>
-            </div>
+            <template v-if="$userLogged">
+              <div class="loan">
+                <el-button type="primary">
+                  <Unicon name="bookmark" />
+                  <span>Pegar este livro emprestado</span>
+                </el-button>
+              </div>
+            </template>
           </el-col>
           <el-col class="info">
             <div class="details">
@@ -225,7 +227,6 @@ export default Vue.extend({
 
     .rate {
       margin: 15px 0;
-      border-bottom: 1px solid #eee;
 
       .count {
         display: block;

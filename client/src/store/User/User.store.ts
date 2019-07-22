@@ -1,21 +1,23 @@
-import state from "../state";
-import { getUser, setUser, validateUser } from "./User.utils";
+import { getUserStorage, getUserLogin, setUser, validateEmailUser } from "./User.utils";
 
 const UserState = {
-  info: getUser() as any,
+  info: getUserStorage() as any,
   token: localStorage.getItem("token") as string
 };
 
 const UserMutations = {
-  "USER_LOGIN"(userParam: any): void {
-    if (!validateUser(userParam)) {
-      alert("INVALID USER");
-      return;
+  "USER_LOGIN"(state, userParam: any): boolean | object {
+    const user: any = getUserLogin(userParam);
+
+    if (!validateEmailUser(user)) {
+      return false;
     }
 
-    setUser(state, userParam);
+    setUser(state, user);
+
+    return user;
   },
-  "USER_LOGOUT"(): void {
+  "USER_LOGOUT"(state): void {
     state.user.info = null;
     state.user.token = "";
 

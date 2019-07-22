@@ -14,16 +14,18 @@
       <footer>
         <el-rate disabled v-model="rate.value" :colors="rate.colors" />
 
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Pegar este livro emprestado"
-          placement="top"
-        >
-          <button type="text">
-            <Unicon name="bookmark" />
-          </button>
-        </el-tooltip>
+        <template v-if="$userLogged">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="Pegar este livro emprestado"
+            placement="top"
+          >
+            <button type="text">
+              <Unicon name="bookmark" />
+            </button>
+          </el-tooltip>
+        </template>
       </footer>
     </el-card>
   </el-link>
@@ -123,7 +125,7 @@ export default Vue.extend({
   footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     border-top: 1px solid #eee;
     padding: 8px 16px;

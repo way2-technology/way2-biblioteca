@@ -1,8 +1,8 @@
 import Vue from "vue";
-import state from "./state";
-import mutations from "./mutations";
+import state from "./State";
+import mutations from "./Mutations";
 
-function createStore({ state: sT, mutations: mT }): object {
+function createStore({ state: sT, mutations: mT }: any): object {
   return {
     state: Vue.observable(sT),
     commit(key: string, ...args: any) {

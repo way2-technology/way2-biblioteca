@@ -4,8 +4,8 @@ const BookDetailsState = {
 };
 
 const BookDetailsMutations = {
-  "SHOW_BOOK_DETAILS"(state: any, book: any) {
-    state.bookDetails.book = book;
+  "SHOW_BOOK_DETAILS"(state: any, params: any) {
+    state.bookDetails.book = params;
     state.bookDetails.visible = true;
   },
   "CLOSE_BOOK_DETAILS"(state: any) {

@@ -3,10 +3,13 @@
     <div class="filter-books__wrapper">
       <div class="filter-books__header">
         <h3>Filtrar Livros</h3>
-        <el-button type="text" icon="el-icon-close">Limpar</el-button>
+        <div>
+          <el-button>Limpar</el-button>
+          <el-button icon="el-icon-close" @click="closePopover()"></el-button>
+        </div>
       </div>
       <div class="filter-books__list">
-        <label class="item" v-for="(item, index) in 10" :key="index">
+        <label class="item" v-for="(item, index) in 20" :key="index">
           <el-checkbox>Option</el-checkbox>
         </label>
       </div>
@@ -47,8 +50,8 @@ export default Vue.extend({
   position: relative;
   width: 300px;
   position: absolute;
-      top: calc(100% + 11px);
-    right: 0;
+  top: calc(100% + 9px);
+  right: 0;
   z-index: 1;
 
   @media screen and (max-width: 767px) {
@@ -71,10 +74,11 @@ export default Vue.extend({
     border-radius: 4px 4px 0 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     /deep/ {
       button {
-        padding: 0;
+        padding: 2px 5px;
       }
     }
   }
@@ -83,6 +87,11 @@ export default Vue.extend({
     max-height: 400px;
     overflow: auto;
     position: relative;
+    border-radius: 0 0 4px 4px;
+
+    @media screen and (max-width: 767px) {
+      max-height: calc(100vh - 145px);
+    }
 
     .item {
       border-bottom: 1px solid #eaecef;
