@@ -55,7 +55,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    async searchBooks(queryString: string, callback: any): Promise<void> {
+    async searchBooks(
+      queryString: string,
+      callback: (result) => void
+    ): Promise<void> {
       await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
       )

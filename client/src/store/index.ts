@@ -1,6 +1,6 @@
 import Vue from "vue";
-import state from "./State";
-import mutations from "./Mutations";
+import state from "./state";
+import mutations from "./mutations";
 
 function createStore({ state: sT, mutations: mT }: any): object {
   return {

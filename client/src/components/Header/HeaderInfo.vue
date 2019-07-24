@@ -1,6 +1,6 @@
 <template>
   <div class="header__info">
-    <div v-if="$userLogged">
+    <div>
       <div class="actions">
         <div>
           <button type="button" @click="popoverVisible = !popoverVisible">
@@ -14,7 +14,7 @@
           </template>
         </div>
       </div>
-      <div class="user">
+      <div class="user" v-if="$userLogged">
         <el-dropdown trigger="click" @command="handleDropdownCommand">
           <button type="button" class="btn-dropdown">
             <figure class="avatar">
@@ -34,11 +34,11 @@
         </el-dropdown>
       </div>
     </div>
-    <div v-else>
+    <div v-if="!$userLogged">
       <div class="login">
-        <GoogleLogin :params="googleParams" :onSuccess="handleLoginGoogle">
+        <GoogleLogin :params="googleParams" :onSuccess="handleLogin">
           <unicon name="entry"></unicon>
-          <strong>ENTRAR</strong>
+          <strong>LOGIN</strong>
         </GoogleLogin>
       </div>
     </div>
@@ -67,17 +67,8 @@ export default Vue.extend({
     };
   },
   methods: {
-    handleLoginGoogle($user: any): void {
+    handleLogin($user: any): void {
       this["$store"].commit("USER_LOGIN", $user);
-      this.verifyIfUserLogged();
-    },
-    verifyIfUserLogged() {
-      if (!this["$userLogged"]) {
-        this.$message.error("Oops, usuário não permitido.");
-      } else {
-        const { fullName } = this["$userLogged"];
-        this.$message.success(`Bem vindo: ${fullName}`);
-      }
     },
     handleLogout(): void {
       this["$store"].commit("USER_LOGOUT");
@@ -100,6 +91,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header__info {
+  &,
   > div {
     display: flex;
     align-items: center;
@@ -198,12 +190,20 @@ export default Vue.extend({
     button {
       padding: 0 15px;
       height: 40px;
-      margin-left: 1.2rem;
+      margin-left: 6px;
       border-radius: 2px;
       display: flex;
       align-items: center;
-      cursor: pointer;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
       outline: none;
+      cursor: pointer;
+
+      &:hover {
+        background: #3f4448;
+      }
 
       span {
         display: flex;
@@ -211,6 +211,7 @@ export default Vue.extend({
       }
 
       svg {
+        fill: #fff;
         width: 18px;
         margin-right: 5px;
       }

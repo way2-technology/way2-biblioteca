@@ -1,23 +1,27 @@
-import { getUserStorage, getUserLogin, setUser, validateEmailUser } from "./User.utils";
+import Vue from "vue";
+import {
+  parseUserToSave,
+  getUser,
+  setUser,
+  validateLogin
+} from "./User.utils";
 
 const UserState = {
-  info: getUserStorage() as any,
+  info: getUser() as any,
   token: localStorage.getItem("token") as string
 };
 
 const UserMutations = {
-  "USER_LOGIN"(state, userParam: any): boolean | object {
-    const user: any = getUserLogin(userParam);
+  "USER_LOGIN"(state: any, userParam: any): void {
+    const user: any = parseUserToSave(userParam);
+    const loginValid: boolean = validateLogin(Vue, user);
 
-    if (!validateEmailUser(user)) {
-      return false;
+    if (loginValid) {
+      setUser(state, user);
+      Vue.prototype.$message.success(`Bem vindo: ${user.fullName}`);
     }
-
-    setUser(state, user);
-
-    return user;
   },
-  "USER_LOGOUT"(state): void {
+  "USER_LOGOUT"(state: any): void {
     state.user.info = null;
     state.user.token = "";
 
