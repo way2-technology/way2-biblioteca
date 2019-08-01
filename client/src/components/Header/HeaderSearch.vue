@@ -16,7 +16,7 @@
         :debounce="500"
         :trigger-on-focus="false"
         @select="showBookDetails"
-        @focus="showSearch"
+        @focus="toggleSearch(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
           <img :src="item.image" :alt="item.title" />
@@ -26,9 +26,14 @@
           </div>
         </div>
       </el-autocomplete>
-      <el-button class="toggle-mobile" type="text" icon="el-icon-search" @click="showSearch"></el-button>
+      <el-button
+        class="toggle-mobile"
+        type="text"
+        icon="el-icon-search"
+        @click="toggleSearch(true)"
+      ></el-button>
     </div>
-    <div class="overlay" @click="closeSearch(false)"></div>
+    <div class="overlay" @click="toggleSearch(false)"></div>
   </div>
 </template>
 
@@ -54,6 +59,8 @@ export default Vue.extend({
       queryString: string,
       callback: (result) => void
     ): Promise<void> {
+      const { search, parseBooks } = this;
+
       await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
       )
@@ -62,12 +69,12 @@ export default Vue.extend({
           const { items, totalItems } = response;
 
           if (items && items.length) {
+            search.booksResults = parseBooks(items);
             this.rawApiBooks = items;
-            this.search.booksResults = this.parseBooks(items);
           }
         });
 
-      callback(this.search.booksResults);
+      callback(search.booksResults);
     },
     parseBooks(books: object[]): object[] {
       return books.map((book: any) => {
@@ -88,25 +95,20 @@ export default Vue.extend({
       });
     },
     showBookDetails(bookPreview: any): void {
-      const { closeSearch, rawApiBooks } = this;
-
-      closeSearch(false);
+      const { toggleSearch, rawApiBooks } = this;
 
       const book = rawApiBooks.find(
         (element: any) => element.id === bookPreview.id
       );
 
       this["$store"].commit("SHOW_BOOK_DETAILS", { book });
+
+      toggleSearch(false);
     },
-    showSearch() {
+    toggleSearch(value: boolean): void {
       const { search } = this;
-      search.isFocused = true;
-      search.openOnMobile = true;
-    },
-    closeSearch() {
-      const { search } = this;
-      search.isFocused = false;
-      search.openOnMobile = false;
+      search.isFocused = value;
+      search.openOnMobile = value;
     }
   }
 });
@@ -155,9 +157,9 @@ export default Vue.extend({
   @media only screen and (max-width: 767px) {
     .input {
       margin: 0;
-      width: calc(100% - 40px);
+      width: calc(100% - 22px);
       position: fixed;
-      left: 20px;
+      left: 11px;
       top: 11px;
       z-index: 1;
       visibility: hidden;
