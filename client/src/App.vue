@@ -4,7 +4,7 @@
       <Header />
     </div>
     <div class="app__content">
-      <router-view />
+      <Home />
     </div>
     <div class="app__global-components">
       <BookDetails />
@@ -15,13 +15,19 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Header from "@/components/Header/Header.vue";
-import BookDetails from "@/components/Book/BookDetails.vue";
-import ModalNewBook from "@/components/ModalNewBook/ModalNewBook.vue";
+import Home from "@/views/Home.vue";
+
+import { 
+  Header,
+  BookDetails, 
+  BookPreview, 
+  ModalNewBook, 
+} from "@/components";
 
 export default Vue.extend({
   name: "app",
   components: {
+    Home,
     Header,
     BookDetails,
     ModalNewBook

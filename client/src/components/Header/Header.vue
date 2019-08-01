@@ -2,9 +2,7 @@
   <el-header class="header">
     <div class="header__container">
       <div class="header__logo">
-        <router-link to="/">
-          <Way2Logo />
-        </router-link>
+        <Way2Logo />
       </div>
       <HeaderSearch />
       <HeaderInfo />

@@ -28,8 +28,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BookPreview from "@/components/Book/BookPreview.vue";
-import EventBus from "@/providers/EventBus.js";
+import { BookPreview } from "@/components";
+import EventBus from "@/providers/EventBus.ts";
 
 interface IBookPreview {
   books: object[];
@@ -68,7 +68,7 @@ export default Vue.extend({
         .then(res => res.json())
         .then(response => {
           const { items, totalItems } = response;
-          const { $nextTick, appElement, parsePreviewBooks } = this;
+          const { $nextTick, parsePreviewBooks } = this;
 
           this.rawApiBooks = items;
           this.booksPreview.books = parsePreviewBooks(items);
@@ -76,7 +76,7 @@ export default Vue.extend({
           this.booksPreview.loading = false;
 
           $nextTick(() => {
-            appElement.scrollTo({ top: 0, behavior: "smooth" });
+            this.appElement.scrollTo({ top: 0, behavior: "smooth" });
           });
         })
         .catch(() => {
@@ -163,7 +163,7 @@ export default Vue.extend({
 
       @media only screen and (max-width: 767px) {
         .el-pagination.is-background .el-pager li {
-          min-width: auto;
+          min-width: 25px;
         }
         .el-pagination.is-background .el-pager li.more {
           display: none;

@@ -20,10 +20,6 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "popover-filter-books-by-categories",
-  model: {
-    prop: "visible",
-    event: "visible"
-  },
   data() {
     const { categoriesSelected } = this["$store"].state;
 
@@ -67,7 +63,7 @@ export default Vue.extend({
   position: relative;
   width: 300px;
   position: absolute;
-  top: calc(100% + 9px);
+  top: calc(100% + 10px);
   right: 0;
   z-index: 1;
 

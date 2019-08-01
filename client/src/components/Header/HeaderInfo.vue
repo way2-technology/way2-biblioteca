@@ -49,8 +49,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { PopoverFilterBooksByCategories } from "@/components";
-import EventBus from "@/providers/EventBus.js";
+import EventBus from "@/providers/EventBus.ts";
+import PopoverFilterBooksByCategories from "@/components/PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.vue";
 import GoogleLogin from "vue-google-login";
 
 export default Vue.extend({
@@ -64,7 +64,7 @@ export default Vue.extend({
       popoverVisible: false,
       googleParams: {
         client_id:
-          "598656881420-qi31ki4kif89imbuu209qsac7s2j6i0j.apps.googleusercontent.com"
+          "730744187365-nidi01d6jh081kqhtuik86ksn9r8i1gr.apps.googleusercontent.com"
       }
     };
   },
@@ -92,7 +92,7 @@ export default Vue.extend({
           handleLogout();
       }
     },
-    emitEventModalNewBook(): EventBus<void> {
+    emitEventModalNewBook(): void {
       EventBus.$emit("show-modal-new-book");
     }
   }
@@ -138,9 +138,14 @@ export default Vue.extend({
     }
 
     .action__filters {
-      /deep/ .el-badge__content {
-        display: none;
-      }
+      /deep/ {
+        .el-badge {
+          display: flex;
+        }
+        .el-badge__content {
+          display: none;
+        }
+      } 
 
       .badge-visible {
         /deep/ .el-badge__content {

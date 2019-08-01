@@ -21,7 +21,7 @@
             content="Pegar este livro emprestado"
             placement="top"
           >
-            <button type="text">
+            <button type="text" v-loading>
               <Unicon name="bookmark" />
             </button>
           </el-tooltip>

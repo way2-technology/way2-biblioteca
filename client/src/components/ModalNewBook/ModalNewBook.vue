@@ -62,8 +62,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import FormRulesNewBook from "./FormRulesNewBook.js";
-import EventBus from "@/providers/EventBus.js";
+import FormRulesNewBookMixin from "./FormRulesNewBook.mixin";
+import EventBus from "@/providers/EventBus";
 
 interface IForm {
   title: string;
@@ -87,11 +87,7 @@ export default Vue.extend({
       uploadImageList: [] as object[]
     };
   },
-  computed: {
-    formRules(): FormRulesNewBook {
-      return FormRulesNewBook;
-    }
-  },
+  mixins: [FormRulesNewBookMixin],
   created() {
     this.listenEventNewBook();
   },
@@ -101,7 +97,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    listenEventNewBook(): EventBus<void> {
+    listenEventNewBook(): void {
       EventBus.$on("show-modal-new-book", () => {
         this.visible = true;
       });
