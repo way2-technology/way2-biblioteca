@@ -16,7 +16,7 @@
         :debounce="500"
         :trigger-on-focus="false"
         @select="showBookDetails"
-        @focus="setSearchFocus(true)"
+        @focus="showSearch"
       >
         <div slot-scope="{item}" class="search-preview-book">
           <img :src="item.image" :alt="item.title" />
@@ -26,14 +26,9 @@
           </div>
         </div>
       </el-autocomplete>
-      <el-button
-        class="toggle-mobile"
-        type="text"
-        icon="el-icon-search"
-        @click="toggleSearchMobile"
-      ></el-button>
+      <el-button class="toggle-mobile" type="text" icon="el-icon-search" @click="showSearch"></el-button>
     </div>
-    <div class="overlay" @click="setSearchFocus(false)"></div>
+    <div class="overlay" @click="closeSearch(false)"></div>
   </div>
 </template>
 
@@ -93,9 +88,9 @@ export default Vue.extend({
       });
     },
     showBookDetails(bookPreview: any): void {
-      const { setSearchFocus, rawApiBooks } = this;
+      const { closeSearch, rawApiBooks } = this;
 
-      setSearchFocus(false);
+      closeSearch(false);
 
       const book = rawApiBooks.find(
         (element: any) => element.id === bookPreview.id
@@ -103,11 +98,15 @@ export default Vue.extend({
 
       this["$store"].commit("SHOW_BOOK_DETAILS", { book });
     },
-    setSearchFocus(value: boolean): void {
-      this.search.isFocused = value;
+    showSearch() {
+      const { search } = this;
+      search.isFocused = true;
+      search.openOnMobile = true;
     },
-    toggleSearchMobile(): void {
-      this.search.openOnMobile = !this.search.openOnMobile;
+    closeSearch() {
+      const { search } = this;
+      search.isFocused = false;
+      search.openOnMobile = false;
     }
   }
 });
@@ -124,20 +123,20 @@ export default Vue.extend({
     justify-content: flex-end;
     flex-grow: 1;
     transition: 0.2s;
-
-    > div {
-      width: 100%;
-    }
   }
 
-  input[type="text"] {
-    background: $--color-black-3;
-    border-color: transparent;
-    border-radius: 3px;
-    transition: 0.2s;
+  .input {
+    width: 100%;
 
-    &:hover {
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    input[type="text"] {
+      background: $--color-black-3;
+      border-color: transparent;
+      border-radius: 3px;
+      transition: 0.2s;
+
+      &:hover {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
     }
   }
 
@@ -149,16 +148,32 @@ export default Vue.extend({
 
   .toggle-mobile {
     display: none;
-    color: #fff;
+    color: #fff !important;
     font-size: 16px;
   }
 
   @media only screen and (max-width: 767px) {
     .input {
-      display: none;
+      margin: 0;
+      width: calc(100% - 40px);
+      position: fixed;
+      left: 20px;
+      top: 11px;
+      z-index: 1;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
     }
+
     .toggle-mobile {
       display: block;
+    }
+
+    &.header__search--mobile-open {
+      .input {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 }

@@ -19,7 +19,7 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-circle-plus" command="add-book">Novo Livro</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus-outline" command="add-book">Novo Livro</el-dropdown-item>
             <el-dropdown-item command="see-books">
               <unicon name="notebooks"></unicon>
               <span>Ver Livros emprestados</span>
