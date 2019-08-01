@@ -1,3 +1,5 @@
+import { IStateUser } from "./User.store";
+
 const parseUserToSave = (user): void | object => {
   if (!user) {
     return;
@@ -15,12 +17,17 @@ const parseUserToSave = (user): void | object => {
   };
 };
 
+const getToken = (): string => {
+  const token: string = localStorage.getItem("token") || "";
+  return token;
+};
+
 const getUser = (): object => {
   const user: any = localStorage.getItem("user");
   return JSON.parse(user);
 };
 
-const setUser = (state, user): void => {
+const setUser = (state: IStateUser, user): void => {
   state.user.info = user;
   state.user.token = "token";
 
@@ -28,18 +35,26 @@ const setUser = (state, user): void => {
   localStorage.setItem("user", JSON.stringify(user));
 };
 
-const validateEmailUser = ({ email }): boolean => {
+const unsetUser = (state: IStateUser): void => {
+  state.user.info = null;
+  state.user.token = "";
+
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+};
+
+const validateEmailUser = (email: string): boolean => {
   return new RegExp("[a-zA-Z0-9]+\@way2.com.br").test(email);
 };
 
 const validateLogin = (Vue, user): boolean => {
   if (!user) {
-    Vue.prototype.$message.error("Oops, Algo deu errado com o login");
+    Vue.prototype.$message.error("Oops, Algo deu errado, tente novamente mais tarde!");
     return false;
   }
 
   if (!validateEmailUser(user)) {
-    Vue.prototype.$message.error("Oops, Somente é permitido logar-se com e-mail referente a Way2 Tecnologia");
+    Vue.prototype.$message.error("Oops, Somente é permitido logar-se com e-mail referente a Way2 Tecnologia.");
     return false;
   }
 
@@ -48,7 +63,9 @@ const validateLogin = (Vue, user): boolean => {
 
 export {
   parseUserToSave,
+  getToken,
   getUser,
   setUser,
+  unsetUser,
   validateLogin
 };

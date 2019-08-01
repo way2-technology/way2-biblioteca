@@ -59,23 +59,24 @@ export default Vue.extend({
     this.getBooks();
   },
   methods: {
-    async getBooks($evtPage: number = 0): Promise<void> {
+    async getBooks(evtPage: number = 0): Promise<void> {
       this.booksPreview.loading = true;
 
       await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${$evtPage}&maxResults=12`
+        `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${evtPage}&maxResults=12`
       )
         .then(res => res.json())
         .then(response => {
           const { items, totalItems } = response;
+          const { $nextTick, appElement, parsePreviewBooks } = this;
 
           this.rawApiBooks = items;
-          this.booksPreview.books = this.parsePreviewBooks(items);
+          this.booksPreview.books = parsePreviewBooks(items);
           this.booksPreview.totalItems = totalItems;
           this.booksPreview.loading = false;
 
-          this.$nextTick(() => {
-            this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+          $nextTick(() => {
+            appElement.scrollTo({ top: 0, behavior: "smooth" });
           });
         })
         .catch(() => {
@@ -104,10 +105,10 @@ export default Vue.extend({
         };
       });
     },
-    showBookDetails($id: string): void {
-      const book = this.rawApiBooks.find((element: any) => element.id === $id);
+    showBookDetails(id: string): void {
+      const book = this.rawApiBooks.find((element: any) => element.id === id);
 
-      this["$store"].commit("SHOW_BOOK_DETAILS", book);
+      this["$store"].commit("SHOW_BOOK_DETAILS", { book });
     }
   }
 });

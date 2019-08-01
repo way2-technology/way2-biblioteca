@@ -92,14 +92,16 @@ export default Vue.extend({
         };
       });
     },
-    showBookDetails($bookPreview: any): void {
-      this.setSearchFocus(false);
+    showBookDetails(bookPreview: any): void {
+      const { setSearchFocus, rawApiBooks } = this;
 
-      const book = this.rawApiBooks.find(
-        (element: any) => element.id === $bookPreview.id
+      setSearchFocus(false);
+
+      const book = rawApiBooks.find(
+        (element: any) => element.id === bookPreview.id
       );
 
-      this["$store"].commit("SHOW_BOOK_DETAILS", book);
+      this["$store"].commit("SHOW_BOOK_DETAILS", { book });
     },
     setSearchFocus(value: boolean): void {
       this.search.isFocused = value;

@@ -76,6 +76,7 @@ interface IForm {
 }
 
 export default Vue.extend({
+  name: "modal-new-book",
   data() {
     return {
       visible: false as boolean,

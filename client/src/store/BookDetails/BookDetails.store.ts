@@ -1,14 +1,23 @@
-const BookDetailsState = {
-  book: {} as object,
-  visible: false as boolean
+interface IStateBookDetails {
+  bookDetails: {
+    book: object,
+    visible: boolean
+  };
+}
+
+const BookDetailsState: IStateBookDetails = {
+  bookDetails: {
+    book: {},
+    visible: false
+  }
 };
 
 const BookDetailsMutations = {
-  "SHOW_BOOK_DETAILS"(state: any, params: any) {
-    state.bookDetails.book = params;
+  "SHOW_BOOK_DETAILS"(state: IStateBookDetails, payload: any) {
+    state.bookDetails.book = payload.book;
     state.bookDetails.visible = true;
   },
-  "CLOSE_BOOK_DETAILS"(state: any) {
+  "CLOSE_BOOK_DETAILS"(state: IStateBookDetails) {
     state.bookDetails.visible = false;
   }
 };

@@ -85,6 +85,7 @@ interface IBookDisplay {
 }
 
 export default Vue.extend({
+  name: "book-details",
   mixins: [BookRateMixin],
   computed: {
     asideVisble(): boolean {

@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
+    "@types/node": "^12.6.8",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-pwa": "^3.5.0",
     "@vue/cli-plugin-typescript": "^3.5.0",

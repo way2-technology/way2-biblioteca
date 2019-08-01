@@ -3,15 +3,12 @@
     <div class="filter-books__wrapper">
       <div class="filter-books__header">
         <h3>Filtrar Livros</h3>
-        <div>
-          <el-button>Limpar</el-button>
-          <el-button icon="el-icon-close" @click="closePopover()"></el-button>
-        </div>
+        <el-button :disabled="innerCategoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
       </div>
       <div class="filter-books__list">
-        <label class="item" v-for="(item, index) in 20" :key="index">
-          <el-checkbox>Option</el-checkbox>
-        </label>
+        <el-checkbox-group v-model="innerCategoriesSelected" @change="handleChangeSelected">
+          <el-checkbox v-for="(item, index) in categoriesOptions" :label="index" :key="index">Option</el-checkbox>
+        </el-checkbox-group>
       </div>
     </div>
     <div class="overlay" @click="closePopover()"></div>
@@ -20,18 +17,38 @@
 
 <script lang="ts">
 import Vue from "vue";
+
 export default Vue.extend({
-  name: "popover-filter-books",
+  name: "popover-filter-books-by-categories",
   model: {
     prop: "visible",
     event: "visible"
   },
   data() {
+    const { categoriesSelected } = this["$store"].state;
+
     return {
-      categories: [] as object[]
+      categoriesOptions: [
+        {
+          id: 1,
+          value: "Option1"
+        },
+        {
+          id: 2,
+          value: "Option2"
+        }
+      ] as object[],
+      innerCategoriesSelected: categoriesSelected as object[]
     };
   },
   methods: {
+    handleChangeSelected(categories): void {
+      this["$store"].commit("SET_FILTERS", { categories });
+    },
+    clearAllFilters(): void {
+      this.innerCategoriesSelected = [];
+      this["$store"].commit("SET_FILTERS", { categories: [] });
+    },
     closePopover(): void {
       this.$emit("close");
     }
@@ -62,6 +79,7 @@ export default Vue.extend({
   }
 
   &__wrapper {
+    width: 100%;
     position: relative;
     z-index: 2;
   }
@@ -69,31 +87,41 @@ export default Vue.extend({
   &__header {
     background: #f6f8fa;
     border-bottom: 1px solid #e1e4e8;
-    line-height: 16px;
+    line-height: 20px;
     padding: 12px 10px;
     border-radius: 4px 4px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    > div {
+      display: flex;
+      align-items: center;
+    }
     /deep/ {
       button {
+        display: flex;
         padding: 2px 5px;
       }
     }
   }
 
   &__list {
-    max-height: 400px;
-    overflow: auto;
-    position: relative;
-    border-radius: 0 0 4px 4px;
+    > div {
+      max-height: 400px;
+      overflow: auto;
+      position: relative;
+      border-radius: 0 0 4px 4px;
+      display: flex;
+      flex-direction: column;
 
-    @media screen and (max-width: 767px) {
-      max-height: calc(100vh - 145px);
+      @media screen and (max-width: 767px) {
+        max-height: calc(100vh - 145px);
+      }
     }
 
-    .item {
+    label {
+      width: 100%;
       border-bottom: 1px solid #eaecef;
       background: #fff;
       color: inherit;
@@ -102,13 +130,13 @@ export default Vue.extend({
       overflow: hidden;
       padding: 8px 8px 8px 16px;
 
+      &:hover {
+        background: #e0eaf5 !important;
+      }
+
       &:last-child {
         border-bottom: 0;
         border-radius: 0 0 4px 4px;
-      }
-
-      &:hover:not(.is-checked) {
-        background: rgba(36, 106, 182, 0.2);
       }
 
       input[type="checkbox"] {

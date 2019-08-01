@@ -2,20 +2,15 @@
   <div class="header__info">
     <div>
       <div class="actions">
-        <div>
-          <button type="button" @click="popoverVisible = !popoverVisible">
-            <el-badge :value="12">
-              <unicon name="filter"></unicon>
-            </el-badge>
-          </button>
-
-          <template v-if="popoverVisible">
-            <PopoverFilterBooks @close="popoverVisible = false" />
-          </template>
-        </div>
+        <button class="action__filters" type="button" @click="popoverVisible = !popoverVisible">
+          <el-badge :value="countFilters" :class="{'badge-visible': countFilters > 0}">
+            <unicon name="filter"></unicon>
+          </el-badge>
+        </button>
+        <PopoverFilterBooksByCategories v-if="popoverVisible" @close="popoverVisible = false" />
       </div>
       <div class="user" v-if="$userLogged">
-        <el-dropdown trigger="click" @command="handleDropdownCommand">
+        <el-dropdown class="user__dropdown" trigger="click" @command="handleDropdownCommand">
           <button type="button" class="btn-dropdown">
             <figure class="avatar">
               <img :src="$userLogged.avatar" alt="User Avatar" />
@@ -25,10 +20,17 @@
           </button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item icon="el-icon-circle-plus" command="add-book">Novo Livro</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-plus" command="see-books">Ver Livros emprestados</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus" command="see-goals">Metas de leitura</el-dropdown-item>
+            <el-dropdown-item command="see-books">
+              <unicon name="notebooks"></unicon>
+              <span>Ver Livros emprestados</span>
+            </el-dropdown-item>
+            <el-dropdown-item command="see-goals">
+              <unicon name="books"></unicon>
+              <span>Metas de leitura</span>
+            </el-dropdown-item>
             <el-dropdown-item command="logout">
-              <unicon name="entry"></unicon>Sair
+              <unicon name="exit"></unicon>
+              <span>Sair</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -38,7 +40,7 @@
       <div class="login">
         <GoogleLogin :params="googleParams" :onSuccess="handleLogin">
           <unicon name="entry"></unicon>
-          <strong>LOGIN</strong>
+          <strong>ENTRAR</strong>
         </GoogleLogin>
       </div>
     </div>
@@ -47,14 +49,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import PopoverFilterBooks from "@/components/PopoverFilterBooks/PopoverFilterBooks.vue";
-import GoogleLogin from "vue-google-login";
+import { PopoverFilterBooksByCategories } from "@/components";
 import EventBus from "@/providers/EventBus.js";
+import GoogleLogin from "vue-google-login";
 
 export default Vue.extend({
   name: "header-info",
   components: {
-    PopoverFilterBooks,
+    PopoverFilterBooksByCategories,
     GoogleLogin
   },
   data() {
@@ -66,20 +68,28 @@ export default Vue.extend({
       }
     };
   },
+  computed: {
+    countFilters(): number {
+      const { categoriesSelected } = this["$store"].state;
+      return categoriesSelected.length;
+    }
+  },
   methods: {
-    handleLogin($user: any): void {
-      this["$store"].commit("USER_LOGIN", $user);
+    handleLogin(user: any): void {
+      this["$store"].commit("USER_LOGIN", { user });
     },
     handleLogout(): void {
       this["$store"].commit("USER_LOGOUT");
     },
     handleDropdownCommand(command: string): void {
+      const { emitEventModalNewBook, handleLogout } = this;
+
       switch (command) {
         case "add-book":
-          this.emitEventModalNewBook();
+          emitEventModalNewBook();
           break;
         case "logout":
-          this.handleLogout();
+          handleLogout();
       }
     },
     emitEventModalNewBook(): EventBus<void> {
@@ -99,28 +109,43 @@ export default Vue.extend({
 
   .actions {
     display: flex;
-    width: 70px;
-    justify-content: space-around;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: 7px;
 
-    > div,
     button {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-grow: 1;
-      position: relative;
-    }
-
-    button {
       background: transparent;
       border: 0;
       min-height: 40px;
       cursor: pointer;
       outline: none;
+      border-radius: 3px;
+
+      &:hover {
+        background: #3f4448;
+      }
 
       svg {
         fill: #fff;
         width: 20px;
+      }
+    }
+
+    .action__filters {
+      /deep/ .el-badge__content {
+        display: none;
+      }
+
+      .badge-visible {
+        /deep/ .el-badge__content {
+          display: block;
+        }
       }
     }
   }
@@ -188,16 +213,16 @@ export default Vue.extend({
 
   .login {
     button {
-      padding: 0 15px;
+      padding: 0 8px;
       height: 40px;
-      margin-left: 6px;
       border-radius: 2px;
       display: flex;
       align-items: center;
       color: #fff;
       background: transparent;
-      border: 1px solid #fff;
-      border-radius: 4px;
+      border: 0;
+      border-radius: 3px;
+      font-size: 13px;
       outline: none;
       cursor: pointer;
 
@@ -212,8 +237,27 @@ export default Vue.extend({
 
       svg {
         fill: #fff;
-        width: 18px;
+        width: 20px;
         margin-right: 5px;
+      }
+    }
+  }
+}
+
+.el-dropdown-menu {
+  .el-dropdown-menu__item {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 5px;
+      width: 15px;
+      fill: #606266;
+    }
+
+    &:hover {
+      svg {
+        fill: #3482d6;
       }
     }
   }
