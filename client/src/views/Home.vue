@@ -1,7 +1,7 @@
 <template>
   <el-container class="home">
     <div class="home__container">
-      <div class="books" v-loading="booksPreview.loading">
+      <div class="books" v-loading="$loader.active && $loader.type === 'books'">
         <template v-for="(book, index) in booksPreview.books">
           <BookPreview
             :id="book.id"
@@ -34,7 +34,6 @@ import EventBus from "@/providers/EventBus.ts";
 interface IBookPreview {
   books: object[];
   totalItems: number;
-  loading: boolean;
 }
 
 export default Vue.extend({
@@ -46,8 +45,7 @@ export default Vue.extend({
     rawApiBooks: [] as object[],
     booksPreview: {
       books: [],
-      totalItems: 0,
-      loading: false
+      totalItems: 0
     } as IBookPreview
   }),
   computed: {
@@ -60,28 +58,21 @@ export default Vue.extend({
   },
   methods: {
     async getBooks(evtPage: number = 0): Promise<void> {
-      this.booksPreview.loading = true;
+      const response = await this["$getWithLoader"]({
+        url: `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${evtPage}&maxResults=12`,
+        typeLoader: "books"
+      });
 
-      await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${evtPage}&maxResults=12`
-      )
-        .then(res => res.json())
-        .then(response => {
-          const { items, totalItems } = response;
-          const { $nextTick, parsePreviewBooks } = this;
+      const { items, totalItems } = response;
+      const { $nextTick, parsePreviewBooks } = this;
 
-          this.rawApiBooks = items;
-          this.booksPreview.books = parsePreviewBooks(items);
-          this.booksPreview.totalItems = totalItems;
-          this.booksPreview.loading = false;
+      this.rawApiBooks = items;
+      this.booksPreview.books = parsePreviewBooks(items);
+      this.booksPreview.totalItems = totalItems;
 
-          $nextTick(() => {
-            this.appElement.scrollTo({ top: 0, behavior: "smooth" });
-          });
-        })
-        .catch(() => {
-          this.booksPreview.loading = false;
-        });
+      $nextTick(() => {
+        this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+      });
     },
     parsePreviewBooks(books: object[]): object[] {
       return books.map((book: any) => {

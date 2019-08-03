@@ -10,7 +10,7 @@ import {
 
 export interface IStateUser {
   user: {
-    info: any;
+    info;
     token: string;
   };
 }
@@ -23,7 +23,7 @@ const UserState: IStateUser = {
 };
 
 const UserMutations = {
-  "USER_LOGIN"(state: IStateUser, payload: any): void {
+  "USER_LOGIN"(state: IStateUser, payload): void {
     const userParsed: any = parseUserToSave(payload.user);
     const loginIsValid: boolean = validateLogin(Vue, userParsed.email);
 

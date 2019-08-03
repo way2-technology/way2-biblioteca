@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BookRateMixin from "./BookRate.mixin";
+import BookRateMixin from "../BookRate.mixin";
 
 interface IBookDisplay {
   id: [number, string];

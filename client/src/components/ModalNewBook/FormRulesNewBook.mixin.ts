@@ -13,8 +13,8 @@ const FormRulesNewBookMixin = {
         }],
         requiredMessageBlur: [{
           required: true,
+          trigger: "blur",
           message: "Campo obrigatório",
-          trigger: "blur"
         }]
       };
     }

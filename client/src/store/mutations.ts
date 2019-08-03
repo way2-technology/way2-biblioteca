@@ -1,10 +1,11 @@
-import state from "./state";
-import { UserMutations } from "./User/User.store";
-import { BookDetailsMutations } from "./BookDetails/BookDetails.store";
-import { PopoverFilterBooksByCategoriesMutations } from "./PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.store";
+import { UserMutations } from "./common/User/User.store";
+import { LoaderMutations } from "./common/Loader/Loader.store";
+import { BookDetailsMutations } from "./components/BookDetails/BookDetails.store";
+import { PopoverFilterBooksByCategoriesMutations } from "./components/PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.store";
 
 const mutations = {
   ...UserMutations,
+  ...LoaderMutations,
   ...BookDetailsMutations,
   ...PopoverFilterBooksByCategoriesMutations
 };

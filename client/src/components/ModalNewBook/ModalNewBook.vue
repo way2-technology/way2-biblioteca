@@ -215,6 +215,9 @@ export default Vue.extend({
         display: block;
       }
     }
+    .el-upload-list__item.is-success .el-upload-list__item-status-label {
+      display: none;
+    }
   }
 }
 </style>

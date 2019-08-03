@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BookRate from "./BookRate.mixin";
+import BookRate from "../BookRate.mixin";
 
 export default Vue.extend({
   name: "book-preview",

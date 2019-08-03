@@ -7,7 +7,7 @@ const PopoverFilterBooksByCategoriesState: IStatePopoverFilters = {
 };
 
 const PopoverFilterBooksByCategoriesMutations = {
-  "SET_FILTERS"(state: IStatePopoverFilters, payload: any): void {
+  "SET_FILTERS"(state: IStatePopoverFilters, payload): void {
     state.categoriesSelected = payload.categories;
   }
 };

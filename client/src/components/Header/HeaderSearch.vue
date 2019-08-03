@@ -59,22 +59,22 @@ export default Vue.extend({
       queryString: string,
       callback: (result) => void
     ): Promise<void> {
-      const { search, parseBooks } = this;
-
-      await fetch(
+      const response = await this["$get"](
         `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
-      )
-        .then(res => res.json())
-        .then(response => {
-          const { items, totalItems } = response;
+      );
 
-          if (items && items.length) {
-            search.booksResults = parseBooks(items);
-            this.rawApiBooks = items;
-          }
-        });
+      if (typeof response === "object") {
+        const { items, totalItems } = response;
 
-      callback(search.booksResults);
+        this.search.booksResults = this.parseBooks(items);
+        this.rawApiBooks = items;
+
+        callback(this.search.booksResults);
+      } else {
+        this.$message.error(
+          "Oops, Algo deu errado, tente novamente mais tarde!"
+        );
+      }
     },
     parseBooks(books: object[]): object[] {
       return books.map((book: any) => {
@@ -83,18 +83,22 @@ export default Vue.extend({
           volumeInfo: { categories, title, imageLinks }
         } = book;
 
+        const category =
+          categories && typeof categories === "object"
+            ? categories[0]
+            : "General";
+
+        const image = imageLinks ? imageLinks.thumbnail : "";
+
         return {
           id,
           title,
-          category:
-            categories && typeof categories === "object"
-              ? categories[0]
-              : "General",
-          image: imageLinks.thumbnail ? imageLinks.thumbnail : ""
+          category,
+          image
         };
       });
     },
-    showBookDetails(bookPreview: any): void {
+    showBookDetails(bookPreview): void {
       const { toggleSearch, rawApiBooks } = this;
 
       const book = rawApiBooks.find(
@@ -151,7 +155,7 @@ export default Vue.extend({
   .toggle-mobile {
     display: none;
     color: #fff !important;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   @media only screen and (max-width: 767px) {

@@ -1,9 +1,11 @@
-import { UserState } from "./User/User.store";
-import { BookDetailsState } from "./BookDetails/BookDetails.store";
-import { PopoverFilterBooksByCategoriesState } from "./PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.store";
+import { UserState } from "./common/User/User.store";
+import { LoaderState } from "./common/Loader/Loader.store";
+import { BookDetailsState } from "./components/BookDetails/BookDetails.store";
+import { PopoverFilterBooksByCategoriesState } from "./components/PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.store";
 
 const state = {
   ...UserState,
+  ...LoaderState,
   ...BookDetailsState,
   ...PopoverFilterBooksByCategoriesState
 };

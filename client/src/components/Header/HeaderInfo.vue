@@ -75,7 +75,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleLogin(user: any): void {
+    handleLogin(user): void {
       this["$store"].commit("USER_LOGIN", { user });
     },
     handleLogout(): void {

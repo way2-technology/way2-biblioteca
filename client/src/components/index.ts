@@ -1,5 +1,5 @@
-import BookPreview from "./Book/BookPreview.vue";
-import BookDetails from "./Book/BookDetails.vue";
+import BookPreview from "./Book/BookPreview/BookPreview.vue";
+import BookDetails from "./Book/BookDetails/BookDetails.vue";
 import Header from "./Header/Header.vue";
 import HeaderInfo from "./Header/HeaderInfo.vue";
 import HeaderSearch from "./Header/HeaderSearch.vue";
