@@ -12,19 +12,16 @@
       <div class="user" v-if="$userLogged">
         <el-dropdown class="user__dropdown" trigger="click" @command="handleDropdownCommand">
           <button type="button" class="btn-dropdown">
-            <figure class="avatar">
-              <img :src="$userLogged.avatar" alt="User Avatar" />
-            </figure>
-            <span class="name no-mobile">{{ $userLogged.firstName }}</span>
+            <Avatar :url="$userLogged.avatar" :name="$userLogged.firstName" />
             <i class="el-icon-arrow-down el-icon--right"></i>
           </button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item icon="el-icon-circle-plus-outline" command="add-book">Novo Livro</el-dropdown-item>
-            <el-dropdown-item command="see-books">
+            <el-dropdown-item disabled command="see-books">
               <unicon name="notebooks"></unicon>
               <span>Ver Livros emprestados</span>
             </el-dropdown-item>
-            <el-dropdown-item command="see-goals">
+            <el-dropdown-item disabled command="see-goals">
               <unicon name="books"></unicon>
               <span>Metas de leitura</span>
             </el-dropdown-item>
@@ -49,13 +46,15 @@
 
 <script lang="ts">
 import Vue from "vue";
-import EventBus from "@/providers/EventBus.ts";
+import EventBus from "@/common/providers/EventBus.ts";
+import Avatar from "@/common/components/Avatar.vue";
 import PopoverFilterBooksByCategories from "@/components/PopoverFilterBooksByCategories/PopoverFilterBooksByCategories.vue";
 import GoogleLogin from "vue-google-login";
 
 export default Vue.extend({
   name: "header-info",
   components: {
+    Avatar,
     PopoverFilterBooksByCategories,
     GoogleLogin
   },
@@ -70,16 +69,16 @@ export default Vue.extend({
   },
   computed: {
     countFilters(): number {
-      const { categoriesSelected } = this["$store"].state;
+      const { categoriesSelected } = this.$store.state;
       return categoriesSelected.length;
     }
   },
   methods: {
     handleLogin(user): void {
-      this["$store"].commit("USER_LOGIN", { user });
+      this.$store.commit("USER_LOGIN", { user });
     },
     handleLogout(): void {
-      this["$store"].commit("USER_LOGOUT");
+      this.$store.commit("USER_LOGOUT");
     },
     handleDropdownCommand(command: string): void {
       const { emitEventModalNewBook, handleLogout } = this;
@@ -145,7 +144,7 @@ export default Vue.extend({
         .el-badge__content {
           display: none;
         }
-      } 
+      }
 
       .badge-visible {
         /deep/ .el-badge__content {
@@ -174,26 +173,15 @@ export default Vue.extend({
       }
     }
 
-    .avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 100%;
-      background: #eee;
-      margin: 0 8px 0 0;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .name {
-      font-size: 15px;
-      font-weight: bold;
+    /deep/ .name {
       max-width: 115px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
     }
 
     .btn {

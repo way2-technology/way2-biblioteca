@@ -3,10 +3,10 @@
     <div class="filter-books__wrapper">
       <div class="filter-books__header">
         <h3>Filtrar Livros</h3>
-        <el-button :disabled="innerCategoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
+        <el-button :disabled="categoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
       </div>
       <div class="filter-books__list">
-        <el-checkbox-group v-model="innerCategoriesSelected" @change="handleChangeSelected">
+        <el-checkbox-group v-model="categoriesSelected" @change="handleChangeSelected">
           <el-checkbox v-for="(item, index) in categoriesOptions" :label="index" :key="index">Option</el-checkbox>
         </el-checkbox-group>
       </div>
@@ -21,29 +21,20 @@ import Vue from "vue";
 export default Vue.extend({
   name: "popover-filter-books-by-categories",
   data() {
-    const { categoriesSelected } = this["$store"].state;
+    const { categoriesOptions, categoriesSelected } = this["$store"].state;
 
     return {
-      categoriesOptions: [
-        {
-          id: 1,
-          value: "Option1"
-        },
-        {
-          id: 2,
-          value: "Option2"
-        }
-      ] as object[],
-      innerCategoriesSelected: categoriesSelected as object[]
+      categoriesOptions,
+      categoriesSelected
     };
   },
   methods: {
     handleChangeSelected(categories): void {
-      this["$store"].commit("SET_FILTERS", { categories });
+      this.$store.commit("SET_FILTERS", { categories });
     },
     clearAllFilters(): void {
       this.innerCategoriesSelected = [];
-      this["$store"].commit("SET_FILTERS", { categories: [] });
+      this.$store.commit("SET_FILTERS", { categories: [] });
     },
     closePopover(): void {
       this.$emit("close");

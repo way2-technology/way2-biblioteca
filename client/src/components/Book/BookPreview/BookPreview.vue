@@ -2,17 +2,17 @@
   <el-link class="book">
     <el-card>
       <figure class="book__image" @click="triggerShowBook">
-        <img :src="image" />
+        <img :src="book.image" />
       </figure>
 
       <div class="book__categories">
-        <el-tag size="mini">{{category}}</el-tag>
+        <el-tag size="mini">{{book.category}}</el-tag>
       </div>
 
-      <h2 class="book__title">{{ title }}</h2>
+      <h2 class="book__title">{{ book.title }}</h2>
 
       <footer>
-        <el-rate disabled v-model="rate.value" :colors="rate.colors" />
+        <el-rate disabled v-model="book.rate.value" :colors="rate.colors" />
 
         <template v-if="$userLogged">
           <el-tooltip
@@ -20,11 +20,14 @@
             effect="dark"
             content="Pegar este livro emprestado"
             placement="top"
+            v-if="book.borrowed"
           >
             <button type="text" v-loading>
               <Unicon name="bookmark" />
             </button>
           </el-tooltip>
+
+          <Avatar v-else :url="book.borrowed.avatar" />
         </template>
       </footer>
     </el-card>
@@ -33,32 +36,24 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Avatar from "@/common/components/Avatar.vue";
 import BookRate from "../BookRate.mixin";
 
 export default Vue.extend({
   name: "book-preview",
+  components: {
+    Avatar
+  },
   props: {
-    id: {
-      type: [String, Number],
+    book: {
+      type: Object,
       required: true
-    },
-    title: {
-      type: String,
-      default: ""
-    },
-    category: {
-      type: String,
-      default: ""
-    },
-    image: {
-      type: String,
-      default: ""
     }
   },
   mixins: [BookRate],
   methods: {
     triggerShowBook(): void {
-      this.$emit("trigger-show-book", this.id);
+      this.$emit("trigger-show-book", this.book.id);
     }
   }
 });

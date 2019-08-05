@@ -15,14 +15,14 @@ export interface IStateUser {
   };
 }
 
-const UserState: IStateUser = {
+const State: IStateUser = {
   user: {
     info: getUser(),
     token: getToken()
   }
 };
 
-const UserMutations = {
+const Mutations = {
   "USER_LOGIN"(state: IStateUser, payload): void {
     const userParsed: any = parseUserToSave(payload.user);
     const loginIsValid: boolean = validateLogin(Vue, userParsed.email);
@@ -37,4 +37,7 @@ const UserMutations = {
   }
 };
 
-export { UserState, UserMutations };
+export {
+  State as UserState,
+  Mutations as UserMutations
+};

@@ -1,6 +1,6 @@
 import {
   Ajax
-} from "./plugins/";
+} from "./common/plugins";
 
 const Plugins = {
   install(Vue) {

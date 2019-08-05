@@ -5,14 +5,14 @@ interface IStateLoader {
   };
 }
 
-const LoaderState: IStateLoader = {
+const State: IStateLoader = {
   $loader: {
     active: false,
     type: ""
   }
 };
 
-const LoaderMutations = {
+const Mutations = {
   "SHOW_LOADER"(state: IStateLoader, payload) {
     state.$loader.type = payload.type;
     state.$loader.active = true;
@@ -23,4 +23,7 @@ const LoaderMutations = {
   }
 };
 
-export { LoaderState, LoaderMutations };
+export {
+  State as LoaderState,
+  Mutations as LoaderMutations
+};

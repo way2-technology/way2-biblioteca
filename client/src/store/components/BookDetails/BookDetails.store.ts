@@ -5,14 +5,14 @@ interface IStateBookDetails {
   };
 }
 
-const BookDetailsState: IStateBookDetails = {
+const State: IStateBookDetails = {
   bookDetails: {
     book: {},
     visible: false
   }
 };
 
-const BookDetailsMutations = {
+const Mutations = {
   "SHOW_BOOK_DETAILS"(state: IStateBookDetails, payload) {
     state.bookDetails.book = payload.book;
     state.bookDetails.visible = true;
@@ -22,4 +22,4 @@ const BookDetailsMutations = {
   }
 };
 
-export { BookDetailsState, BookDetailsMutations };
+export { State as BookDetailsState, Mutations as BookDetailsMutations };

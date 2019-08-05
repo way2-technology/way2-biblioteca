@@ -12,7 +12,7 @@
         placeholder="Digite para buscar algum livro..."
         suffix-icon="el-icon-search"
         v-model="search.value"
-        :fetch-suggestions="searchBooks"
+        :fetch-suggestions="handleSearchBooks"
         :debounce="500"
         :trigger-on-focus="false"
         @select="showBookDetails"
@@ -39,7 +39,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import EventBus from "@/providers/EventBus.ts";
+import EventBus from "@/common/providers/EventBus";
+import { parseBooks } from "@/common/helpers/Books";
 
 export default Vue.extend({
   name: "header-search",
@@ -55,7 +56,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    async searchBooks(
+    async handleSearchBooks(
       queryString: string,
       callback: (result) => void
     ): Promise<void> {
@@ -66,7 +67,7 @@ export default Vue.extend({
       if (typeof response === "object") {
         const { items, totalItems } = response;
 
-        this.search.booksResults = this.parseBooks(items);
+        this.search.booksResults = parseBooks(items);
         this.rawApiBooks = items;
 
         callback(this.search.booksResults);
@@ -76,28 +77,6 @@ export default Vue.extend({
         );
       }
     },
-    parseBooks(books: object[]): object[] {
-      return books.map((book: any) => {
-        const {
-          id,
-          volumeInfo: { categories, title, imageLinks }
-        } = book;
-
-        const category =
-          categories && typeof categories === "object"
-            ? categories[0]
-            : "General";
-
-        const image = imageLinks ? imageLinks.thumbnail : "";
-
-        return {
-          id,
-          title,
-          category,
-          image
-        };
-      });
-    },
     showBookDetails(bookPreview): void {
       const { toggleSearch, rawApiBooks } = this;
 
@@ -105,7 +84,7 @@ export default Vue.extend({
         (element: any) => element.id === bookPreview.id
       );
 
-      this["$store"].commit("SHOW_BOOK_DETAILS", { book });
+      this.$store.commit("SHOW_BOOK_DETAILS", { book });
 
       toggleSearch(false);
     },

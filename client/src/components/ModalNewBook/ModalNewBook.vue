@@ -63,7 +63,7 @@
 <script lang="ts">
 import Vue from "vue";
 import FormRulesNewBookMixin from "./FormRulesNewBook.mixin";
-import EventBus from "@/providers/EventBus";
+import EventBus from "@/common/providers/EventBus";
 
 interface IForm {
   title: string;

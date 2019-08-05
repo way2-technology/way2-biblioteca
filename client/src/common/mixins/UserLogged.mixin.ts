@@ -3,7 +3,7 @@ const UserLoggedMixin = {
     $userLogged(): object {
       const {
         user: { info }
-      } = this["$store"].state;
+      } = this.$store.state;
 
       return info;
     }

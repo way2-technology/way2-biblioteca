@@ -20,16 +20,23 @@
             </figure>
 
             <div class="rate">
-              <el-rate disabled v-model="rate.value" :colors="rate.colors" />
-              <span class="count">5 Reviews</span>
+              <el-rate disabled :value="bookDisplay.rate.value" :colors="rate.colors" />
+              <span class="count">{{ bookDisplay.rate.count }} Reviews</span>
             </div>
 
             <template v-if="$userLogged">
-              <div class="loan">
-                <el-button type="primary">
+              <div class="borrow" v-if="!bookDisplay.borrowed">
+                <el-button type="primary" :loading="false">
                   <Unicon name="bookmark" />
                   <span>Pegar este livro emprestado</span>
                 </el-button>
+              </div>
+              <div class="borrowed" v-else>
+                <Avatar
+                  :url="bookDisplay.borrowed.avatar"
+                  :name="bookDisplay.borrowed.fullName"
+                  desc="Livro emprestado para:"
+                />
               </div>
             </template>
           </el-col>
@@ -72,9 +79,10 @@
 <script lang="ts">
 import Vue from "vue";
 import BookRateMixin from "../BookRate.mixin";
+import Avatar from "@/common/components/Avatar.vue";
 
 interface IBookDisplay {
-  id: [number, string];
+  id: number | string;
   title: string;
   description: string;
   image: string;
@@ -82,23 +90,33 @@ interface IBookDisplay {
   publicacao: Date;
   editora: string;
   paginas: number;
+  isbn: number | string;
+  rate: object;
+  borrowed: object | null;
 }
 
 export default Vue.extend({
   name: "book-details",
+  components: {
+    Avatar
+  },
   mixins: [BookRateMixin],
   computed: {
     asideVisble(): boolean {
       const {
         bookDetails: { visible }
-      } = this["$store"].state;
+      } = this.$store.state;
 
       return visible;
     },
     bookDisplay(): IBookDisplay {
       const {
         bookDetails: { book }
-      } = this["$store"].state;
+      } = this.$store.state;
+
+      /**To remove */
+      const { fullName, avatar } = this.$userLogged;
+      /**To remove */
 
       const {
         id,
@@ -118,13 +136,22 @@ export default Vue.extend({
         categories: bookCats,
         publicacao: new Date(),
         editora: "xxxxx",
-        paginas: 200
+        paginas: 200,
+        isbn: "9780062259677",
+        rate: {
+          value: this.rate.value,
+          count: 5
+        },
+        borrowed: {
+          fullName,
+          avatar
+        }
       };
     }
   },
   methods: {
     closeBookDetails(): void {
-      this["$store"].commit("CLOSE_BOOK_DETAILS");
+      this.$store.commit("CLOSE_BOOK_DETAILS");
     }
   }
 });
@@ -204,6 +231,7 @@ export default Vue.extend({
 
       &:nth-child(1) {
         text-align: center;
+        margin-bottom: 20px;
       }
     }
 
@@ -235,7 +263,7 @@ export default Vue.extend({
       }
     }
 
-    .loan {
+    .borrow {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -243,7 +271,11 @@ export default Vue.extend({
       margin-bottom: 20px;
 
       .el-button {
+        display: flex;
+        align-items: center;
         padding: 10px;
+        min-height: 46px;
+
         > span {
           display: flex;
           align-items: center;
@@ -253,6 +285,20 @@ export default Vue.extend({
           fill: #fff;
           width: 18px;
           margin-right: 5px;
+        }
+      }
+    }
+
+    .borrowed {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 3px;
+
+      /deep/ .avatar {
+        flex-direction: column;
+
+        .name {
+          white-space: nowrap;
         }
       }
     }

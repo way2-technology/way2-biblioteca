@@ -1,7 +1,7 @@
 import {
   UserLoggedMixin,
   LoaderMixin
-} from "./mixins/";
+} from "./common/mixins";
 
 const GlobalMixins = {
   install(Vue) {

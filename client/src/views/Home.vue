@@ -3,14 +3,7 @@
     <div class="home__container">
       <div class="books" v-loading="$loader.active && $loader.type === 'books'">
         <template v-for="(book, index) in booksPreview.books">
-          <BookPreview
-            :id="book.id"
-            :title="book.title"
-            :category="book.category"
-            :image="book.image"
-            :key="index"
-            @trigger-show-book="showBookDetails"
-          />
+          <BookPreview :book="book" :key="index" @trigger-show-book="showBookDetails" />
         </template>
       </div>
       <div class="books-pagination" v-if="booksPreview.books.length > 0">
@@ -28,8 +21,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+import EventBus from "@/common/providers/EventBus";
 import { BookPreview } from "@/components";
-import EventBus from "@/providers/EventBus.ts";
+import { parseBooks } from "@/common/helpers/Books";
 
 interface IBookPreview {
   books: object[];
@@ -49,7 +43,7 @@ export default Vue.extend({
     } as IBookPreview
   }),
   computed: {
-    appElement(): HTMLElement | any {
+    appElement(): HTMLDivElement | any {
       return document.querySelector("#app");
     }
   },
@@ -58,48 +52,25 @@ export default Vue.extend({
   },
   methods: {
     async getBooks(evtPage: number = 0): Promise<void> {
-      const response = await this["$getWithLoader"]({
+      const response = await this.$getWithLoader({
         url: `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${evtPage}&maxResults=12`,
         typeLoader: "books"
       });
 
       const { items, totalItems } = response;
-      const { $nextTick, parsePreviewBooks } = this;
 
       this.rawApiBooks = items;
-      this.booksPreview.books = parsePreviewBooks(items);
+      this.booksPreview.books = parseBooks(items);
       this.booksPreview.totalItems = totalItems;
 
-      $nextTick(() => {
+      this.$nextTick(() => {
         this.appElement.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    },
-    parsePreviewBooks(books: object[]): object[] {
-      return books.map((book: any) => {
-        const {
-          id,
-          volumeInfo: {
-            categories,
-            title,
-            imageLinks: { thumbnail }
-          }
-        } = book;
-
-        return {
-          id,
-          title,
-          category:
-            categories && typeof categories === "object"
-              ? categories[0]
-              : "General",
-          image: thumbnail ? thumbnail : ""
-        };
       });
     },
     showBookDetails(id: string): void {
       const book = this.rawApiBooks.find((element: any) => element.id === id);
 
-      this["$store"].commit("SHOW_BOOK_DETAILS", { book });
+      this.$store.commit("SHOW_BOOK_DETAILS", { book });
     }
   }
 });
