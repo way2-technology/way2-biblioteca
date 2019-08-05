@@ -114,10 +114,6 @@ export default Vue.extend({
         bookDetails: { book }
       } = this.$store.state;
 
-      /**To remove */
-      const { fullName, avatar } = this.$userLogged;
-      /**To remove */
-
       const {
         id,
         volumeInfo: {
@@ -143,8 +139,8 @@ export default Vue.extend({
           count: 5
         },
         borrowed: {
-          fullName,
-          avatar
+          fullName: "Robson Braga",
+          avatar: "https://lh5.googleusercontent.com/-RpiFJ9ARFnk/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcmg0UqbjUn5UJvEO_rkeh4GqP-Gg/s96-c/photo.jpg"
         }
       };
     }
@@ -293,6 +289,7 @@ export default Vue.extend({
       background: #f4f4f4;
       padding: 10px;
       border-radius: 3px;
+      line-height: 22px;
 
       /deep/ .avatar {
         flex-direction: column;

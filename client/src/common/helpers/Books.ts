@@ -25,8 +25,7 @@ function parseBooks(books: object[]): object[] {
       }
     };
   });
-};
-
+}
 
 export {
   parseBooks
