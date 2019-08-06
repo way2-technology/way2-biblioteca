@@ -32,10 +32,10 @@
                 </el-button>
               </div>
               <div class="borrowed" v-else>
+                <small>Livro emprestado para:</small>
                 <Avatar
                   :url="bookDisplay.borrowed.avatar"
                   :name="bookDisplay.borrowed.fullName"
-                  desc="Livro emprestado para:"
                 />
               </div>
             </template>
@@ -139,7 +139,7 @@ export default Vue.extend({
         paginas: 200,
         isbn: "9780062259677",
         rate: {
-          value: this.rate.value,
+          value: 4,
           count: 5
         },
         borrowed: {
@@ -293,23 +293,23 @@ export default Vue.extend({
     }
 
     .borrowed {
-      background: #f4f4f4;
-      padding: 10px;
-      border-radius: 3px;
-      line-height: 1;
+      border-top: 1px solid #eee;
+      text-align: left;
+
+      small {
+        display: block;
+        margin: 15px 0 5px;
+        text-transform: uppercase;
+        font-size: 10px;
+      }
 
       /deep/ .avatar {
-        flex-direction: column;
+        padding: 10px;
+        background: #f4f4f4;
+        border-radius: 3px;
 
         .name {
           white-space: nowrap;
-          font-size: 18px;
-        }
-
-        .desc {
-          margin: 10px 0 8px;
-          text-transform: uppercase;
-          font-size: 10px;
         }
       }
     }

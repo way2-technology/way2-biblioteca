@@ -3,10 +3,7 @@
     <figure>
       <img :src="url" alt="User Avatar" />
     </figure>
-    <div>
-      <small class="desc" v-if="desc">{{ desc }}</small>
-      <strong class="name" v-if="name">{{ name }}</strong>
-    </div>
+    <strong class="name" v-if="name">{{ name }}</strong>
   </div>
 </template>
 
@@ -21,10 +18,6 @@ export default Vue.extend({
       required: true
     },
     name: {
-      type: String,
-      default: ""
-    },
-    desc: {
       type: String,
       default: ""
     }
@@ -51,11 +44,6 @@ export default Vue.extend({
   }
   .name {
     font-size: 16px;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
   }
 }
 </style>
