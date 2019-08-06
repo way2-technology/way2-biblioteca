@@ -7,7 +7,11 @@
       </div>
       <div class="filter-books__list">
         <el-checkbox-group v-model="categoriesSelected" @change="handleChangeSelected">
-          <el-checkbox v-for="(item, index) in categoriesOptions" :label="index" :key="index">Option</el-checkbox>
+          <el-checkbox
+            v-for="(item, index) in categoriesOptions"
+            :label="index"
+            :key="index"
+          >{{ item.value }}</el-checkbox>
         </el-checkbox-group>
       </div>
     </div>
@@ -33,7 +37,7 @@ export default Vue.extend({
       this.$store.commit("SET_FILTERS", { categories });
     },
     clearAllFilters(): void {
-      this.innerCategoriesSelected = [];
+      this.categoriesSelected = [];
       this.$store.commit("SET_FILTERS", { categories: [] });
     },
     closePopover(): void {

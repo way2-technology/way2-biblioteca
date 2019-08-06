@@ -42,6 +42,7 @@
           </el-col>
           <el-col class="info">
             <div class="details">
+              <h3>Detalhes:</h3>
               <ul>
                 <li>
                   <strong>Publicação:</strong>
@@ -67,7 +68,10 @@
                 </li>
               </ul>
             </div>
-            <div class="description">{{bookDisplay.description}}</div>
+            <div class="description">
+              <h3>Descrição:</h3>
+              <div>{{bookDisplay.description}}</div>
+            </div>
           </el-col>
         </el-row>
       </div>
@@ -140,7 +144,8 @@ export default Vue.extend({
         },
         borrowed: {
           fullName: "Robson Braga",
-          avatar: "https://lh5.googleusercontent.com/-RpiFJ9ARFnk/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcmg0UqbjUn5UJvEO_rkeh4GqP-Gg/s96-c/photo.jpg"
+          avatar:
+            "https://lh5.googleusercontent.com/-RpiFJ9ARFnk/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcmg0UqbjUn5UJvEO_rkeh4GqP-Gg/s96-c/photo.jpg"
         }
       };
     }
@@ -223,7 +228,9 @@ export default Vue.extend({
     }
 
     .el-col {
-      width: auto;
+      @media screen and (min-width: 767px) {
+        width: auto;
+      }
 
       &:nth-child(1) {
         text-align: center;
@@ -289,13 +296,20 @@ export default Vue.extend({
       background: #f4f4f4;
       padding: 10px;
       border-radius: 3px;
-      line-height: 22px;
+      line-height: 1;
 
       /deep/ .avatar {
         flex-direction: column;
 
         .name {
           white-space: nowrap;
+          font-size: 18px;
+        }
+
+        .desc {
+          margin: 10px 0 8px;
+          text-transform: uppercase;
+          font-size: 10px;
         }
       }
     }
@@ -305,6 +319,10 @@ export default Vue.extend({
 
       @media screen and (min-width: 767px) {
         padding-left: 30px;
+      }
+
+      h3 {
+        margin-bottom: 10px;
       }
     }
 

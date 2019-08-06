@@ -1,8 +1,19 @@
 interface IStatePopoverFilters {
+  categoriesOptions: object[];
   categoriesSelected: object[];
 }
 
 const State: IStatePopoverFilters = {
+  categoriesOptions: [
+    {
+      id: 1,
+      value: "Option1"
+    },
+    {
+      id: 2,
+      value: "Option2"
+    }
+  ],
   categoriesSelected: []
 };
 
