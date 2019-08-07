@@ -1,6 +1,7 @@
+type ArrayCategories = Array<{ id: number, value: string }>;
 interface IStatePopoverFilters {
-  categoriesOptions: object[];
-  categoriesSelected: object[];
+  categoriesOptions: ArrayCategories;
+  categoriesSelected: ArrayCategories;
 }
 
 const State: IStatePopoverFilters = {
@@ -18,8 +19,8 @@ const State: IStatePopoverFilters = {
 };
 
 const Mutations = {
-  "SET_FILTERS"(state: IStatePopoverFilters, payload): void {
-    state.categoriesSelected = payload.categories;
+  "SET_FILTERS"(state: IStatePopoverFilters, { categories }): void {
+    state.categoriesSelected = categories;
   }
 };
 

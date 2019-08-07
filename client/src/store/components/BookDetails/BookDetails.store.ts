@@ -13,8 +13,8 @@ const State: IStateBookDetails = {
 };
 
 const Mutations = {
-  "SHOW_BOOK_DETAILS"(state: IStateBookDetails, payload) {
-    state.bookDetails.book = payload.book;
+  "SHOW_BOOK_DETAILS"(state: IStateBookDetails, { book }) {
+    state.bookDetails.book = book;
     state.bookDetails.visible = true;
   },
   "CLOSE_BOOK_DETAILS"(state: IStateBookDetails) {

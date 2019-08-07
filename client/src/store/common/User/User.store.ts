@@ -23,8 +23,8 @@ const State: IStateUser = {
 };
 
 const Mutations = {
-  "USER_LOGIN"(state: IStateUser, payload): void {
-    const userParsed: any = parseUserToSave(payload.user);
+  "USER_LOGIN"(state: IStateUser, { user }): void {
+    const userParsed: any = parseUserToSave(user);
     const loginIsValid: boolean = validateLogin(Vue, userParsed.email);
 
     if (loginIsValid) {
