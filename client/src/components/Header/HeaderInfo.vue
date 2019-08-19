@@ -75,10 +75,10 @@ export default Vue.extend({
   },
   methods: {
     handleLogin(user): void {
-      this.$store.commit("USER_LOGIN", { user });
+      this.$store.commit("LOGIN", { user });
     },
     handleLogout(): void {
-      this.$store.commit("USER_LOGOUT");
+      this.$store.commit("LOGOUT");
     },
     handleDropdownCommand(command: string): void {
       const { emitEventModalNewBook, handleLogout } = this;

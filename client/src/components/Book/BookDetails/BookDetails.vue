@@ -33,10 +33,7 @@
               </div>
               <div class="borrowed" v-else>
                 <small>Livro emprestado para:</small>
-                <Avatar
-                  :url="bookDisplay.borrowed.avatar"
-                  :name="bookDisplay.borrowed.fullName"
-                />
+                <Avatar :url="bookDisplay.borrowed.avatar" :name="bookDisplay.borrowed.fullName" />
               </div>
             </template>
           </el-col>
@@ -375,14 +372,13 @@ export default Vue.extend({
 }
 
 .translate-aside-enter-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 0.1s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .translate-aside-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 0.1s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .translate-aside-enter,
 .translate-aside-leave-to {
-  transform: translateX(5px);
   opacity: 0;
 }
 </style>

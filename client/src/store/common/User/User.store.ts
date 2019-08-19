@@ -23,7 +23,7 @@ const State: IStateUser = {
 };
 
 const Mutations = {
-  "USER_LOGIN"(state: IStateUser, { user }): void {
+  "LOGIN"(state: IStateUser, { user }): void {
     const userParsed: any = parseUserToSave(user);
     const loginIsValid: boolean = validateLogin(Vue, userParsed.email);
 
@@ -32,7 +32,7 @@ const Mutations = {
       Vue.prototype.$message.success(`Bem vindo: ${userParsed.fullName}`);
     }
   },
-  "USER_LOGOUT"(state: IStateUser): void {
+  "LOGOUT"(state: IStateUser): void {
     unsetUser(state);
   }
 };
