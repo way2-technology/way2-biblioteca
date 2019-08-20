@@ -1,32 +1,64 @@
-function parseBooks(books: object[]): object[] {
-  return books.map((book: any) => {
-    const {
-      id,
-      volumeInfo: { categories, title, imageLinks }
-    } = book;
+export interface IBookDisplay {
+  id: number | string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  category: string[];
+  publicationDate: Date | string;
+  publisher: string;
+  pages: number;
+  isbn: number | string;
+  rating: object;
+  borrowed: object | null;
+}
 
-    const category =
-      categories && typeof categories === "object" ? categories[0] : "General";
+function parseSingleBook(book): IBookDisplay {
+  const {
+    id,
+    title,
+    description,
+    categories,
+    imageUrl,
+    rating,
+    publisher,
+    publicationDate,
+    isbn,
+    pages
+  } = book;
 
-    const image = imageLinks ? imageLinks.thumbnail : "";
+  const category =
+    categories && typeof categories === "object" ? categories[0] : "General";
 
-    return {
-      id,
-      title,
-      category,
-      image,
-      borrowed: {
-        avatar: "",
-        fullName: ""
-      },
-      rate: {
-        value: 5,
-        count: 5
-      }
-    };
+  const publicationDateFormated = publicationDate ? new Date(publicationDate).toLocaleDateString() : new Date();
+
+  return {
+    id,
+    title,
+    description,
+    category,
+    imageUrl,
+    borrowed: {
+      avatar: "",
+      fullName: ""
+    },
+    rating: {
+      value: rating,
+      count: null
+    },
+    publisher,
+    publicationDate: publicationDateFormated,
+    isbn,
+    pages
+  };
+}
+
+function parseListBooks(books: object[]): object[] {
+  return books.map((book) => {
+    return parseSingleBook(book);
   });
 }
 
 export {
-  parseBooks
+  parseSingleBook,
+  parseListBooks
 };

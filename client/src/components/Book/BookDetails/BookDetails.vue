@@ -16,12 +16,15 @@
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img :src="bookDisplay.image" :alt="bookDisplay.title" />
+              <img
+                :src="'https://way2library.azurewebsites.net' + bookDisplay.imageUrl"
+                :alt="bookDisplay.title"
+              />
             </figure>
 
             <div class="rate">
-              <el-rate disabled :value="bookDisplay.rate.value" :colors="rate.colors" />
-              <span class="count">{{ bookDisplay.rate.count }} Reviews</span>
+              <el-rate disabled :value="bookDisplay.rating.value" :colors="rate.colors" />
+              <span class="count">{{ bookDisplay.rating.count }} Reviews</span>
             </div>
 
             <template v-if="$userLogged">
@@ -43,15 +46,15 @@
               <ul>
                 <li>
                   <strong>Publicação:</strong>
-                  <span>{{ bookDisplay.publicacao.toLocaleDateString() }}</span>
+                  <span>{{ bookDisplay.publicationDate }}</span>
                 </li>
                 <li>
                   <strong>Editora:</strong>
-                  <span>{{ bookDisplay.editora }}</span>
+                  <span>{{ bookDisplay.publisher }}</span>
                 </li>
                 <li>
                   <strong>Páginas:</strong>
-                  <span>{{ bookDisplay.paginas }}</span>
+                  <span>{{ bookDisplay.pages }}</span>
                 </li>
                 <li class="cateogries">
                   <strong>Categorias:</strong>
@@ -81,20 +84,7 @@
 import Vue from "vue";
 import BookRateMixin from "../BookRate.mixin";
 import Avatar from "@/common/components/Avatar.vue";
-
-interface IBookDisplay {
-  id: number | string;
-  title: string;
-  description: string;
-  image: string;
-  categories: string[];
-  publicacao: Date;
-  editora: string;
-  paginas: number;
-  isbn: number | string;
-  rate: object;
-  borrowed: object | null;
-}
+import { IBookDisplay, parseSingleBook } from "@/common/helpers/Books";
 
 export default Vue.extend({
   name: "book-details",
@@ -115,36 +105,7 @@ export default Vue.extend({
         bookDetails: { book }
       } = this.$store.state;
 
-      const {
-        id,
-        volumeInfo: {
-          title: bookTitle,
-          description: bookDesc,
-          categories: bookCats,
-          imageLinks: { thumbnail }
-        }
-      } = book;
-
-      return {
-        id,
-        title: bookTitle ? bookTitle : "",
-        description: bookDesc ? bookDesc : "",
-        image: thumbnail ? thumbnail : "",
-        categories: bookCats,
-        publicacao: new Date(),
-        editora: "xxxxx",
-        paginas: 200,
-        isbn: "9780062259677",
-        rate: {
-          value: 4,
-          count: 5
-        },
-        borrowed: {
-          fullName: "Robson Braga",
-          avatar:
-            "https://lh5.googleusercontent.com/-RpiFJ9ARFnk/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rcmg0UqbjUn5UJvEO_rkeh4GqP-Gg/s96-c/photo.jpg"
-        }
-      };
+      return parseSingleBook(book);
     }
   },
   methods: {

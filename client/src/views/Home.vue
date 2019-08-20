@@ -1,17 +1,17 @@
 <template>
   <el-container class="home">
     <div class="home__container">
-      <div class="books" v-loading="$loader.active && $loader.type === 'books'">
-        <template v-for="(book, index) in booksPreview.books">
+      <div class="books" v-loading="$loader.active && $loader.type === 'booksPreview'">
+        <template v-for="(book, index) in booksPreview">
           <BookPreview :book="book" :key="index" @trigger-show-book="showBookDetails" />
         </template>
       </div>
-      <div class="books-pagination" v-if="booksPreview.books.length > 0">
+      <div class="books-pagination" v-if="booksPreview.length > 0">
         <el-pagination
           background
           layout="prev, pager, next"
           :pager-count="5"
-          :total="booksPreview.totalItems"
+          :total="totalBooks"
           @current-change="getBooks"
         ></el-pagination>
       </div>
@@ -23,12 +23,7 @@
 import Vue from "vue";
 import EventBus from "@/common/providers/EventBus";
 import { BookPreview } from "@/components";
-import { parseBooks } from "@/common/helpers/Books";
-
-interface IBookPreview {
-  books: object[];
-  totalItems: number;
-}
+import { parseListBooks } from "@/common/helpers/Books";
 
 export default Vue.extend({
   name: "home",
@@ -36,11 +31,9 @@ export default Vue.extend({
     BookPreview
   },
   data: () => ({
-    rawApiBooks: [] as object[],
-    booksPreview: {
-      books: [],
-      totalItems: 0
-    } as IBookPreview
+    rawListBooks: [] as object[],
+    booksPreview: [] as object[],
+    totalBooks: 0 as number
   }),
   computed: {
     appElement(): HTMLDivElement | any {
@@ -53,24 +46,27 @@ export default Vue.extend({
   methods: {
     async getBooks(evtPage: number = 0): Promise<void> {
       const response = await this.$getWithLoader({
-        url: `https://www.googleapis.com/books/v1/volumes?q=jorge+amado&startIndex=${evtPage}&maxResults=12`,
-        typeLoader: "books"
+        url: `/getbooks?limit=12&page=${evtPage}`,
+        typeLoader: "booksPreview"
       });
 
-      const { items, totalItems } = response;
+      const { total, currentPage, entity } = response;
 
-      this.rawApiBooks = items;
-      this.booksPreview.books = parseBooks(items);
-      this.booksPreview.totalItems = totalItems;
+      this.rawListBooks = entity;
+      this.booksPreview = parseListBooks(entity);
+      this.totalBooks = total;
 
       this.$nextTick(() => {
-        this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+        this.scrollToTop();
       });
     },
     showBookDetails(id: string): void {
-      const book = this.rawApiBooks.find((element: any) => element.id === id);
+      const book = this.rawListBooks.find((element: any) => element.id === id);
 
       this.$store.commit("SHOW_BOOK_DETAILS", { book });
+    },
+    scrollToTop(): void {
+      this.appElement.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 });

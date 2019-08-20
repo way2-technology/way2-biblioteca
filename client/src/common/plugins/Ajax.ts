@@ -1,7 +1,9 @@
 import Vue from "vue";
 
-async function actionGet(url: string): Promise<any> {
-  const result = await fetch(url)
+const urlBase = "https://way2library.azurewebsites.net/api";
+
+async function actionGet(endpoint: string): Promise<any> {
+  const result = await fetch(`${urlBase}${endpoint}`)
     .then(res => res.json())
     .then(response => {
       return response;
@@ -12,8 +14,8 @@ async function actionGet(url: string): Promise<any> {
   return result;
 }
 
-async function actionPost(url: string, body): Promise<any> {
-  const result = await fetch(url, {
+async function actionPost(endpoint: string, body): Promise<any> {
+  const result = await fetch(`${urlBase}${endpoint}`, {
     method: "POST",
     headers: {
       "Accept": "application/json",
@@ -64,6 +66,7 @@ async function $postWithLoader({ url, body, typeLoader = "" }) {
 
 const AjaxPlugin = {
   install() {
+    Vue.prototype.$apiUrl = urlBase;
     Vue.prototype.$get = $get;
     Vue.prototype.$post = $post;
     Vue.prototype.$getWithLoader = $getWithLoader;

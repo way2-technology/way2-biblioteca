@@ -40,7 +40,7 @@
 <script lang="ts">
 import Vue from "vue";
 import EventBus from "@/common/providers/EventBus";
-import { parseBooks } from "@/common/helpers/Books";
+import { parseListBooks } from "@/common/helpers/Books";
 
 export default Vue.extend({
   name: "header-search",
@@ -60,14 +60,14 @@ export default Vue.extend({
       queryString: string,
       callback: (result) => void
     ): Promise<void> {
-      const response = await this["$get"](
+      const response = await this.$get(
         `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
       );
 
       if (typeof response === "object") {
         const { items, totalItems } = response;
 
-        this.search.booksResults = parseBooks(items);
+        this.search.booksResults = parseListBooks(items);
         this.rawApiBooks = items;
 
         callback(this.search.booksResults);

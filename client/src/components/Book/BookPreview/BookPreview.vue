@@ -2,7 +2,7 @@
   <el-link class="book">
     <el-card>
       <figure class="book__image" @click="triggerShowBook">
-        <img :src="book.image" />
+        <img :src="'https://way2library.azurewebsites.net' + book.imageUrl" />
       </figure>
 
       <div class="book__categories">
@@ -12,7 +12,7 @@
       <h2 class="book__title">{{ book.title }}</h2>
 
       <footer>
-        <el-rate disabled v-model="book.rate.value" :colors="rate.colors" />
+        <el-rate disabled v-model="book.rating.value" :colors="rate.colors" />
 
         <template v-if="$userLogged">
           <el-tooltip
