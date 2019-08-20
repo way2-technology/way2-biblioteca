@@ -19,7 +19,10 @@
         @focus="toggleSearch(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
-          <img :src="item.image" :alt="item.title" />
+          <img
+            :src="$urlBaseApi + item.imageUrl"
+            :alt="item.title"
+          />
           <div>
             <h3>{{item.title}}</h3>
             <el-tag size="mini">{{item.category}}</el-tag>
@@ -50,8 +53,7 @@ export default Vue.extend({
       search: {
         value: "" as string,
         isFocused: false as boolean,
-        openOnMobile: false as boolean,
-        booksResults: [] as object[]
+        openOnMobile: false as boolean
       }
     };
   },
@@ -61,30 +63,34 @@ export default Vue.extend({
       callback: (result) => void
     ): Promise<void> {
       const response = await this.$get(
-        `https://www.googleapis.com/books/v1/volumes?q=${queryString}&startIndex=0&maxResults=5`
+        `/searchbooks?page=0&limit=100&search=${queryString}`
       );
 
-      if (typeof response === "object") {
-        const { items, totalItems } = response;
+      const {
+        entity 
+      } = response;
 
-        this.search.booksResults = parseListBooks(items);
-        this.rawApiBooks = items;
+      const bookResults = parseListBooks(entity);
+      this.rawApiBooks = entity;
 
-        callback(this.search.booksResults);
-      } else {
-        this.$message.error(
-          "Oops, Algo deu errado, tente novamente mais tarde!"
-        );
+      if(bookResults.length === 0){
+        this.$message.error("Nenhum livro encontrado com os termos digitados!");
       }
+
+      callback(bookResults);
     },
     showBookDetails(bookPreview): void {
-      const { toggleSearch, rawApiBooks } = this;
+      const { 
+        toggleSearch, 
+        rawApiBooks, 
+        $store 
+      } = this;
 
       const book = rawApiBooks.find(
-        (element: any) => element.id === bookPreview.id
+        (element) => element.id === bookPreview.id
       );
 
-      this.$store.commit("SHOW_BOOK_DETAILS", { book });
+      $store.commit("SHOW_BOOK_DETAILS", { book });
 
       toggleSearch(false);
     },
@@ -191,10 +197,12 @@ export default Vue.extend({
     }
 
     h3 {
-      max-width: 405px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      line-height: 20px;
+      white-space: normal;
+
+      @media screen and (max-width: 767px){
+        font-size: 14px;
+      }
     }
 
     img {
@@ -210,6 +218,7 @@ export default Vue.extend({
 .el-scrollbar {
   .el-autocomplete-suggestion__wrap {
     max-height: 400px;
+    width: 100%;
   }
 }
 </style>

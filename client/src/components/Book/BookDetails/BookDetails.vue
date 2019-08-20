@@ -17,7 +17,7 @@
           <el-col>
             <figure class="image">
               <img
-                :src="'https://way2library.azurewebsites.net' + bookDisplay.imageUrl"
+                :src="$urlBaseApi + bookDisplay.imageUrl"
                 :alt="bookDisplay.title"
               />
             </figure>

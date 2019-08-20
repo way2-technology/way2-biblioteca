@@ -2,7 +2,7 @@
   <el-link class="book">
     <el-card>
       <figure class="book__image" @click="triggerShowBook">
-        <img :src="'https://way2library.azurewebsites.net' + book.imageUrl" />
+        <img :src="$urlBaseApi + book.imageUrl" />
       </figure>
 
       <div class="book__categories">
@@ -109,8 +109,8 @@ export default Vue.extend({
 
   .book__title {
     padding: 15px;
-    font-size: 20px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 24px;
     flex-grow: 1;
     display: flex;
     align-items: center;
