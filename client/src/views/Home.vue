@@ -45,8 +45,6 @@ export default Vue.extend({
   },
   methods: {
     async getBooks(evtPage: number = 0): Promise<void> {
-      this.scrollToTop();
-
       evtPage = evtPage <= 0 ? 0 : evtPage - 1;
 
       const response = await this.$getWithLoader({
@@ -54,15 +52,13 @@ export default Vue.extend({
         typeLoader: "booksPreview"
       });
 
-      const { 
-        total, 
-        currentPage, 
-        entity 
-      } = response;
+      const { total, currentPage, entity } = response;
 
       this.rawListBooks = entity;
       this.booksPreview = parseListBooks(entity);
       this.totalBooks = total;
+
+      this.scrollToTop();
     },
     showBookDetails(id: string): void {
       const book = this.rawListBooks.find((element: any) => element.id === id);

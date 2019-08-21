@@ -16,10 +16,7 @@
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img
-                :src="$urlBaseApi + bookDisplay.imageUrl"
-                :alt="bookDisplay.title"
-              />
+              <img :src="$urlBaseApi + bookDisplay.imageUrl" :alt="bookDisplay.title" />
             </figure>
 
             <div class="rate">
@@ -64,7 +61,7 @@
                 </li>
                 <li>
                   <strong>ISBN:</strong>
-                  <span>9780062259677</span>
+                  <span>{{ bookDisplay.isbn }}</span>
                 </li>
               </ul>
             </div>
@@ -156,7 +153,7 @@ export default Vue.extend({
     border-bottom: 1px solid #e8e8e8;
 
     h2 {
-      font-size: 24px;
+      font-size: 19px;
       white-space: nowrap;
       width: 100%;
       max-width: 95%;
