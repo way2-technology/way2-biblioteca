@@ -12,9 +12,11 @@
       <h2 class="book__title">{{ book.title }}</h2>
 
       <footer>
-        <el-rate disabled v-model="book.rating.value" :colors="rate.colors" />
+        <el-rate disabled v-model="book.rating.value" :colors="rating.colors" />
 
-        <template v-if="$userLogged">
+        <!-- TODO: [Usuário Logado] -->
+        <!-- TODO: Função para pegar livro emprestado de acordo com o usuário -->
+        <!-- <template v-if="$userLogged">
           <el-tooltip
             class="item"
             effect="dark"
@@ -28,7 +30,7 @@
           </el-tooltip>
 
           <Avatar v-else :url="book.borrowed.avatar" />
-        </template>
+        </template> -->
       </footer>
     </el-card>
   </el-link>
@@ -37,7 +39,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Avatar from "@/common/components/Avatar.vue";
-import BookRate from "../BookRate.mixin";
+import BookRatingMixin from "../BookRating.mixin";
 
 export default Vue.extend({
   name: "book-preview",
@@ -50,7 +52,7 @@ export default Vue.extend({
       required: true
     }
   },
-  mixins: [BookRate],
+  mixins: [BookRatingMixin],
   methods: {
     triggerShowBook(): void {
       this.$emit("trigger-show-book", this.book.id);
@@ -133,4 +135,3 @@ export default Vue.extend({
   }
 }
 </style>
-

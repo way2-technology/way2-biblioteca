@@ -20,11 +20,13 @@
             </figure>
 
             <div class="rate">
-              <el-rate disabled :value="bookDisplay.rating.value" :colors="rate.colors" />
+              <el-rate disabled :value="bookDisplay.rating.value" :colors="rating.colors" />
               <span class="count">{{ bookDisplay.rating.count }} Reviews</span>
             </div>
 
-            <template v-if="$userLogged">
+            <!-- TODO: [Usuário Logado] -->
+            <!-- TODO: Função para pegar livro emprestado de acordo com o usuário -->
+            <!-- <template v-if="$userLogged">
               <div class="borrow" v-if="!bookDisplay.borrowed">
                 <el-button type="primary" :loading="false">
                   <Unicon name="bookmark" />
@@ -35,7 +37,7 @@
                 <small>Livro emprestado para:</small>
                 <Avatar :url="bookDisplay.borrowed.avatar" :name="bookDisplay.borrowed.fullName" />
               </div>
-            </template>
+            </template> -->
           </el-col>
           <el-col class="info">
             <div class="details">
@@ -79,7 +81,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BookRateMixin from "../BookRate.mixin";
+import BookRatingMixin from "../BookRating.mixin";
 import Avatar from "@/common/components/Avatar.vue";
 import { IBookDisplay, parseSingleBook } from "@/common/helpers/Books";
 
@@ -88,7 +90,7 @@ export default Vue.extend({
   components: {
     Avatar
   },
-  mixins: [BookRateMixin],
+  mixins: [BookRatingMixin],
   computed: {
     asideVisble(): boolean {
       const {

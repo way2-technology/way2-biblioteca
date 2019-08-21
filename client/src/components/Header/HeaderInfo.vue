@@ -9,7 +9,8 @@
         </button>
         <PopoverFilterBooksByCategories v-if="popoverVisible" @close="popoverVisible = false" />
       </div>
-      <div class="user" v-if="$userLogged">
+      <!-- TODO: [Usuário Logado] Controle de Usuarios no Banco -->
+      <!-- <div class="user" v-if="$userLogged">
         <el-dropdown class="user__dropdown" trigger="click" @command="handleDropdownCommand">
           <button type="button" class="btn-dropdown">
             <Avatar :url="$userLogged.avatar" :name="$userLogged.firstName" />
@@ -31,16 +32,18 @@
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-      </div>
+      </div> -->
     </div>
-    <div v-if="!$userLogged">
+    
+    <!-- TODO: [Usuário Deslogado] Controle de Usuarios no Banco -->
+    <!-- <div v-if="!$userLogged">
       <div class="login">
         <GoogleLogin :params="googleParams" :onSuccess="handleLogin">
           <unicon name="entry"></unicon>
           <strong>ENTRAR</strong>
         </GoogleLogin>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

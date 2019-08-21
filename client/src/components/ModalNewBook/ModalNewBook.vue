@@ -29,10 +29,10 @@
 
       <el-form-item
         label="Número de Páginas"
-        prop="numberOfPages"
+        prop="pages"
         :rules="formRules.requiredMessageBlur"
       >
-        <el-input-number v-model.number="form.numberOfPages" :min="1" controls-position="right"></el-input-number>
+        <el-input-number v-model.number="form.pages" :min="1" controls-position="right"></el-input-number>
       </el-form-item>
 
       <el-form-item
@@ -70,7 +70,7 @@ interface IForm {
   description: string;
   publicationDate: Date;
   publisher: string;
-  numberOfPages: number;
+  pages: number;
   categories: string[];
   imageUrl: string;
 }
@@ -80,11 +80,11 @@ export default Vue.extend({
   data() {
     return {
       visible: false as boolean,
+      uploadImageList: [] as object[],
       form: {
-        numberOfPages: 1,
+        pages: 1,
         imageUrl: ""
-      } as IForm,
-      uploadImageList: [] as object[]
+      } as IForm
     };
   },
   mixins: [FormRulesNewBookMixin],
