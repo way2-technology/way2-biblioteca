@@ -1,7 +1,7 @@
 <template>
-  <el-container class="home">
+  <el-container class="home" v-loading="$loader.active && $loader.type === 'booksPreview'">
     <div class="home__container">
-      <div class="books" v-loading="$loader.active && $loader.type === 'booksPreview'">
+      <div class="books">
         <template v-for="(book, index) in booksPreview">
           <BookPreview :book="book" :key="index" @trigger-show-book="showBookDetails" />
         </template>
@@ -42,13 +42,19 @@ export default Vue.extend({
   },
   created() {
     this.getBooks();
+    this.listenEventFilter();
   },
   methods: {
-    async getBooks(evtPage: number = 0): Promise<void> {
+    async getBooks(
+      evtPage: number = 0,
+      categoriesSelected?: object[]
+    ): Promise<void> {
+      const { getUrlProcessed, scrollToTop, $getWithLoader } = this;
+
       evtPage = evtPage <= 0 ? 0 : evtPage - 1;
 
-      const response = await this.$getWithLoader({
-        url: `/getbooks?limit=12&page=${evtPage}`,
+      const response = await $getWithLoader({
+        url: getUrlProcessed(evtPage, categoriesSelected),
         typeLoader: "booksPreview"
       });
 
@@ -58,7 +64,20 @@ export default Vue.extend({
       this.booksPreview = parseListBooks(entity);
       this.totalBooks = total;
 
-      this.scrollToTop();
+      scrollToTop();
+    },
+    getUrlProcessed(page: number, categoriesSelected?: object[]): string {
+      let url = `/getbooks?limit=12&page=${page}`;
+
+      if (categoriesSelected && categoriesSelected.length > 0) {
+        const categoriesIds = categoriesSelected.map(
+          (category: any) => category.id
+        );
+
+        url = `${url}&filters=[${categoriesIds}]`;
+      }
+
+      return url;
     },
     showBookDetails(id: string): void {
       const book = this.rawListBooks.find((element: any) => element.id === id);
@@ -67,6 +86,11 @@ export default Vue.extend({
     },
     scrollToTop(): void {
       this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    listenEventFilter(): void {
+      EventBus.$on("filter-books-by-categories", categoriesSelected => {
+        this.getBooks(0, categoriesSelected);
+      });
     }
   }
 });
@@ -97,10 +121,6 @@ export default Vue.extend({
     /deep/ .el-card {
       height: 100%;
     }
-
-    /deep/ .el-loading-mask {
-      z-index: 2;
-    }
   }
 
   .books-pagination {
@@ -128,6 +148,17 @@ export default Vue.extend({
         }
       }
     }
+  }
+}
+
+/deep/ .el-loading-mask {
+  position: fixed;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .path {
+    stroke-width: 3;
+    stroke: #fff;
   }
 }
 </style>

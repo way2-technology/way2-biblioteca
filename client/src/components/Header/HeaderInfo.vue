@@ -32,18 +32,18 @@
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-      </div> -->
+      </div>-->
     </div>
-    
+
     <!-- TODO: [Usuário Deslogado] Controle de Usuarios no Banco -->
     <!-- <div v-if="!$userLogged">
       <div class="login">
-        <GoogleLogin :params="googleParams" :onSuccess="handleLogin">
+        <GoogleLogin :params="googleParams" :onSuccess="handleGoogleLogin">
           <unicon name="entry"></unicon>
           <strong>ENTRAR</strong>
         </GoogleLogin>
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -77,12 +77,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleLogin(user): void {
-      this.$store.commit("LOGIN", { user });
-    },
-    handleLogout(): void {
-      this.$store.commit("LOGOUT");
-    },
     handleDropdownCommand(command: string): void {
       const { emitEventModalNewBook, handleLogout } = this;
 
@@ -92,7 +86,14 @@ export default Vue.extend({
           break;
         case "logout":
           handleLogout();
+          break;
       }
+    },
+    handleGoogleLogin(user): void {
+      this.$store.commit("LOGIN", { user });
+    },
+    handleLogout(): void {
+      this.$store.commit("LOGOUT");
     },
     emitEventModalNewBook(): void {
       EventBus.$emit("show-modal-new-book");

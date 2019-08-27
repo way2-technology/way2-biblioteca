@@ -37,18 +37,18 @@ function parseSingleBook(book): IBookDisplay {
     description,
     category,
     imageUrl,
-    borrowed: {
-      avatar: "",
-      fullName: ""
-    },
+    publisher,
+    publicationDate: publicationDateFormated,
+    pages,
+    isbn,
     rating: {
       value: rating,
       count: null
     },
-    publisher,
-    publicationDate: publicationDateFormated,
-    isbn,
-    pages
+    borrowed: {
+      avatar: "",
+      fullName: ""
+    }
   };
 }
 

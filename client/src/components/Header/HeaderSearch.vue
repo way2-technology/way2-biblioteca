@@ -19,10 +19,7 @@
         @focus="toggleSearch(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
-          <img
-            :src="$urlBaseApi + item.imageUrl"
-            :alt="item.title"
-          />
+          <img :src="$urlBaseApi + item.imageUrl" :alt="item.title" />
           <div>
             <h3>{{item.title}}</h3>
             <el-tag size="mini">{{item.category}}</el-tag>
@@ -42,7 +39,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import EventBus from "@/common/providers/EventBus";
 import { parseListBooks } from "@/common/helpers/Books";
 
 export default Vue.extend({
@@ -66,29 +62,21 @@ export default Vue.extend({
         `/searchbooks?page=0&limit=100&search=${queryString}`
       );
 
-      const {
-        entity 
-      } = response;
+      const { entity } = response;
 
       const bookResults = parseListBooks(entity);
       this.rawApiBooks = entity;
 
-      if(bookResults.length === 0){
+      if (bookResults.length === 0) {
         this.$message.error("Nenhum livro encontrado com os termos digitados!");
       }
 
       callback(bookResults);
     },
     showBookDetails(bookPreview): void {
-      const { 
-        toggleSearch, 
-        rawApiBooks, 
-        $store 
-      } = this;
+      const { toggleSearch, rawApiBooks, $store } = this;
 
-      const book = rawApiBooks.find(
-        (element) => element.id === bookPreview.id
-      );
+      const book = rawApiBooks.find(element => element.id === bookPreview.id);
 
       $store.commit("SHOW_BOOK_DETAILS", { book });
 
@@ -200,7 +188,7 @@ export default Vue.extend({
       line-height: 20px;
       white-space: normal;
 
-      @media screen and (max-width: 767px){
+      @media screen and (max-width: 767px) {
         font-size: 14px;
       }
     }

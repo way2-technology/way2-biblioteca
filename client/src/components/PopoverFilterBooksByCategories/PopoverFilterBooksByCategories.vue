@@ -9,7 +9,7 @@
         <el-checkbox-group v-model="categoriesSelected" @change="handleChangeSelected">
           <el-checkbox
             v-for="(item, index) in categoriesOptions"
-            :label="index"
+            :label="item"
             :key="index"
           >{{ item.value }}</el-checkbox>
         </el-checkbox-group>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import EventBus from "@/common/providers/EventBus";
 
 export default Vue.extend({
   name: "popover-filter-books-by-categories",
@@ -34,14 +35,24 @@ export default Vue.extend({
   },
   methods: {
     handleChangeSelected(categories): void {
-      this.$store.commit("SET_FILTERS", { categories });
+      const { $store, emitEventFilterBooks } = this;
+
+      $store.commit("SET_FILTERS", { categories });
+      emitEventFilterBooks();
     },
     clearAllFilters(): void {
+      const { $store, emitEventFilterBooks } = this;
+
       this.categoriesSelected = [];
-      this.$store.commit("SET_FILTERS", { categories: [] });
+
+      $store.commit("SET_FILTERS", { categories: [] });
+      emitEventFilterBooks();
     },
     closePopover(): void {
       this.$emit("close");
+    },
+    emitEventFilterBooks(): void {
+      EventBus.$emit("filter-books-by-categories", this.categoriesSelected);
     }
   }
 });
