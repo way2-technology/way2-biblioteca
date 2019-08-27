@@ -37,7 +37,7 @@
                 <small>Livro emprestado para:</small>
                 <Avatar :url="bookDisplay.borrowed.avatar" :name="bookDisplay.borrowed.fullName" />
               </div>
-            </template> -->
+            </template>-->
           </el-col>
           <el-col class="info">
             <div class="details">
@@ -332,10 +332,10 @@ export default Vue.extend({
 }
 
 .translate-aside-enter-active {
-  transition: opacity 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 0.1s;
 }
 .translate-aside-leave-active {
-  transition: opacity 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 0.1s;
 }
 .translate-aside-enter,
 .translate-aside-leave-to {
