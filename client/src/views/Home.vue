@@ -79,8 +79,8 @@ export default Vue.extend({
 
       return url;
     },
-    showBookDetails(id: string): void {
-      const book = this.rawListBooks.find((element: any) => element.id === id);
+    showBookDetails(id: number): void {
+      const book = this.rawListBooks.find((element) => element.id === id);
 
       this.$store.commit("SHOW_BOOK_DETAILS", { book });
     },
