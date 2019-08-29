@@ -2,7 +2,11 @@
   <div class="header__info">
     <div>
       <div class="actions">
-        <button class="action__filters" type="button" @click="popoverVisible = !popoverVisible">
+        <button 
+          type="button" 
+          class="action__filters" 
+          :class="{'visible': popoverVisible}" 
+          @click="popoverVisible = !popoverVisible">
           <el-badge :value="countFilters" :class="{'badge-visible': countFilters > 0}">
             <unicon name="filter"></unicon>
           </el-badge>
@@ -130,7 +134,8 @@ export default Vue.extend({
       outline: none;
       border-radius: 3px;
 
-      &:hover {
+      &:hover,
+      &.visible {
         background: #3f4448;
       }
 
@@ -183,7 +188,7 @@ export default Vue.extend({
       overflow: hidden;
       text-overflow: ellipsis;
 
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: $--width-size-mobile) {
         display: none;
       }
     }

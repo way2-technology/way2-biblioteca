@@ -1,4 +1,5 @@
 import BookPreview from "./Book/BookPreview/BookPreview.vue";
+import BookPreviewSkeleton from "./Book/BookPreview/BookPreviewSkeleton.vue";
 import BookDetails from "./Book/BookDetails/BookDetails.vue";
 import Header from "./Header/Header.vue";
 import HeaderInfo from "./Header/HeaderInfo.vue";
@@ -8,6 +9,7 @@ import PopoverFilterBooksByCategories from "./PopoverFilterBooksByCategories/Pop
 
 export {
   BookPreview,
+  BookPreviewSkeleton,
   BookDetails,
   Header,
   HeaderInfo,

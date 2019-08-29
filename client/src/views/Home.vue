@@ -2,8 +2,16 @@
   <el-container class="home" v-loading="$loader.active && $loader.type === 'booksPreview'">
     <div class="home__container">
       <div class="books">
-        <template v-for="(book, index) in booksPreview">
-          <BookPreview :book="book" :key="index" @trigger-show-book="showBookDetails" />
+        <template v-if="!$loader.active">
+          <BookPreview 
+            v-for="(book, index) in booksPreview" 
+            :key="index" 
+            :book="book" 
+            @trigger-show-book="showBookDetails" 
+          />
+        </template>
+        <template v-else>
+          <BookPreviewSkeleton v-for="index in 12" :key="index" />
         </template>
       </div>
       <div class="books-pagination" v-if="booksPreview.length > 0">
@@ -22,13 +30,14 @@
 <script lang="ts">
 import Vue from "vue";
 import EventBus from "@/common/providers/EventBus";
-import { BookPreview } from "@/components";
+import { BookPreview, BookPreviewSkeleton } from "@/components";
 import { parseListBooks } from "@/common/helpers/Books";
 
 export default Vue.extend({
   name: "home",
   components: {
-    BookPreview
+    BookPreview,
+    BookPreviewSkeleton
   },
   data: () => ({
     rawListBooks: [] as object[],
@@ -139,7 +148,7 @@ export default Vue.extend({
         color: #fff;
       }
 
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: $--width-size-mobile) {
         .el-pagination.is-background .el-pager li {
           min-width: 25px;
         }

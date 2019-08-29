@@ -131,7 +131,7 @@ export default Vue.extend({
     font-size: 18px;
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $--width-size-mobile) {
     .input {
       margin: 0;
       width: calc(100% - 22px);
@@ -188,7 +188,7 @@ export default Vue.extend({
       line-height: 20px;
       white-space: normal;
 
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: $--width-size-mobile) {
         font-size: 14px;
       }
     }

@@ -138,7 +138,7 @@ export default Vue.extend({
     overflow: auto;
     z-index: 1;
 
-    @media screen and (min-width: 767px) {
+    @media screen and (min-width: $--width-size-mobile) {
       width: 75%;
     }
   }
@@ -179,13 +179,13 @@ export default Vue.extend({
   &__content {
     display: flex;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: $--width-size-mobile) {
       flex-direction: column;
       align-items: center;
     }
 
     .el-col {
-      @media screen and (min-width: 767px) {
+      @media screen and (min-width: $--width-size-mobile) {
         width: auto;
       }
 
@@ -274,7 +274,7 @@ export default Vue.extend({
     .info {
       flex-grow: 1;
 
-      @media screen and (min-width: 767px) {
+      @media screen and (min-width: $--width-size-mobile) {
         padding-left: 30px;
       }
 
