@@ -25,12 +25,17 @@ export default {};
   .book__image {
     background: #eee;
   }
+  .book__tag {
+    height: 15px;
+    background: #eee;
+    width: 50px;
+  }
   .book__title{
-    height: 25px;
+    height: 35px;
     background: #eee;
     width: 70%;
     padding: 0;
-    margin: 20px 0 35px;
+    margin: 20px 0 30px;
   }
 
   .book__rating {
