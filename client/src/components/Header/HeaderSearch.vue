@@ -174,7 +174,7 @@ export default Vue.extend({
 .el-autocomplete-suggestion {
   li {
     padding: 15px !important;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $--color-light-2;
 
     &:last-child {
       border-bottom: 0;

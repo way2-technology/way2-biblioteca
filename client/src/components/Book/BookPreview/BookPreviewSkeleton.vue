@@ -23,16 +23,17 @@ export default {};
 <style lang="scss">
 .skeleton {
   .book__image {
-    background: #eee;
+    border: 0;
+    background: $--color-light-2;
   }
   .book__tag {
     height: 15px;
-    background: #eee;
+    background: $--color-light-2;
     width: 50px;
   }
-  .book__title{
+  .book__title {
     height: 35px;
-    background: #eee;
+    background: $--color-light-2;
     width: 70%;
     padding: 0;
     margin: 20px 0 30px;
@@ -40,7 +41,7 @@ export default {};
 
   .book__rating {
     height: 15px;
-    background: #eee;
+    background: $--color-light-2;
     width: 45%;
   }
 }

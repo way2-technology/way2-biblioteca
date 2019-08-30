@@ -1,15 +1,8 @@
 /* theme color */
-
+@import "~element-ui/packages/theme-chalk/src/index";
 @import "./variables";
 
-/* icon font path, required */
-
-$--font-path: '~element-ui/lib/theme-chalk/fonts';
-@import "~element-ui/packages/theme-chalk/src/index";
-
 /* General Styles */
-
-// Responsive
 
 .no-desktop {
   display: none;
@@ -24,8 +17,6 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
     display: none !important;
   }
 }
-
-// Overlay
 
 .overlay {
   position: fixed;

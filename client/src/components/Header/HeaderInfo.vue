@@ -2,11 +2,12 @@
   <div class="header__info">
     <div>
       <div class="actions">
-        <button 
-          type="button" 
-          class="action__filters" 
-          :class="{'visible': popoverVisible}" 
-          @click="popoverVisible = !popoverVisible">
+        <button
+          type="button"
+          class="action__filters"
+          :class="{'visible': popoverVisible}"
+          @click="popoverVisible = !popoverVisible"
+        >
           <el-badge :value="countFilters" :class="{'badge-visible': countFilters > 0}">
             <unicon name="filter"></unicon>
           </el-badge>
@@ -136,7 +137,7 @@ export default Vue.extend({
 
       &:hover,
       &.visible {
-        background: #3f4448;
+        background: $--color-black-3;
       }
 
       svg {
@@ -178,7 +179,7 @@ export default Vue.extend({
       transition: 0.2s;
 
       &:hover {
-        background: #3f4448;
+        background: $--color-black-3;
       }
     }
 
@@ -229,7 +230,7 @@ export default Vue.extend({
       cursor: pointer;
 
       &:hover {
-        background: #3f4448;
+        background: $--color-black-3;
       }
 
       span {

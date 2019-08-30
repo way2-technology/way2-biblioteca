@@ -69,7 +69,7 @@ export default Vue.extend({
   position: relative;
   width: 300px;
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 9px);
   right: 0;
   z-index: 1;
 
@@ -87,8 +87,8 @@ export default Vue.extend({
   }
 
   &__header {
-    background: #f6f8fa;
-    border-bottom: 1px solid #e1e4e8;
+    background: $--color-light-2;
+    border-bottom: 1px solid #ddd;
     line-height: 20px;
     padding: 12px 10px;
     border-radius: 4px 4px 0 0;
@@ -124,7 +124,7 @@ export default Vue.extend({
 
     label {
       width: 100%;
-      border-bottom: 1px solid #eaecef;
+      border-bottom: 1px solid #ddd;
       background: #fff;
       color: inherit;
       cursor: pointer;
@@ -133,7 +133,7 @@ export default Vue.extend({
       padding: 8px 8px 8px 16px;
 
       &:hover {
-        background: #e0eaf5 !important;
+        background: $--color-light-1 !important;
       }
 
       &:last-child {

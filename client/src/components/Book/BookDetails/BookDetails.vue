@@ -147,12 +147,12 @@ export default Vue.extend({
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #f4f4f4;
+    background: $--color-light-2;
     padding: 0 20px;
     min-height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid #ddd;
 
     h2 {
       font-size: 19px;
@@ -250,7 +250,7 @@ export default Vue.extend({
     }
 
     .borrowed {
-      border-top: 1px solid #eee;
+      border-top: 1px solid $--color-light-2;
       text-align: left;
 
       small {
@@ -291,12 +291,12 @@ export default Vue.extend({
       ul {
         list-style: none;
         margin-bottom: 20px;
-        border: 1px solid #eee;
+        border: 1px solid $--color-light-2;
         border-radius: 5px;
       }
       li {
         display: block;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid $--color-light-2;
         padding: 8px;
 
         &:last-child {
@@ -320,7 +320,7 @@ export default Vue.extend({
   }
 
   &__comments {
-    border-top: 1px solid #eee;
+    border-top: 1px solid $--color-light-2;
   }
 
   &__overlay {

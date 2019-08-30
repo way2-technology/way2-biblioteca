@@ -34,7 +34,7 @@ export default Vue.extend({
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    background: #eee;
+    background: $--color-light-2;
     margin: 0 8px 0 0;
     overflow: hidden;
   }
