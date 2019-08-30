@@ -1,7 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
 <p align="center">
   <h3 align="center">Way2 Library - Frontend</h3>
 
