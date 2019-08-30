@@ -3,15 +3,15 @@
     <div class="home__container">
       <div class="books">
         <template v-if="!$loader.active">
-          <BookPreview 
-            v-for="(book, index) in booksPreview" 
-            :key="index" 
-            :book="book" 
-            @trigger-show-book="showBookDetails" 
+          <BookPreview
+            v-for="(book, index) in booksPreview"
+            :key="index"
+            :book="book"
+            @trigger-show-book="showBookDetails"
           />
         </template>
         <template v-else>
-          <BookPreviewSkeleton v-for="index in 12" :key="index" />
+          <BookPreviewSkeleton v-for="index in limitBooks" :key="index" />
         </template>
       </div>
       <div class="books-pagination" v-if="booksPreview.length > 0">
@@ -45,6 +45,9 @@ export default Vue.extend({
     totalBooks: 0 as number
   }),
   computed: {
+    limitBooks(): number {
+      return 12;
+    },
     appElement(): HTMLDivElement | any {
       return document.querySelector("#app");
     }
@@ -76,7 +79,7 @@ export default Vue.extend({
       scrollToTop();
     },
     getUrlProcessed(page: number, categoriesSelected?: object[]): string {
-      let url = `/getbooks?limit=12&page=${page}`;
+      let url = `/getbooks?limit=${this.limitBooks}&page=${page}`;
 
       if (categoriesSelected && categoriesSelected.length > 0) {
         const categoriesIds = categoriesSelected.map(
@@ -89,7 +92,7 @@ export default Vue.extend({
       return url;
     },
     showBookDetails(id: number): void {
-      const book = this.rawListBooks.find((element) => element.id === id);
+      const book = this.rawListBooks.find(element => element.id === id);
 
       this.$store.commit("SHOW_BOOK_DETAILS", { book });
     },
