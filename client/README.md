@@ -49,7 +49,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/way2-technology/way2-biblioteca/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
