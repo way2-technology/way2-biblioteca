@@ -37,7 +37,7 @@ namespace Api.Controllers {
             var skip = GetSkip(page, limit);
             var take = limit ?? int.MaxValue;
             var books = _bookSearchService.ListAll(skip, take);
-            var response = new BookCollectionApiResponse(books, page.Value, limit.Value);
+            var response = new BookCollectionApiResponse(books, page, limit);
             return new JsonResult(response);
         }
 
@@ -46,7 +46,22 @@ namespace Api.Controllers {
             var skip = GetSkip(page, limit);
             var take = limit ?? int.MaxValue;
             var books = _bookSearchService.Search(search, skip, take);
-            var response = new BookCollectionApiResponse(books, page.Value, limit.Value);
+            var response = new BookCollectionApiResponse(books, page, limit);
+            return new JsonResult(response);
+        }
+
+        [HttpGet]
+        public JsonResult FilterCategory(int categoryId, int? limit, int? page) {
+            var skip = GetSkip(page, limit);
+            var take = limit ?? int.MaxValue;
+            var books = _bookSearchService.FilterByCategory(categoryId, skip, take);
+            var response = new BookCollectionApiResponse(books, page, limit);
+            return new JsonResult(response);
+        }
+
+        [HttpGet]
+        public JsonResult ListAllCategories() {
+            var response = _bookSearchService.ListCategories().Select(category => new CategoryResponse(category));
             return new JsonResult(response);
         }
 
