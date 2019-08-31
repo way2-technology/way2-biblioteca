@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using Data.Interfaces.Repositories;
+﻿using Data.Interfaces.Repositories;
 using Entities.Entities;
 using Services.Interfaces.Features.Search;
+using System.Collections.Generic;
 
 namespace Services.Features.Search {
-    public class BookSearchService : IBookSearchService
-    {
+    public class BookSearchService : IBookSearchService {
         private readonly IBookRepository _bookRepository;
 
-        public BookSearchService(IBookRepository bookRepository)
-        {
+        public BookSearchService(IBookRepository bookRepository) {
             _bookRepository = bookRepository;
         }
+
+        public IEnumerable<Book> FilterByCategory(int categoryId, int? skip, int? take) => _bookRepository.ListAll(categoryId, skip ?? 0, take ?? int.MaxValue);
 
         public Book FindById(int id) => _bookRepository.Load(id);
 
