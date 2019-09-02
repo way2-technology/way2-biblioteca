@@ -50,7 +50,7 @@ async function $post(url: string, body) {
   return result;
 }
 
-async function $getWithLoader({ url, typeLoader = "" }) {
+async function $getWithLoader({ url, typeLoader }) {
   Vue.prototype.$store.commit("SHOW_LOADER", { type: typeLoader });
 
   const result = await actionGet(url);
@@ -60,7 +60,7 @@ async function $getWithLoader({ url, typeLoader = "" }) {
   return result;
 }
 
-async function $postWithLoader({ url, body, typeLoader = "" }) {
+async function $postWithLoader({ url, body, typeLoader }) {
   Vue.prototype.$store.commit("SHOW_LOADER", { type: typeLoader });
 
   const result = await actionPost(url, body);

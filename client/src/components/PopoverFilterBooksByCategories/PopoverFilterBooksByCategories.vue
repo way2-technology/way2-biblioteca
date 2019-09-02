@@ -5,13 +5,16 @@
         <h3>Filtrar Livros</h3>
         <el-button :disabled="categoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
       </div>
-      <div class="filter-books__list">
+      <div
+        class="filter-books__list"
+        v-loading="$loader.active && $loader.type === 'gettingCategories'"
+      >
         <el-checkbox-group v-model="categoriesSelected" @change="handleChangeSelected">
           <el-checkbox
             v-for="(item, index) in categoriesOptions"
             :label="item"
             :key="index"
-          >{{ item.value }}</el-checkbox>
+          >{{ item.name }}</el-checkbox>
         </el-checkbox-group>
       </div>
     </div>
@@ -26,14 +29,39 @@ import EventBus from "@/common/providers/EventBus";
 export default Vue.extend({
   name: "popover-filter-books-by-categories",
   data() {
-    const { categoriesOptions, categoriesSelected } = this["$store"].state;
+    const { categoriesSelected } = this["$store"].state;
 
     return {
-      categoriesOptions,
       categoriesSelected
     };
   },
+  computed: {
+    categoriesOptions(): object[] {
+      return this["$store"].state.categoriesOptions;
+    }
+  },
+  created() {
+    this.getAllCategories();
+    this.$forceUpdate();
+  },
   methods: {
+    async getAllCategories(): Promise<void> {
+      const {
+        $getWithLoader,
+        $store,
+        $store: {
+          state: { categoriesOptions }
+        }
+      } = this;
+
+      if (categoriesOptions.length === 0) {
+        const response = await $getWithLoader({
+          url: "/listallcategories",
+          typeLoader: "gettingCategories"
+        });
+        $store.commit("SET_OPTIONS", { categories: response });
+      }
+    },
     handleChangeSelected(categories): void {
       const { $store, emitEventFilterBooks } = this;
 
@@ -111,6 +139,7 @@ export default Vue.extend({
   &__list {
     > div {
       max-height: 400px;
+      min-height: 200px;
       overflow: auto;
       position: relative;
       border-radius: 0 0 4px 4px;
@@ -129,7 +158,6 @@ export default Vue.extend({
       color: inherit;
       cursor: pointer;
       display: block;
-      overflow: hidden;
       padding: 8px 8px 8px 16px;
 
       &:hover {

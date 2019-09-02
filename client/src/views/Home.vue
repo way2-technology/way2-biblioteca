@@ -1,8 +1,11 @@
 <template>
-  <el-container class="home" v-loading="$loader.active && $loader.type === 'booksPreview'">
+  <el-container class="home" v-loading="$loader.active && $loader.type === 'gettingBooks'">
     <div class="home__container">
       <div class="books">
-        <template v-if="!$loader.active">
+        <template v-if="$loader.active && $loader.type === 'gettingBooks'">
+          <BookPreviewSkeleton v-for="index in limitBooks" :key="index" />
+        </template>
+        <template v-else>
           <BookPreview
             v-for="(book, index) in booksPreview"
             :key="index"
@@ -10,16 +13,14 @@
             @trigger-show-book="showBookDetails"
           />
         </template>
-        <template v-else>
-          <BookPreviewSkeleton v-for="index in limitBooks" :key="index" />
-        </template>
       </div>
       <div class="books-pagination" v-if="booksPreview.length > 0">
         <el-pagination
           background
           layout="prev, pager, next"
           :pager-count="5"
-          :total="totalBooks"
+          :total="pagination.total"
+          :current-page.sync="pagination.current"
           @current-change="getBooks"
         ></el-pagination>
       </div>
@@ -42,7 +43,10 @@ export default Vue.extend({
   data: () => ({
     rawListBooks: [] as object[],
     booksPreview: [] as object[],
-    totalBooks: 0 as number
+    pagination: {
+      total: 0 as number,
+      current: 0 as number
+    }
   }),
   computed: {
     limitBooks(): number {
@@ -57,29 +61,43 @@ export default Vue.extend({
     this.listenEventFilter();
   },
   methods: {
-    async getBooks(
-      evtPage: number = 0,
-      categoriesSelected?: object[]
-    ): Promise<void> {
-      const { getUrlProcessed, scrollToTop, $getWithLoader } = this;
+    scrollToTop(): void {
+      this.appElement.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    async getBooks(): Promise<void> {
+      const {
+        getUrlBooksProcessed,
+        scrollToTop,
+        $getWithLoader,
+        pagination: { current }
+      } = this;
 
-      evtPage = evtPage <= 0 ? 0 : evtPage - 1;
+      const page = current <= 0 ? 0 : current - 1;
 
       const response = await $getWithLoader({
-        url: getUrlProcessed(evtPage, categoriesSelected),
-        typeLoader: "booksPreview"
+        url: getUrlBooksProcessed(page),
+        typeLoader: "gettingBooks"
       });
 
       const { total, currentPage, entity } = response;
 
       this.rawListBooks = entity;
       this.booksPreview = parseListBooks(entity);
-      this.totalBooks = total;
+      this.pagination.total = total;
 
       scrollToTop();
     },
-    getUrlProcessed(page: number, categoriesSelected?: object[]): string {
-      let url = `/getbooks?limit=${this.limitBooks}&page=${page}`;
+    getUrlBooksProcessed(page: number): string {
+      const { limitBooks, verifyExistsFilters } = this;
+
+      let url = `/getbooks?limit=${limitBooks}&page=${page}`;
+
+      url = verifyExistsFilters(url);
+
+      return url;
+    },
+    verifyExistsFilters(url): string {
+      const { categoriesSelected } = this.$store.state;
 
       if (categoriesSelected && categoriesSelected.length > 0) {
         const categoriesIds = categoriesSelected.map(
@@ -96,13 +114,14 @@ export default Vue.extend({
 
       this.$store.commit("SHOW_BOOK_DETAILS", { book });
     },
-    scrollToTop(): void {
-      this.appElement.scrollTo({ top: 0, behavior: "smooth" });
-    },
     listenEventFilter(): void {
       EventBus.$on("filter-books-by-categories", categoriesSelected => {
-        this.getBooks(0, categoriesSelected);
+        this.getBooks();
+        this.resetPagination();
       });
+    },
+    resetPagination(): void {
+      this.pagination.current = 0;
     }
   }
 });

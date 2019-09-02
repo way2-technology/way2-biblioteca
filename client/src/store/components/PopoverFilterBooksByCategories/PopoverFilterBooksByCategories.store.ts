@@ -5,20 +5,14 @@ interface IStatePopoverFilters {
 }
 
 const State: IStatePopoverFilters = {
-  categoriesOptions: [
-    {
-      id: 1,
-      value: "Option1"
-    },
-    {
-      id: 2,
-      value: "Option2"
-    }
-  ],
+  categoriesOptions: [],
   categoriesSelected: []
 };
 
 const Mutations = {
+  "SET_OPTIONS"(state: IStatePopoverFilters, { categories }): void {
+    state.categoriesOptions = categories;
+  },
   "SET_FILTERS"(state: IStatePopoverFilters, { categories }): void {
     state.categoriesSelected = categories;
   }
