@@ -88,26 +88,26 @@ export default Vue.extend({
       scrollToTop();
     },
     getUrlBooksProcessed(page: number): string {
-      const { limitBooks, verifyExistsFilters } = this;
+      const { limitBooks, getParamFilters } = this;
 
       let url = `/getbooks?limit=${limitBooks}&page=${page}`;
 
-      url = verifyExistsFilters(url);
+      url = getParamFilters(url);
 
       return url;
     },
-    verifyExistsFilters(url): string {
+    getParamFilters(url): string {
       const { categoriesSelected } = this.$store.state;
 
-      if (categoriesSelected && categoriesSelected.length > 0) {
-        const categoriesIds = categoriesSelected.map(
-          (category: any) => category.id
-        );
-
-        url = `${url}&filters=[${categoriesIds}]`;
+      if (!categoriesSelected || categoriesSelected.length === 0) {
+        return url;
       }
 
-      return url;
+      const categoriesIds = categoriesSelected.map(
+        (category: any) => category.id
+      );
+      
+      return `${url}&filters=[${categoriesIds}]`;
     },
     showBookDetails(id: number): void {
       const book = this.rawListBooks.find(element => element.id === id);
