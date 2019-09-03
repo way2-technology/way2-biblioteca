@@ -63,17 +63,17 @@ namespace Data.Repositories
         public IEnumerable<Category> GetActiveCategories() =>
             _sqlConnectionHelper.Query<Category>("select id as ID, name as Name from category order by name", null);
 
-        public IEnumerable<Book> ListAll(int categoryId, int skip, int take)
+        public IEnumerable<Book> ListAll(int[] categoryIds, int skip, int take)
         {
             var sql = $@"
                 SELECT {BookFields}
                 FROM book b
                 join book_categories bc on bc.book_id = b.id
-				where bc.category_id = @categoryId
+				where bc.category_id in (@categoryIds)
                 ORDER by goodreads_rating desc, title
                 OFFSET     @skip ROWS
                 FETCH NEXT @take ROWS ONLY;";
-            return _sqlConnectionHelper.Query<Book>(sql, new { categoryId, skip, take });
+            return _sqlConnectionHelper.Query<Book>(sql, new { categoryIds, skip, take });
         }
 
         private string BuildSql(string condition = null) =>

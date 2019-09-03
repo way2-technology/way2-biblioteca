@@ -7,7 +7,7 @@ namespace Data.Interfaces.Repositories
     {
         IEnumerable<Book> ListAll(int skip, int take);
 
-        IEnumerable<Book> ListAll(int categoryId, int skip, int take);
+        IEnumerable<Book> ListAll(int[] categoryIds, int skip, int take);
 
         IEnumerable<Book> Search(string keyword, int skip, int take);
 

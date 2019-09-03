@@ -32,7 +32,7 @@ namespace Api.Controllers {
         {
             var viewModel = new HomeViewModel
             {
-                Books = _bookSearchService.ListAll(cid, 0, int.MaxValue).Select(book => new BookResponse(book)),
+                Books = _bookSearchService.ListAll(new[] { cid }, 0, int.MaxValue).Select(book => new BookResponse(book)),
                 Categories = _bookSearchService.ListCategories(),
             };
             return View("Index", viewModel);

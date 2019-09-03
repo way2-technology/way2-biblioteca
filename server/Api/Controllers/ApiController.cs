@@ -33,10 +33,10 @@ namespace Api.Controllers {
         }
 
         [HttpGet]
-        public JsonResult GetBooks(int? limit, int? page) {
+        public JsonResult GetBooks(int? limit, int? page, int[] categoryIds) {
             var skip = GetSkip(page, limit);
             var take = limit ?? int.MaxValue;
-            var books = _bookSearchService.ListAll(skip, take);
+            var books = _bookSearchService.ListAll(categoryIds, skip, take);
             var total = _bookSearchService.CountAllBooks();
             var response = new BookCollectionApiResponse(books, page, total);
             return new JsonResult(response);

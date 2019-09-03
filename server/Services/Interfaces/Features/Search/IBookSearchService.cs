@@ -7,7 +7,7 @@ namespace Services.Interfaces.Features.Search {
 
         IEnumerable<Book> ListAll(int skip, int take);
 
-        IEnumerable<Book> ListAll(int categoryId, int skip, int take);
+        IEnumerable<Book> ListAll(int[] categoryIds, int skip, int take);
 
         IEnumerable<Category> ListCategories();
 

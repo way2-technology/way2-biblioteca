@@ -7,7 +7,7 @@ using Data.Interfaces.Settings;
 namespace Data.Helpers {
     public class SqlConnectionHelper : ISqlConnectionHelper
     {
-        private IConnectionStringsServices _connectionStringsServices;
+        private readonly IConnectionStringsServices _connectionStringsServices;
         public SqlConnectionHelper(IConnectionStringsServices connectionStringsServices)
         {
             _connectionStringsServices = connectionStringsServices;
