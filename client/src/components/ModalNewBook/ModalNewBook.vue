@@ -121,10 +121,10 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
 
-    @media screen and (min-width: $--width-size-mobile) {
+    @media screen and (min-width: $--breakpoint-mobile) {
       max-width: 500px;
     }
-    @media screen and (max-width: $--width-size-mobile) {
+    @media screen and (max-width: $--breakpoint-mobile) {
       width: 100%;
       height: 100%;
       margin: 0 !important;

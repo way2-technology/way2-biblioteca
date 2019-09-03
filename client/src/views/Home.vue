@@ -170,7 +170,7 @@ export default Vue.extend({
         color: #fff;
       }
 
-      @media only screen and (max-width: $--width-size-mobile) {
+      @media only screen and (max-width: $--breakpoint-mobile) {
         .el-pagination.is-background .el-pager li {
           min-width: 25px;
         }

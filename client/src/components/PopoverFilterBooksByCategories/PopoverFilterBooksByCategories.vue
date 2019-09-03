@@ -101,7 +101,7 @@ export default Vue.extend({
   right: 0;
   z-index: 1;
 
-  @media screen and (max-width: $--width-size-mobile) {
+  @media screen and (max-width: $--breakpoint-mobile) {
     top: 70px;
     right: 16px;
     position: fixed;
@@ -146,7 +146,7 @@ export default Vue.extend({
       display: flex;
       flex-direction: column;
 
-      @media screen and (max-width: $--width-size-mobile) {
+      @media screen and (max-width: $--breakpoint-mobile) {
         max-height: calc(100vh - 145px);
       }
     }
@@ -179,7 +179,7 @@ export default Vue.extend({
     background: transparent;
     z-index: 1;
 
-    @media screen and (max-width: $--width-size-mobile) {
+    @media screen and (max-width: $--breakpoint-mobile) {
       background: rgba(0, 0, 0, 0.4);
     }
   }

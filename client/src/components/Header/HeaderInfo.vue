@@ -189,7 +189,7 @@ export default Vue.extend({
       overflow: hidden;
       text-overflow: ellipsis;
 
-      @media screen and (max-width: $--width-size-mobile) {
+      @media screen and (max-width: $--breakpoint-mobile) {
         display: none;
       }
     }

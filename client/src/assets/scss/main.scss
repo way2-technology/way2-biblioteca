@@ -8,7 +8,7 @@
   display: none;
 }
 
-@media only screen and (max-width: $--width-size-mobile) {
+@media only screen and (max-width: $--breakpoint-mobile) {
   .no-desktop {
     display: block;
   }
