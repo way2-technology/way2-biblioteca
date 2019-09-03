@@ -11,6 +11,8 @@ namespace Services.Features.Search {
             _bookRepository = bookRepository;
         }
 
+        public int CountAllBooks() => _bookRepository.CountAll();
+
         public IEnumerable<Book> FilterByCategory(int categoryId, int? skip, int? take) => _bookRepository.ListAll(categoryId, skip ?? 0, take ?? int.MaxValue);
 
         public Book FindById(int id) => _bookRepository.Load(id);

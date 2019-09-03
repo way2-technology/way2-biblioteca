@@ -12,6 +12,19 @@ namespace Data.Helpers {
         {
             _connectionStringsServices = connectionStringsServices;
         }
+
+        public int Count(string table, string condition) {
+            condition = !string.IsNullOrEmpty(condition) ? $"where {condition}" : string.Empty;
+            var sql = $"select count(1) as quantidade from {table} {condition}";
+            var connection = CreateNewConnection();
+            try {
+                return connection.QuerySingle(sql).quantidade;
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
         public SqlConnection CreateNewConnection() =>
             new SqlConnection(_connectionStringsServices.SqlAzure);
         

@@ -13,5 +13,6 @@ namespace Services.Interfaces.Features.Search {
 
         Book FindById(int id);
         IEnumerable<Book> FilterByCategory(int categoryId, int? skip, int? take);
+        int CountAllBooks();
     }
 }

@@ -16,5 +16,6 @@ namespace Data.Interfaces.Repositories
         void Save(Book book);
 
         Book Load(int id);
+        int CountAll();
     }
 }

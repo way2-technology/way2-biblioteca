@@ -80,5 +80,8 @@ namespace Data.Repositories
             condition == null ?
             BaseBooksSql(string.Empty) :
             BaseBooksSql($" where {condition}");
+
+        public int CountAll() =>
+            _sqlConnectionHelper.Count("book", string.Empty);
     }
 }
