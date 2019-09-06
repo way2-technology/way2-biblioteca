@@ -90,11 +90,9 @@ export default Vue.extend({
     getUrlBooksProcessed(page: number): string {
       const { limitBooks, getParamFilters } = this;
 
-      let url = `/getbooks?limit=${limitBooks}&page=${page}`;
+      const url = `/getbooks?limit=${limitBooks}&page=${page}`;
 
-      url = getParamFilters(url);
-
-      return url;
+      return getParamFilters(url);
     },
     getParamFilters(url): string {
       const { categoriesSelected } = this.$store.state;
@@ -116,8 +114,8 @@ export default Vue.extend({
     },
     listenEventFilter(): void {
       EventBus.$on("filter-books-by-categories", categoriesSelected => {
-        this.getBooks();
         this.resetPagination();
+        this.getBooks();
       });
     },
     resetPagination(): void {

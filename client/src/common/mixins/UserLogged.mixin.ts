@@ -1,4 +1,4 @@
-const UserLoggedMixin = {
+export default {
   computed: {
     $userLogged(): object {
       const {
@@ -9,5 +9,3 @@ const UserLoggedMixin = {
     }
   }
 };
-
-export default UserLoggedMixin;
