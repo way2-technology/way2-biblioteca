@@ -15,11 +15,6 @@
   </div>
 </template>
 
-<script>
-import "./BookPreview.scss";
-export default {};
-</script>
-
 <style lang="scss">
 .skeleton {
   .book__image {
