@@ -46,21 +46,18 @@ export default Vue.extend({
   },
   methods: {
     async getAllCategories(): Promise<void> {
-      const {
-        $getWithLoader,
-        $store,
-        $store: {
-          state: { categoriesOptions }
-        }
-      } = this;
-
-      if (categoriesOptions.length === 0) {
-        const response = await $getWithLoader({
-          url: "/listallcategories",
-          typeLoader: "gettingCategories"
-        });
-        $store.commit("SET_OPTIONS", { categories: response });
+      if (this.categoriesOptions.length > 0) {
+        return;
       }
+
+      const { $getWithLoader, $store } = this;
+
+      const response = await $getWithLoader({
+        url: "/listallcategories",
+        typeLoader: "gettingCategories"
+      });
+
+      $store.commit("SET_OPTIONS", { categories: response });
     },
     handleChangeSelected(categories): void {
       const { $store, emitEventFilterBooks } = this;
