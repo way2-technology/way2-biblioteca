@@ -14,17 +14,7 @@ namespace Api.Controllers {
         }
 
         [HttpGet]
-        public JsonResult Books(string keyword, int skip = 0, int take = int.MaxValue) {
-            if (string.IsNullOrEmpty(keyword?.Trim())) {
-                return new JsonResult("no keyword given");
-            }
-            var searchResult = _bookSearchService.Search(keyword, skip, take);
-            var response = searchResult.Select(book => new BookResponse(book));
-            return new JsonResult(response);
-        }
-
-        [HttpGet]
-        public JsonResult Book(int id) {
+        public JsonResult GetBook(int id) {
             var book = _bookSearchService.FindById(id);
             if (book == null) {
                 return new JsonResult(null);
@@ -33,30 +23,12 @@ namespace Api.Controllers {
         }
 
         [HttpGet]
-        public JsonResult GetBooks(int? limit, int? page, int[] categoryIds) {
+        public JsonResult GetBooks(string keyword, int[] categoryIds, int? limit, int? page) {
             var skip = GetSkip(page, limit);
             var take = limit ?? int.MaxValue;
-            var books = _bookSearchService.ListAll(categoryIds, skip, take);
+            var books = _bookSearchService.Search(keyword, categoryIds, skip, take);
             var total = _bookSearchService.CountAllBooks();
             var response = new BookCollectionApiResponse(books, page, total);
-            return new JsonResult(response);
-        }
-
-        [HttpGet]
-        public JsonResult SearchBooks(int? limit, int? page, string search) {
-            var skip = GetSkip(page, limit);
-            var take = limit ?? int.MaxValue;
-            var books = _bookSearchService.Search(search, skip, take);
-            var response = new BookCollectionApiResponse(books, page, limit);
-            return new JsonResult(response);
-        }
-
-        [HttpGet]
-        public JsonResult FilterCategory(int categoryId, int? limit, int? page) {
-            var skip = GetSkip(page, limit);
-            var take = limit ?? int.MaxValue;
-            var books = _bookSearchService.FilterByCategory(categoryId, skip, take);
-            var response = new BookCollectionApiResponse(books, page, limit);
             return new JsonResult(response);
         }
 

@@ -13,16 +13,10 @@ namespace Services.Features.Search {
 
         public int CountAllBooks() => _bookRepository.CountAll();
 
-        public IEnumerable<Book> FilterByCategory(int categoryId, int? skip, int? take) => _bookRepository.ListAll(new[] { categoryId }, skip ?? 0, take ?? int.MaxValue);
-
         public Book FindById(int id) => _bookRepository.Load(id);
-
-        public IEnumerable<Book> ListAll(int skip, int take) => _bookRepository.ListAll(skip, take);
-
-        public IEnumerable<Book> ListAll(int[] categoryIds, int skip, int take) => _bookRepository.ListAll(categoryIds, skip, take);
 
         public IEnumerable<Category> ListCategories() => _bookRepository.GetActiveCategories();
 
-        public IEnumerable<Book> Search(string keyword, int skip, int take) => _bookRepository.Search(keyword, skip, take);
+        public IEnumerable<Book> Search(string keyword, int[] categoryIds, int skip, int take) => _bookRepository.Search(keyword, categoryIds, skip, take);
     }
 }

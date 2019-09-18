@@ -18,7 +18,7 @@ namespace Api.Controllers {
         [HttpGet]
         public IActionResult Index()
         {
-            var bookList = _bookSearchService.ListAll(0, int.MaxValue);
+            var bookList = _bookSearchService.Search(null, new int[0], 0, int.MaxValue);
             var viewModel = new HomeViewModel
             {
                 Books = bookList.Select(book => new BookResponse(book)),
@@ -32,7 +32,7 @@ namespace Api.Controllers {
         {
             var viewModel = new HomeViewModel
             {
-                Books = _bookSearchService.ListAll(new[] { cid }, 0, int.MaxValue).Select(book => new BookResponse(book)),
+                Books = _bookSearchService.Search(null, new[] { cid }, 0, int.MaxValue).Select(book => new BookResponse(book)),
                 Categories = _bookSearchService.ListCategories(),
             };
             return View("Index", viewModel);
@@ -41,9 +41,8 @@ namespace Api.Controllers {
         [HttpGet]
         public IActionResult Search(string q)
         {
-            var bookList = String.IsNullOrWhiteSpace(q) ?
-                _bookSearchService.ListAll(0, int.MaxValue) :
-                _bookSearchService.Search(q, 0, int.MaxValue);
+            var keyword = string.IsNullOrWhiteSpace(q) ? null : q;
+            var bookList = _bookSearchService.Search(keyword, new int[0], 0, int.MaxValue);
             var viewModel = new HomeViewModel
             {
                 Books = bookList.Select(book => new BookResponse(book)),

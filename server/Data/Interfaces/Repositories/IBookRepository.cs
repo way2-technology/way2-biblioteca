@@ -9,7 +9,7 @@ namespace Data.Interfaces.Repositories
 
         IEnumerable<Book> ListAll(int[] categoryIds, int skip, int take);
 
-        IEnumerable<Book> Search(string keyword, int skip, int take);
+        IEnumerable<Book> Search(string keyword, int[] categoryIds, int skip, int take);
 
         IEnumerable<Category> GetActiveCategories();
 
