@@ -16,22 +16,14 @@ namespace Tests.Entities.Services {
         }
 
         [Fact]
-        public void ListAll_ShouldUseRepositirytoList()
-        {
-            var skip = 2;
-            var take = 42;
-            _bookSearchService.ListAll(skip, take);
-            _bookRepositoryMock.Verify(mock => mock.ListAll(skip, take));
-        }
-
-        [Fact]
         public void Search_ShouldUseRepositirytoSearch()
         {
             var skip = 2;
             var take = 42;
+            var categoryIds = new[] { 1, 2, 3 };
             var keyword = "something to search for";
-            _bookSearchService.Search(keyword, skip, take);
-            _bookRepositoryMock.Verify(mock => mock.Search(keyword, skip, take));
+            _bookSearchService.Search(keyword, categoryIds, skip, take);
+            _bookRepositoryMock.Verify(mock => mock.Search(keyword, categoryIds, skip, take));
         }
     }
 }

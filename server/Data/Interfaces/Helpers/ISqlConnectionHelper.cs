@@ -7,5 +7,6 @@ namespace Data.Interfaces.Helpers
     {
         SqlConnection CreateNewConnection();
         IEnumerable<T> Query<T>(string sql, object @params = null);
+        int Count(string table, string condition);
     }
 }
