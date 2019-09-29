@@ -27,8 +27,9 @@ namespace Api.Controllers {
             var skip = GetSkip(page, limit);
             var take = limit ?? int.MaxValue;
             var books = _bookSearchService.Search(keyword, categoryIds, skip, take);
-            var total = _bookSearchService.CountAllBooks();
-            var response = new BookCollectionApiResponse(books, page, total);
+            var pageCount = books.Count();
+            var totalCount = _bookSearchService.CountAllBooks();
+            var response = new BookCollectionApiResponse(books, page, pageCount, totalCount);
             return new JsonResult(response);
         }
 
