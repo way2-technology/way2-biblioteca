@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace Entities.Responses {
     public class BookCollectionApiResponse : PagedResult<BookApiResponse> {
-        public BookCollectionApiResponse(IEnumerable<Book> books, int? currentPage, int? total) {
+        public BookCollectionApiResponse(IEnumerable<Book> books, int? currentPage, int? count) {
             Entity = books.Select(book => new BookApiResponse(book));
             CurrentPage = currentPage ?? 0;
-            Total = total ?? 0;
+            TotalCount = count ?? 0;
         }
     }
 }

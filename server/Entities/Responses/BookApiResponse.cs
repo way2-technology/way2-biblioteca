@@ -20,7 +20,7 @@ namespace Entities.Responses {
             Title = book.Title;
             Description = book.Description;
             ImageUrl = book.ImageUrl;
-            Categories = book.Categories?.Select(category => category.Name).ToArray();
+            Categories = book.Categories?.Select(category => category.Name).ToArray() ?? new string[0];
             PublicationDate = book.PublicationDate;
             Publisher = book.Publisher?.Name;
             Pages = book.NumberOfPages ?? 0;
