@@ -26,8 +26,7 @@ function parseSingleBook(book): IBookDisplay {
     pages
   } = book;
 
-  const category =
-    categories && typeof categories === "object" ? categories[0] : "General";
+  const category = categories[0] ? categories[0] : "General";
 
   const publicationDateFormated = publicationDate ? new Date(publicationDate).toLocaleDateString() : new Date();
 

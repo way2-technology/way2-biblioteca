@@ -16,7 +16,7 @@
         <el-row class="book-details__content">
           <el-col>
             <figure class="image">
-              <img :src="$urlBaseApi + bookDisplay.imageUrl" :alt="bookDisplay.title" />
+              <img :src="$baseUrl + bookDisplay.imageUrl" :alt="bookDisplay.title" />
             </figure>
 
             <div class="rate">

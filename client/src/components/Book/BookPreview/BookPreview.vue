@@ -2,7 +2,7 @@
   <div class="book">
     <el-card>
       <figure class="book__image" @click="triggerShowBook">
-        <img :src="$urlBaseApi + book.imageUrl" />
+        <img :src="$baseUrl + book.imageUrl" />
       </figure>
 
       <div class="book__categories">

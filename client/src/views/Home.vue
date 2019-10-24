@@ -14,7 +14,7 @@
           />
         </template>
       </div>
-      <div class="books-pagination" v-if="booksPreview.length > 0">
+      <div class="books-pagination">
         <el-pagination
           background
           layout="prev, pager, next"
@@ -50,7 +50,7 @@ export default Vue.extend({
   }),
   computed: {
     limitBooks(): number {
-      return 12;
+      return 8;
     },
     appElement(): HTMLDivElement | any {
       return document.querySelector("#app");
@@ -79,11 +79,11 @@ export default Vue.extend({
         typeLoader: "gettingBooks"
       });
 
-      const { total, currentPage, entity } = response;
+      const { totalCount, currentPage, entity } = response;
 
       this.rawListBooks = entity;
       this.booksPreview = parseListBooks(entity);
-      this.pagination.total = total;
+      this.pagination.total = totalCount;
 
       scrollToTop();
     },
@@ -105,7 +105,7 @@ export default Vue.extend({
         (category: any) => category.id
       );
       
-      return `${url}&filters=[${categoriesIds}]`;
+      return `${url}&categoryIds=[${categoriesIds}]`;
     },
     showBookDetails(id: number): void {
       const book = this.rawListBooks.find(element => element.id === id);
@@ -140,7 +140,7 @@ export default Vue.extend({
   }
 
   .books {
-    min-height: calc(100vh - 120px);
+    // min-height: calc(100vh - 120px);
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -19,7 +19,7 @@
         @focus="toggleSearch(true)"
       >
         <div slot-scope="{item}" class="search-preview-book">
-          <img :src="$urlBaseApi + item.imageUrl" :alt="item.title" />
+          <img :src="$baseUrl + item.imageUrl" :alt="item.title" />
           <div>
             <h3>{{item.title}}</h3>
             <el-tag size="mini">{{item.category}}</el-tag>
@@ -59,7 +59,7 @@ export default Vue.extend({
       callback: (result) => void
     ): Promise<void> {
       const response = await this.$get(
-        `/searchbooks?page=0&limit=100&search=${queryString}`
+        `/getbooks?page=0&keyword=${queryString}`
       );
 
       const { entity } = response;
