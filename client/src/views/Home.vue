@@ -120,6 +120,7 @@ export default Vue.extend({
       EventBus.$on("filter-books-by-categories", categoriesSelected => {
         this.resetValues();
         this.getBooks();
+        this.scrollToTop();
       });
     },
     resetValues(): void {
