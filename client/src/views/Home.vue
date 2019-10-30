@@ -1,29 +1,22 @@
 <template>
-  <el-container class="home" v-loading="$loader.active && $loader.type === 'gettingBooks'">
+  <el-container class="home" v-loading="$loader.active && $loader.type === 'getBooks'">
     <div class="home__container">
       <div class="books">
-        <template v-if="$loader.active && $loader.type === 'gettingBooks'">
-          <BookPreviewSkeleton v-for="index in limitBooks" :key="index" />
-        </template>
-        <template v-else>
-          <BookPreview
-            v-for="(book, index) in booksPreview"
-            :key="index"
-            :book="book"
-            @trigger-show-book="showBookDetails"
-          />
+        <BookPreview
+          v-for="(book, index) in booksPreview"
+          :key="index"
+          :book="book"
+          @trigger-show-book="showBookDetails"
+        />
+        <template v-if="$loader.active && $loader.type === 'getBooks'">
+          <!-- (index+1)**20: To not duplicate keys of components -->
+          <BookPreviewSkeleton v-for="index in limitBooks" :key="(index+1)**20" />
         </template>
       </div>
-      <div class="books-pagination">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :pager-count="5"
-          :total="pagination.total"
-          :current-page.sync="pagination.current"
-          @current-change="getBooks"
-        ></el-pagination>
-      </div>
+      <InfiniteLoading @infinite="getBooks">
+        <div slot="spinner"></div>
+        <div slot="no-more"></div>
+      </InfiniteLoading>
     </div>
   </el-container>
 </template>
@@ -31,6 +24,7 @@
 <script lang="ts">
 import Vue from "vue";
 import EventBus from "@/common/providers/EventBus";
+import InfiniteLoading from "vue-infinite-loading";
 import { BookPreview, BookPreviewSkeleton } from "@/components";
 import { parseListBooks } from "@/common/helpers/Books";
 
@@ -38,59 +32,66 @@ export default Vue.extend({
   name: "home",
   components: {
     BookPreview,
-    BookPreviewSkeleton
+    BookPreviewSkeleton,
+    InfiniteLoading
   },
   data: () => ({
-    rawListBooks: [] as object[],
     booksPreview: [] as object[],
     pagination: {
       total: 0 as number,
-      current: 0 as number
+      currentPage: 0 as number
     }
   }),
   computed: {
     limitBooks(): number {
-      return 8;
+      return 12;
     },
     appElement(): HTMLDivElement | any {
       return document.querySelector("#app");
     }
   },
   created() {
-    this.getBooks();
     this.listenEventFilter();
   },
   methods: {
     scrollToTop(): void {
       this.appElement.scrollTo({ top: 0, behavior: "smooth" });
     },
-    async getBooks(): Promise<void> {
+    async getBooks($infinityEvt): Promise<void> {
+      this.$loader.active = true;
+      this.$loader.type = "getBooks";
+
       const {
-        getUrlBooksProcessed,
-        scrollToTop,
-        $getWithLoader,
-        pagination: { current }
+        getUrlBooks,
+        $get,
+        pagination: { currentPage }
       } = this;
 
-      const page = current <= 0 ? 0 : current - 1;
+      const response = await $get(getUrlBooks(currentPage));
 
-      const response = await $getWithLoader({
-        url: getUrlBooksProcessed(page),
-        typeLoader: "gettingBooks"
-      });
+      const { totalCount, entity } = response;
 
-      const { totalCount, currentPage, entity } = response;
-
-      this.rawListBooks = entity;
-      this.booksPreview = parseListBooks(entity);
+      this.booksPreview = [
+        ...this.booksPreview,
+        ...parseListBooks(entity)
+      ];
       this.pagination.total = totalCount;
+      this.pagination.currentPage += 1;
 
-      scrollToTop();
+      if($infinityEvt) {
+        if(this.booksPreview.length !== this.pagination.total) {
+          $infinityEvt.loaded();
+        } else {
+          $infinityEvt.complete();
+        }
+      }
+
+      this.$loader.active = false;
     },
-    getUrlBooksProcessed(page: number): string {
+    getUrlBooks(currentPage: number): string {
       const { limitBooks, getParamFilters } = this;
 
-      const url = `/getbooks?limit=${limitBooks}&page=${page}`;
+      const url = `/getbooks?limit=${limitBooks}&page=${currentPage}`;
 
       return getParamFilters(url);
     },
@@ -101,25 +102,29 @@ export default Vue.extend({
         return url;
       }
 
-      const categoriesIds = categoriesSelected.map(
-        (category: any) => category.id
+      let categoriesIds = "";
+      
+      categoriesSelected.forEach(
+        (category: any) => {
+          categoriesIds += `&categoryIds=${category.id}`;
+        }
       );
       
-      return `${url}&categoryIds=[${categoriesIds}]`;
+      return `${url}${categoriesIds}`;
     },
     showBookDetails(id: number): void {
-      const book = this.rawListBooks.find(element => element.id === id);
-
+      const book = this.booksPreview.find(element => element.id === id);
       this.$store.commit("SHOW_BOOK_DETAILS", { book });
     },
     listenEventFilter(): void {
       EventBus.$on("filter-books-by-categories", categoriesSelected => {
-        this.resetPagination();
+        this.resetValues();
         this.getBooks();
       });
     },
-    resetPagination(): void {
-      this.pagination.current = 0;
+    resetValues(): void {
+      this.booksPreview = [];
+      this.pagination.currentPage = 0;
     }
   }
 });
@@ -140,15 +145,21 @@ export default Vue.extend({
   }
 
   .books {
-    // min-height: calc(100vh - 120px);
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 20px;
+    justify-items: center;
     position: relative;
 
     /deep/ .el-card {
       height: 100%;
+    }
+    
+    .book {
+      &:only-child {
+        max-width: 500px;
+      }
     }
   }
 
@@ -184,10 +195,12 @@ export default Vue.extend({
   position: fixed;
   z-index: 2000;
   background-color: rgba(0, 0, 0, 0.4);
+  bottom: auto;
+  top: 100px;
 
   .path {
-    stroke-width: 3;
-    stroke: #fff;
+    stroke-width: 4;
+    stroke: $--color-primary;
   }
 }
 </style>

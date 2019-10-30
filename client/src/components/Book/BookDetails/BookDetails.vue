@@ -20,7 +20,7 @@
             </figure>
 
             <div class="rate">
-              <el-rate disabled :value="bookDisplay.rating.value" :colors="rating.colors" />
+              <el-rate disabled :value="bookDisplay.rating" :colors="rating.colors" />
               <span class="count">{{ bookDisplay.rating.count }} Reviews</span>
             </div>
 

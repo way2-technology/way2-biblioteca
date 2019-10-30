@@ -2,17 +2,18 @@
   <div class="book">
     <el-card>
       <figure class="book__image" @click="triggerShowBook">
-        <img :src="$baseUrl + book.imageUrl" />
+        <img :src="$baseUrl + book.imageUrl" loading="lazy" width="158" height="243" />
       </figure>
-
-      <div class="book__categories">
+      
+      <!-- TODO: [Categoria] -->
+      <!-- <div class="book__categories">
         <el-tag size="mini">{{book.category}}</el-tag>
-      </div>
+      </div> -->
 
       <h2 class="book__title">{{ book.title }}</h2>
 
       <footer>
-        <el-rate disabled v-model="book.rating.value" :colors="rating.colors" />
+        <el-rate disabled :value="book.rating" :colors="rating.colors" />
 
         <!-- TODO: [Usuário Logado] -->
         <!-- TODO: Função para pegar livro emprestado de acordo com o usuário -->
@@ -64,6 +65,7 @@ export default Vue.extend({
 <style lang="scss">
 .book {
   cursor: pointer;
+  width: 100%;
 
   .el-card {
     box-shadow: none !important;
@@ -100,6 +102,7 @@ export default Vue.extend({
       transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
+      background-color: $--color-light-2;
     }
   }
 

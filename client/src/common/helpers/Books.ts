@@ -26,7 +26,7 @@ function parseSingleBook(book): IBookDisplay {
     pages
   } = book;
 
-  const category = categories[0] ? categories[0] : "General";
+  const category = !!categories && categories[0] ? categories[0] : "General";
 
   const publicationDateFormated = publicationDate ? new Date(publicationDate).toLocaleDateString() : new Date();
 
@@ -40,10 +40,7 @@ function parseSingleBook(book): IBookDisplay {
     publicationDate: publicationDateFormated,
     pages,
     isbn,
-    rating: {
-      value: rating,
-      count: null
-    },
+    rating,
     borrowed: {
       avatar: "",
       fullName: ""

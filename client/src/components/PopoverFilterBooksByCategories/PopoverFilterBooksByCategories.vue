@@ -3,7 +3,10 @@
     <div class="filter-books__wrapper">
       <div class="filter-books__header">
         <h3>Filtrar Livros</h3>
-        <el-button :disabled="categoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
+        <div>
+          <el-button :disabled="categoriesSelected.length === 0" @click="clearAllFilters">Limpar</el-button>
+          <el-button icon="el-icon-close" type="plain" @click="closePopover()"></el-button>
+        </div>
       </div>
       <div
         class="filter-books__list"
@@ -144,7 +147,7 @@ export default Vue.extend({
       flex-direction: column;
 
       @media screen and (max-width: $--breakpoint-mobile) {
-        max-height: calc(100vh - 145px);
+        max-height: calc(100vh - 190px);
       }
     }
 
