@@ -13,7 +13,7 @@
           <BookPreviewSkeleton v-for="index in limitBooks" :key="(index+1)**20" />
         </template>
       </div>
-      <InfiniteLoading @infinite="getBooks">
+      <InfiniteLoading @infinite="getBooks" :distance="300">
         <div slot="spinner"></div>
         <div slot="no-more"></div>
       </InfiniteLoading>
