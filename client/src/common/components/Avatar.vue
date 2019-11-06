@@ -1,0 +1,50 @@
+<template>
+  <div class="avatar">
+    <figure>
+      <img :src="url" alt="User Avatar" />
+    </figure>
+    <strong class="name" v-if="name">{{ name }}</strong>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "avatar",
+  props: {
+    url: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      default: ""
+    }
+  }
+});
+</script>
+
+<style lang="scss" scoped>
+.avatar {
+  display: flex;
+  align-items: center;
+
+  figure {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: $--color-light-2;
+    margin: 0 8px 0 0;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+  .name {
+    font-size: 16px;
+  }
+}
+</style>
+
