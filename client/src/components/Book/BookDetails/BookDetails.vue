@@ -21,9 +21,11 @@
 
             <div class="rate">
               <el-rate disabled :value="bookDisplay.rating" :colors="rating.colors" />
-              <span class="count">{{ bookDisplay.rating.count }} Reviews</span>
+              <span class="count">{{ bookDisplay.rating.count }}</span>
             </div>
-
+            <div>
+              <span>{{bookDisplay.pages}} páginas</span>
+            </div>
             <!-- TODO: [Usuário Logado] -->
             <!-- TODO: Função para pegar livro emprestado de acordo com o usuário -->
             <!-- <template v-if="$userLogged">
@@ -40,37 +42,22 @@
             </template>-->
           </el-col>
           <el-col class="info">
-            <div class="details">
-              <h3>Detalhes:</h3>
-              <ul>
-                <li>
-                  <strong>Publicação:</strong>
-                  <span>{{ bookDisplay.publicationDate }}</span>
-                </li>
-                <li>
-                  <strong>Editora:</strong>
-                  <span>{{ bookDisplay.publisher }}</span>
-                </li>
-                <li>
-                  <strong>Páginas:</strong>
-                  <span>{{ bookDisplay.pages }}</span>
-                </li>
-                <li class="cateogries">
-                  <strong>Categorias:</strong>
-                  <template v-for="(category, key) in bookDisplay.categories">
-                    <el-tag :key="key" size="mini">{{category}}</el-tag>
-                  </template>
-                </li>
-                <li>
-                  <strong>ISBN:</strong>
-                  <span>{{ bookDisplay.isbn }}</span>
-                </li>
-              </ul>
-            </div>
             <div class="description">
-              <h3>Descrição:</h3>
+              <h4>Sobre este livro:</h4>
               <div>{{bookDisplay.description}}</div>
             </div>
+            <div>
+              <span>ISBN: {{bookDisplay.isbn}}</span>
+            </div>
+            <el-divider></el-divider>
+            <el-row :gutter="20">
+              <el-col :span="16">
+                <el-input placeholder="Seu email @way2.com.br" v-model="emailAddress"></el-input>
+              </el-col>
+              <el-col :span="8">
+                <el-button type="info" @click="requisiteEmprestimo(bookDisplay.id)">Requisitar empréstimo</el-button>
+              </el-col>
+            </el-row>
           </el-col>
         </el-row>
       </div>
@@ -91,6 +78,11 @@ export default Vue.extend({
     Avatar
   },
   mixins: [BookRatingMixin],
+  data: function() {
+    return {
+      emailAddress: ""
+    };
+  },
   computed: {
     asideVisble(): boolean {
       const {
@@ -110,6 +102,18 @@ export default Vue.extend({
   methods: {
     closeBookDetails(): void {
       this.$store.commit("CLOSE_BOOK_DETAILS");
+    },
+    requisiteEmprestimo(bookId): void {
+      var content = {
+        email: this.emailAddress,
+        bookId: bookId
+      };
+      const url = this.$fullApiUrl + "/BorrowBook";
+      this.$axios.post(url, content).then(function(response) {
+        Vue.prototype.$message.success(
+          "Empréstimo requsitado com sucesso. Verifique seu email para confirmação."
+        );
+      });
     }
   }
 });
