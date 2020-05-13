@@ -1,6 +1,9 @@
-﻿using Data.Interfaces.Helpers;
+﻿using Dapper;
+using Data.Interfaces.Helpers;
 using Data.Interfaces.Repositories;
+using Entities.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Data.Repositories
@@ -31,6 +34,16 @@ namespace Data.Repositories
                     conn.Close();
                 }
             }
+        }
+
+        public IEnumerable<BookBorrow> GetBorrows(string emailAddress)
+        {
+            const string Sql =
+                @"select b.title as 'Title', l.loanHash as 'LoanHash', l.loanDate as 'LoanDate' 
+                from loan l
+                join book b on b.id = l.book_id
+                where l.email = @email";
+            return _sqlConnectionHelper.Query<BookBorrow>(Sql, new { email = emailAddress });
         }
 
         public string RegisterBorrow(int bookId, string email)

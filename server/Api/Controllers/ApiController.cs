@@ -12,12 +12,12 @@ namespace Api.Controllers
     public class ApiController : Controller
     {
         private readonly IBookSearchService _bookSearchService;
-        private readonly IBookBorrowService _bookLendService;
+        private readonly IBookBorrowService _bookBorrowService;
 
         public ApiController(IBookSearchService bookSearchService, IBookBorrowService bookLendService)
         {
             _bookSearchService = bookSearchService;
-            _bookLendService = bookLendService;
+            _bookBorrowService = bookLendService;
         }
 
         [HttpGet]
@@ -69,8 +69,26 @@ namespace Api.Controllers
                 {
                     return new JsonResult(new ErrorResponse(400, "Invalid email domain"));
                 }
-                _bookLendService.BorrowBook(request.BookId, request.Email);
+                _bookBorrowService.BorrowBook(request.BookId, request.Email);
                 return new JsonResult("ok");
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new ErrorResponse(400, $"falha ao finalizar empréstimo de livro: {ex.Message}"));
+            }
+        }
+
+        [HttpPost]
+        public JsonResult RequestReturnBook(string email)
+        {
+            try
+            {
+                if (!ValidateEmailDomain(email))
+                {
+                    return new JsonResult(new ErrorResponse(400, "Domínio de email inválido"));
+                }
+                _bookBorrowService.ReturnBook(email);
+                return new JsonResult("Instruções de devolução foram enviadas para o seu email");
             }
             catch (Exception ex)
             {
@@ -84,7 +102,7 @@ namespace Api.Controllers
         [HttpGet]
         public ViewResult ValidateLoan(string hash)
         {
-            _bookLendService.ValidateLoan(hash);
+            _bookBorrowService.ValidateLoan(hash);
             return View("ConfirmationLoan", "Empréstimo validado com sucesso! Boa leitura :)");
         }
     }

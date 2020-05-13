@@ -78,7 +78,7 @@ export default Vue.extend({
     Avatar
   },
   mixins: [BookRatingMixin],
-  data: function() {
+  data() {
     return {
       emailAddress: ""
     };
@@ -104,12 +104,12 @@ export default Vue.extend({
       this.$store.commit("CLOSE_BOOK_DETAILS");
     },
     requisiteEmprestimo(bookId): void {
-      var content = {
+      const content = {
         email: this.emailAddress,
-        bookId: bookId
+        bookId
       };
       const url = this.$fullApiUrl + "/BorrowBook";
-      this.$axios.post(url, content).then(function(response) {
+      this.$axios.post(url, content).then(response => {
         Vue.prototype.$message.success(
           "Empréstimo requsitado com sucesso. Verifique seu email para confirmação."
         );

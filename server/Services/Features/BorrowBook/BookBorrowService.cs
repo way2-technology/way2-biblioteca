@@ -18,15 +18,21 @@ namespace Services.Features.BorrowBook
             _bookRepository = bookRepository;
         }
 
-        public void BorrowBook(int bookId, string email)
+        public void BorrowBook(int bookId, string emailAddress)
         {
-            var hash = _bookBorrowRepository.RegisterBorrow(bookId, email);
+            var hash = _bookBorrowRepository.RegisterBorrow(bookId, emailAddress);
             var book = _bookRepository.Load(bookId);
             if (book == null)
             {
                 throw new ArgumentException(nameof(bookId));
             }
-            _emailConfirmationService.SendEmail(email, book.Title, hash);
+            _emailConfirmationService.SendLoanConfirmationEmail(emailAddress, book.Title, hash);
+        }
+
+        public void ReturnBook(string emailAddress)
+        {
+            var bookBorrows = _bookBorrowRepository.GetBorrows(emailAddress);
+            _emailConfirmationService.SendLoanReturnEmail(emailAddress, bookBorrows);
         }
 
         public bool ValidateLoan(string hash) =>

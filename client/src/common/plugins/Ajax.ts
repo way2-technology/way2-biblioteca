@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-const baseUrl = "https://localhost:44375";//"https://way2library.azurewebsites.net";
+const baseUrl = "https://localhost:44375";// "https://way2library.azurewebsites.net";
 const apiName = "/api";
 
 async function actionGet(endpoint: string): Promise<any> {
