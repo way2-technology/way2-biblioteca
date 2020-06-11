@@ -55,7 +55,6 @@ namespace Tests.Domain.Services.Features.BorrowBook
             var expectedEmail = new SmtpMail("TryIt")
             {
                 From = "noreply@way2.com.br",
-                Cc = "thiagocerutti@gmail.com",
                 To = emailAddress,
                 Subject = "Way2Library - Empréstimo de livro",
             };
@@ -79,7 +78,6 @@ namespace Tests.Domain.Services.Features.BorrowBook
             var expectedEmail = new SmtpMail("TryIt")
             {
                 From = "noreply@way2.com.br",
-                Cc = "thiagocerutti@gmail.com",
                 To = emailAddress,
                 Subject = "Way2Library - Devolução de livro",
             };
@@ -129,7 +127,6 @@ namespace Tests.Domain.Services.Features.BorrowBook
             var expectedEmail = new SmtpMail("TryIt")
             {
                 From = "noreply@way2.com.br",
-                Cc = "thiagocerutti@gmail.com",
                 To = emailAddress,
                 Subject = "Way2Library - Devolução de livro",
                 HtmlBody = emailHtmlBodyExpected.ToString()

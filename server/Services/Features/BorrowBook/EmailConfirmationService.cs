@@ -81,7 +81,6 @@ namespace Services.Features.BorrowBook
             new SmtpMail("TryIt")
             {
                 From = senderEmailAddress,
-                Cc = "thiagocerutti@gmail.com",
                 To = destinationEmailAddress,
                 Subject = emailTitle,
                 HtmlBody = emailHtmlBody,
