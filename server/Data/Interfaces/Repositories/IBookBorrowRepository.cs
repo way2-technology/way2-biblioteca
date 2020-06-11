@@ -8,5 +8,6 @@ namespace Data.Interfaces.Repositories
         string RegisterBorrow(int bookId, string emailAddress);
         bool ConfirmLoan(string hash);
         IEnumerable<BookBorrow> GetBorrows(string emailAddress);
+        void ReturnBorrowedBook(string hash);
     }
 }

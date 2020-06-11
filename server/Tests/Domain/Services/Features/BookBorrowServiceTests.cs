@@ -50,7 +50,7 @@ namespace Tests.Domain.Services.Features
         public void ReturnBook_should_get_borrows_from_user()
         {
             var email = $"{Guid.NewGuid()}@way2.com.br";
-            _service.ReturnBook(email);
+            _service.SendReturnBookEmail(email);
 
             _bookBorrowRepositoryMock.Verify(mock => mock.GetBorrows(email));
             _bookBorrowRepositoryMock.Verify(mock => mock.GetBorrows(It.IsAny<string>()), Times.Once);
@@ -62,7 +62,7 @@ namespace Tests.Domain.Services.Features
             var email = $"{Guid.NewGuid()}@way2.com.br";
             var bookBorrowList = new List<BookBorrow>();
             _bookBorrowRepositoryMock.Setup(mock => mock.GetBorrows(It.IsAny<string>())).Returns(bookBorrowList);
-            _service.ReturnBook(email);
+            _service.SendReturnBookEmail(email);
 
             _emailConfirmationServiceMock.Verify(mock => mock.SendLoanReturnEmail(email, bookBorrowList));
             _emailConfirmationServiceMock.Verify(mock => mock.SendLoanReturnEmail(It.IsAny<string>(), It.IsAny<IEnumerable< BookBorrow>>()), Times.Once);

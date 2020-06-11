@@ -24,7 +24,7 @@
               <span class="count">{{ bookDisplay.rating.count }}</span>
             </div>
             <div>
-              <span>{{bookDisplay.pages}} páginas</span>
+              <span v-if="bookDisplay.pages > 0">{{bookDisplay.pages}} páginas</span>
             </div>
             <!-- TODO: [Usuário Logado] -->
             <!-- TODO: Função para pegar livro emprestado de acordo com o usuário -->
@@ -47,7 +47,7 @@
               <div>{{bookDisplay.description}}</div>
             </div>
             <div>
-              <span>ISBN: {{bookDisplay.isbn}}</span>
+              <span v-if="bookDisplay.isbn">ISBN: {{bookDisplay.isbn}}</span>
             </div>
             <el-divider></el-divider>
             <el-row :gutter="20">
@@ -127,6 +127,10 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   z-index: 99;
+
+  .el-input__inner {
+    width: 450px;
+  }
 
   &__wrapper {
     position: absolute;

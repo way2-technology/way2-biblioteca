@@ -29,10 +29,15 @@ namespace Services.Features.BorrowBook
             _emailConfirmationService.SendLoanConfirmationEmail(emailAddress, book.Title, hash);
         }
 
-        public void ReturnBook(string emailAddress)
+        public void ReturnBook(string hash)
         {
-            var bookBorrows = _bookBorrowRepository.GetBorrows(emailAddress);
-            _emailConfirmationService.SendLoanReturnEmail(emailAddress, bookBorrows);
+            _bookBorrowRepository.ReturnBorrowedBook(hash);
+        }
+
+        public void SendReturnBookEmail(string emailAddress)
+        {
+            var borrowedBooks = _bookBorrowRepository.GetBorrows(emailAddress);
+            _emailConfirmationService.SendLoanReturnEmail(emailAddress, borrowedBooks);
         }
 
         public bool ValidateLoan(string hash) =>

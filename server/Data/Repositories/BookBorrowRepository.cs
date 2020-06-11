@@ -71,5 +71,25 @@ namespace Data.Repositories
                 }
             }
         }
+
+        public void ReturnBorrowedBook(string hash)
+        {
+            const string Sql = "update loan set isReturned = 1 where loanHash = @hash";
+            using (var conn = _sqlConnectionHelper.CreateNewConnection())
+            {
+                try
+                {
+                    var loanHash = Guid.NewGuid().ToString();
+                    var cmd = new SqlCommand(Sql, conn);
+                    cmd.Parameters.AddWithValue("@hash", hash);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
 }

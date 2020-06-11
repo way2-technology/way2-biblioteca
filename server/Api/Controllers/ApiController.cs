@@ -87,8 +87,22 @@ namespace Api.Controllers
                 {
                     return new JsonResult(new ErrorResponse(400, "Domínio de email inválido"));
                 }
-                _bookBorrowService.ReturnBook(email);
+                _bookBorrowService.SendReturnBookEmail(email);
                 return new JsonResult("Instruções de devolução foram enviadas para o seu email");
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new ErrorResponse(400, $"falha ao finalizar empréstimo de livro: {ex.Message}"));
+            }
+        }
+
+        [HttpGet]
+        public JsonResult ReturnBook(string hash)
+        {
+            try
+            {
+                _bookBorrowService.ReturnBook(hash);
+                return new JsonResult("Livro devolvido com sucesso! ;)");
             }
             catch (Exception ex)
             {

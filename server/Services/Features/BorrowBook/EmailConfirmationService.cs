@@ -42,10 +42,10 @@ namespace Services.Features.BorrowBook
             SendEmail(email);
         }
 
-        private SmtpMail CreateReturnEmail(string emailAddress, IEnumerable<BookBorrow> bookBorrows)
+        private SmtpMail CreateReturnEmail(string emailAddress, IEnumerable<BookBorrow> borrowedBooks)
         {
-            var emailHtmlBody = bookBorrows.Any() ?
-                CreateHtmlBodyForBorrowedBooks(bookBorrows) :
+            var emailHtmlBody = borrowedBooks.Any() ?
+                CreateHtmlBodyForBorrowedBooks(borrowedBooks) :
                 CreateHtmlBodyForNoBorrowedBooks();
             return CreateEmail("noreply@way2.com.br", emailAddress, "Way2Library - Devolução de livro", emailHtmlBody);
         }
@@ -55,13 +55,15 @@ namespace Services.Features.BorrowBook
                 $"<p>Você não tem livros emprestados. São eles:</p>" +
                 "<p>Que tal escolher sua próxima leitura <a href=\"https://w2lib.azurewebsites.net/\">aqui?<a> :)</p>";
         
-        private string CreateHtmlBodyForBorrowedBooks(IEnumerable<BookBorrow> bookBorrows)
+        private string CreateHtmlBodyForBorrowedBooks(IEnumerable<BookBorrow> borrowedBooks)
         {
             var emailHtmlBody = new StringBuilder();
             emailHtmlBody.Append("<p>Olá humano(a), </p>")
-                .Append($"<p>Você tem {bookBorrows.Count()} livro(s) emprestado(s). São eles:</p>");
+                .Append($"<p>Você tem {borrowedBooks.Count()} livro(s) emprestado(s). São eles:</p>");
 
-            bookBorrows.Select(book => emailHtmlBody.Append($"<p><a href=\"{GetReturnBookUrl(book.LoanHash)}\">{book.Title}</a></p>"));
+            foreach (var book in borrowedBooks) {
+                emailHtmlBody.Append($"<p><a href=\"{GetReturnBookUrl(book.LoanHash)}\">{book.Title}</a></p>");
+            }
 
             return emailHtmlBody.Append("<p>Clique no link do respectivo empréstimo para devolver o livro. Espramos que tenha aproveitado a leitura!</p>")
                 .Append("<p>E que tal dar uma olhada nos <a href=\"https://w2lib.azurewebsites.net/\">nossos outros livros?<a> :)</p>")
@@ -69,7 +71,7 @@ namespace Services.Features.BorrowBook
         }
 
         public string GetReturnBookUrl(string hash) =>
-            string.Format(_configuration["AppSettings:loanConfirmationUrl"], hash);
+            string.Format(_configuration["AppSettings:returnBookUrl"], hash);
 
         private void SendEmail(SmtpMail email) =>
             _emailService.SendEmail(email);

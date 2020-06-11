@@ -14,6 +14,8 @@ using Services.Features.Search;
 using Services.Features.Settings;
 using Services.Features.BorrowBook;
 using Services.Interfaces.Features.BorrowBook;
+using Services.Interfaces.Features.Common;
+using Services.Features.Common;
 
 namespace IoC.Resolver
 {
@@ -34,6 +36,7 @@ namespace IoC.Resolver
             services.AddScoped<IBookBorrowService, BookBorrowService>();
             services.AddScoped<IBookBorrowRepository, BookBorrowRepository>();
             services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddSingleton<IConnectionStringsServices, ConnectionStringsServices>(serviceProvider =>
             {
                 return new ConnectionStringsServices(new ConnectionStrings() { SqlAzure = connectionString });

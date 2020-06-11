@@ -97,7 +97,7 @@ namespace Tests.Domain.Services.Features.BorrowBook
         public void SendLoanReturnEmail_should_send_books_borrowed_email()
         {
             var confirmationUrl = Guid.NewGuid().ToString() + "/{0}";
-            _configurationMock.Setup(mock => mock["AppSettings:loanConfirmationUrl"]).Returns(confirmationUrl);
+            _configurationMock.Setup(mock => mock["AppSettings:returnBookUrl"]).Returns(confirmationUrl);
             var bookBorrowsList = new List<BookBorrow>
             {
                 new BookBorrow
@@ -117,7 +117,10 @@ namespace Tests.Domain.Services.Features.BorrowBook
                 .Append("<p>Olá humano(a), </p>")
                 .Append($"<p>Você tem {bookBorrowsList.Count()} livro(s) emprestado(s). São eles:</p>");
 
-            bookBorrowsList.Select(book => emailHtmlBodyExpected.Append($"<p><a href=\"{GetReturnBookUrl(book.LoanHash)}\">{book.Title}</a></p>"));
+            foreach(var book in bookBorrowsList)
+            {
+                emailHtmlBodyExpected.Append($"<p><a href=\"{GetReturnBookUrl(book.LoanHash)}\">{book.Title}</a></p>");
+            }
 
             emailHtmlBodyExpected.Append("<p>Clique no link do respectivo empréstimo para devolver o livro. Espramos que tenha aproveitado a leitura!</p>")
                 .Append("<p>E que tal dar uma olhada nos <a href=\"https://w2lib.azurewebsites.net/\">nossos outros livros?<a> :)</p>")
@@ -142,6 +145,6 @@ namespace Tests.Domain.Services.Features.BorrowBook
         }
 
         private string GetReturnBookUrl(string hash) =>
-            string.Format(_configurationMock.Object["AppSettings:loanConfirmationUrl"], hash);
+            string.Format(_configurationMock.Object["AppSettings:returnBookUrl"], hash);
     }
 }

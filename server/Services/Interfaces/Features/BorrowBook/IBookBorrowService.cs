@@ -4,6 +4,7 @@
     {
         void BorrowBook(int bookId, string email);
         bool ValidateLoan(string hash);
-        void ReturnBook(string email);
+        void SendReturnBookEmail(string email);
+        void ReturnBook(string hash);
     }
 }

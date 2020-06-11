@@ -90,8 +90,8 @@ namespace Tests.Api.Controllers
         {
             var email = "somebody@way2.com.br";
             _controller.RequestReturnBook(email);
-            _bookBorrowServiceMock.Verify(mock => mock.ReturnBook(email));
-            _bookBorrowServiceMock.Verify(mock => mock.ReturnBook(It.IsAny<string>()), Times.Once);
+            _bookBorrowServiceMock.Verify(mock => mock.SendReturnBookEmail(email));
+            _bookBorrowServiceMock.Verify(mock => mock.SendReturnBookEmail(It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace Tests.Api.Controllers
         {
             var email = "somebody@way2.com.br";
             var exception = new Exception(Guid.NewGuid().ToString());
-            _bookBorrowServiceMock.Setup(mock => mock.ReturnBook(It.IsAny<string>())).Throws(exception);
+            _bookBorrowServiceMock.Setup(mock => mock.SendReturnBookEmail(It.IsAny<string>())).Throws(exception);
             var expected = new JsonResult(new ErrorResponse(400, $"falha ao finalizar empréstimo de livro: {exception.Message}"));
             var actual = _controller.RequestReturnBook(email);
             actual.Should().BeEquivalentTo(expected);
