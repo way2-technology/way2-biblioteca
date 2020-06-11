@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Api {
     public partial class Startup {
+
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
@@ -26,7 +27,13 @@ namespace Api {
         }
 
         public void ConfigureServices(IServiceCollection services) {
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny", policy =>
+                {
+                    policy.WithOrigins("https://way2library.azurewebsites.net/").AllowAnyMethod();
+                });
+            });
             services.ConfigureSwagger();
             services.AddMvc();
             AddservicesAuthentication(services);
