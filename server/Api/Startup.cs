@@ -31,7 +31,7 @@ namespace Api {
             {
                 options.AddPolicy("AllowAny", policy =>
                 {
-                    policy.WithOrigins("https://way2library.azurewebsites.net/").AllowAnyMethod();
+                    policy.WithOrigins("https://w2lib.azurewebsites.net/").AllowAnyMethod();
                 });
             });
             services.ConfigureSwagger();
