@@ -74,10 +74,12 @@ async function $postWithLoader({ url, body, typeLoader }) {
 const AjaxPlugin = {
   install() {
     Vue.prototype.$baseUrl = baseUrl;
+    Vue.prototype.$fullApiUrl = baseUrl+apiName;
     Vue.prototype.$get = $get;
     Vue.prototype.$post = $post;
     Vue.prototype.$getWithLoader = $getWithLoader;
     Vue.prototype.$postWithLoader = $postWithLoader;
+    Vue.prototype.$axios = require("axios").default;
   }
 };
 

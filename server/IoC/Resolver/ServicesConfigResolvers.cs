@@ -12,8 +12,13 @@ using Services.Interfaces.Features.Search;
 using Services.Features.AuthServices;
 using Services.Features.Search;
 using Services.Features.Settings;
+using Services.Features.BorrowBook;
+using Services.Interfaces.Features.BorrowBook;
+using Services.Interfaces.Features.Common;
+using Services.Features.Common;
 
-namespace IoC.Resolver {
+namespace IoC.Resolver
+{
     public static class ServicesConfigResolvers
     {
         public static void ConfigureServices(this IServiceCollection services, string connectionString)
@@ -28,8 +33,13 @@ namespace IoC.Resolver {
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPublisherRepository, PublisherRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-            services.AddSingleton<IConnectionStringsServices, ConnectionStringsServices>(serviceProvider => {
-                return new ConnectionStringsServices(new ConnectionStrings() { SqlAzure = connectionString});
+            services.AddScoped<IBookBorrowService, BookBorrowService>();
+            services.AddScoped<IBookBorrowRepository, BookBorrowRepository>();
+            services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddSingleton<IConnectionStringsServices, ConnectionStringsServices>(serviceProvider =>
+            {
+                return new ConnectionStringsServices(new ConnectionStrings() { SqlAzure = connectionString });
             });
 
         }
